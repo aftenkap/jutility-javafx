@@ -1,25 +1,24 @@
 package org.jutility.javafx.control.icon;
 
+
 /*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L jutility-javafx %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
+ * under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. #L%
  */
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,13 +29,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.LinearGradientBuilder;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.RectangleBuilder;
 
 
 /**
@@ -146,17 +143,12 @@ public class ErrorIcon
         // #e8e8e8 0%,
         // #c6c6c6 50%,
         // #a6a6a6 100%
-        Paint FRAME_FILL = LinearGradientBuilder
-                .create()
-                .proportional(true)
-                .startX(0.271)
-                .startY(0.065)
-                .endX(0.7735)
-                .endY(0.91)
-                .cycleMethod(CycleMethod.NO_CYCLE)
-                .stops(new Stop(0.0f, Color.web("#e8e8e8")),
-                        new Stop(0.5f, Color.web("#c6c6c6")),
-                        new Stop(1.0f, Color.web("#a6a6a6"))).build();
+        List<Stop> stops = new ArrayList<>(3);
+        stops.add(new Stop(0.0f, Color.web("#e8e8e8")));
+        stops.add(new Stop(0.5f, Color.web("#c6c6c6")));
+        stops.add(new Stop(1.0f, Color.web("#a6a6a6")));
+        LinearGradient FRAME_FILL = new LinearGradient(0.271, 0.065, 0.7735,
+                0.91, true, CycleMethod.NO_CYCLE, stops);
 
         frame.setFill(FRAME_FILL);
 
@@ -166,50 +158,49 @@ public class ErrorIcon
         frame.setEffect(shadow);
 
         frame1 = new Circle();
+
+        List<Stop> stops2 = new ArrayList<>();
+        // #fdfdfd 0%,
+        stops2.add(new Stop(0.0f, Color.web("#fdfdfd")));
+        // #ededed 3.552646%,
+        stops2.add(new Stop(0.03552646f, Color.web("#ededed")));
+        // #d7d7d7 7.277831%,
+        stops2.add(new Stop(0.07277831f, Color.web("#d7d7d7")));
+        // #d2d2d2 11.973317%,
+        stops2.add(new Stop(0.11973317f, Color.web("#d2d2d2")));
+        // #c7c7c7 18.269639%,
+        stops2.add(new Stop(0.18269639f, Color.web("#c7c7c7")));
+        // #c1c1c1 25.449407%,
+        stops2.add(new Stop(0.25449407f, Color.web("#c1c1c1")));
+        // #b0b0b0 32.21809%,
+        stops2.add(new Stop(0.3221809f, Color.web("#b0b0b0")));
+        // #999999 37.210315%,
+        stops2.add(new Stop(0.37210315f, Color.web("#999999")));
+        // #868686 43.145844%,
+        stops2.add(new Stop(0.43145844f, Color.web("#868686")));
+        // #747474 49.577036%,
+        stops2.add(new Stop(0.49577036f, Color.web("#747474")));
+        // #5c5c5c 55.667913%,
+        stops2.add(new Stop(0.55667913f, Color.web("#5c5c5c")));
+        // #5a5a5a 61.299348%,
+        stops2.add(new Stop(0.61299348f, Color.web("#5a5a5a")));
+        // #5e5e5e 68.340749%,
+        stops2.add(new Stop(0.68340749f, Color.web("#5e5e5e")));
+        // #676767 76.115692%,
+        stops2.add(new Stop(0.76115692f, Color.web("#676767")));
+        // #706e6f 82.365692%,
+        stops2.add(new Stop(0.82365692f, Color.web("#706e6f")));
+        // #838383 88.148153%,
+        stops2.add(new Stop(0.88148153f, Color.web("#838383")));
+        // #959595 93.637025%,
+        stops2.add(new Stop(0.93637025f, Color.web("#959595")));
+        // #a8a8a8 100%
+        stops2.add(new Stop(1.0f, Color.web("#a8a8a8")));
+
+
         // -fx-background-color : linear-gradient(from 27.1% 6.5% to 77.35% 91%,
-        Paint FRAME1_FILL = LinearGradientBuilder.create().proportional(true)
-                .startX(0.271).startY(0.065).endX(0.7735).endY(0.91)
-                .cycleMethod(CycleMethod.NO_CYCLE).stops(
-
-                // #fdfdfd 0%,
-                        new Stop(0.0f, Color.web("#fdfdfd")),
-                        // #ededed 3.552646%,
-                        new Stop(0.03552646f, Color.web("#ededed")),
-                        // #d7d7d7 7.277831%,
-                        new Stop(0.07277831f, Color.web("#d7d7d7")),
-                        // #d2d2d2 11.973317%,
-                        new Stop(0.11973317f, Color.web("#d2d2d2")),
-                        // #c7c7c7 18.269639%,
-                        new Stop(0.18269639f, Color.web("#c7c7c7")),
-                        // #c1c1c1 25.449407%,
-                        new Stop(0.25449407f, Color.web("#c1c1c1")),
-                        // #b0b0b0 32.21809%,
-                        new Stop(0.3221809f, Color.web("#b0b0b0")),
-                        // #999999 37.210315%,
-                        new Stop(0.37210315f, Color.web("#999999")),
-                        // // #868686 43.145844%,
-                        new Stop(0.43145844f, Color.web("#868686")),
-                        // // #747474 49.577036%,
-                        new Stop(0.49577036f, Color.web("#747474")),
-                        // // #5c5c5c 55.667913%,
-                        new Stop(0.55667913f, Color.web("#5c5c5c")),
-                        // // #5a5a5a 61.299348%,
-                        new Stop(0.61299348f, Color.web("#5a5a5a")),
-                        // // #5e5e5e 68.340749%,
-                        new Stop(0.68340749f, Color.web("#5e5e5e")),
-                        // // #676767 76.115692%,
-                        new Stop(0.76115692f, Color.web("#676767")),
-                        // // #706e6f 82.365692%,
-                        new Stop(0.82365692f, Color.web("#706e6f")),
-                        // // #838383 88.148153%,
-                        new Stop(0.88148153f, Color.web("#838383")),
-                        // // #959595 93.637025%,
-                        new Stop(0.93637025f, Color.web("#959595")),
-                        // #a8a8a8 100%
-                        new Stop(1.0f, Color.web("#a8a8a8"))
-
-                ).build();
-
+        LinearGradient FRAME1_FILL = new LinearGradient(0.271, 0.065, 0.7735,
+                0.91, true, CycleMethod.NO_CYCLE, stops2);
 
 
         frame1.setFill(FRAME1_FILL);
@@ -219,18 +210,16 @@ public class ErrorIcon
         // #747474 50%,
         // #8f8f8f 100%);
         // }
-        Paint FRAME1_STROKE = LinearGradientBuilder.create().proportional(true)
-                .startX(0.271).startY(0.065).endX(0.7735).endY(0.91)
-                .cycleMethod(CycleMethod.NO_CYCLE).stops(
 
-                // #d5d5d5 0%,
-                        new Stop(0.0f, Color.web("#d5d5d5")),
-                        // #747474 50%,
-                        new Stop(0.5f, Color.web("#747474")),
-                        // #8f8f8f 100%
-                        new Stop(1.0f, Color.web("#8f8f8f"))
-
-                ).build();
+        List<Stop> stops3 = new ArrayList<>(3);
+        // #d5d5d5 0%,
+        stops3.add(new Stop(0.0f, Color.web("#d5d5d5")));
+        // #747474 50%,
+        stops3.add(new Stop(0.5f, Color.web("#747474")));
+        // #8f8f8f 100%
+        stops3.add(new Stop(1.0f, Color.web("#8f8f8f")));
+        LinearGradient FRAME1_STROKE = new LinearGradient(0.271, 0.065, 0.7735,
+                0.91, true, CycleMethod.NO_CYCLE, stops3);
 
 
 
@@ -278,36 +267,30 @@ public class ErrorIcon
     @SuppressWarnings("unused")
     private LinearGradient blackIconBackground() {
 
-        LinearGradient blackIconBackground = LinearGradientBuilder.create()
-                .proportional(true).startX(0.271).startY(0.065).endX(0.7735)
-                .endY(0.91).cycleMethod(CycleMethod.NO_CYCLE).stops(
-
-                // #1c1715 0%,
-                        new Stop(0.0f, Color.web("#1c1715")),
-                        // #181818 50%,
-                        new Stop(0.5f, Color.web("#181818")),
-                        // #3a3a3a 100%);
-                        new Stop(1.0f, Color.web("#3a3a3a"))
-
-                ).build();
+        List<Stop> stops = new ArrayList<>(3);
+        // #1c1715 0%,
+        stops.add(new Stop(0.0f, Color.web("#1c1715")));
+        // #181818 50%,
+        stops.add(new Stop(0.5f, Color.web("#181818")));
+        // #3a3a3a 100%);
+        stops.add(new Stop(1.0f, Color.web("#3a3a3a")));
+        LinearGradient blackIconBackground = new LinearGradient(0.271, 0.065,
+                0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
 
         return blackIconBackground;
     }
 
     private LinearGradient whiteBackground() {
 
-        LinearGradient blackIconBackground = LinearGradientBuilder.create()
-                .proportional(true).startX(0.271).startY(0.065).endX(0.7735)
-                .endY(0.91).cycleMethod(CycleMethod.NO_CYCLE).stops(
-
-                // #1c1715 0%,
-                        new Stop(0.0f, Color.web("#fdfdfd")),
-                        // #181818 50%,
-                        new Stop(0.5f, Color.web("#ebebeb")),
-                        // #3a3a3a 100%);
-                        new Stop(1.0f, Color.web("#ffffff"))
-
-                ).build();
+        List<Stop> stops = new ArrayList<>(3);
+        // #fdfdfd 0%,
+        stops.add(new Stop(0.0f, Color.web("#fdfdfd")));
+        // #ebebeb 50%,
+        stops.add(new Stop(0.5f, Color.web("#ebebeb")));
+        // #ffffff 100%);
+        stops.add(new Stop(1.0f, Color.web("#ffffff")));
+        LinearGradient blackIconBackground = new LinearGradient(0.271, 0.065,
+                0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
 
         return blackIconBackground;
     }
@@ -315,22 +298,18 @@ public class ErrorIcon
 
     private LinearGradient redIconBackground() {
 
-        LinearGradient redIconBackground = LinearGradientBuilder.create()
-                .proportional(true).startX(0.271).startY(0.065).endX(0.7735)
-                .endY(0.91).cycleMethod(CycleMethod.NO_CYCLE).stops(
-
-                // #1c1715 0%,
-                        new Stop(0.0f, Color.web("#fe2020")),
-                        // #181818 50%,
-                        new Stop(0.5f, Color.web("#b70b0b")),
-                        // #3a3a3a 100%);
-                        new Stop(1.0f, Color.web("#d96868"))
-
-                ).build();
+        List<Stop> stops = new ArrayList<>(3);
+        // #fe2020 0%,
+        stops.add(new Stop(0.0f, Color.web("#fe2020")));
+        // #b70b0b 50%
+        stops.add(new Stop(0.5f, Color.web("#b70b0b")));
+        // #d96868 100%)
+        stops.add(new Stop(1.0f, Color.web("#d96868")));
+        LinearGradient redIconBackground = new LinearGradient(0.271, 0.065,
+                0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
 
         return redIconBackground;
     }
-
 
 
     private void resize() {
