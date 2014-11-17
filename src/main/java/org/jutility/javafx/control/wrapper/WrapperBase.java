@@ -1,26 +1,19 @@
-/**
- * 
- */
 package org.jutility.javafx.control.wrapper;
 
+
 /*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L jutility-javafx %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
+ * under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. #L%
  */
 
 
@@ -43,7 +36,6 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 import javafx.scene.control.Skinnable;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 
@@ -380,45 +372,33 @@ public abstract class WrapperBase<T extends Control>
      */
     protected void addNode(Node node, Position position) {
 
-        // System.out.println("Node to add: " + node);
-        // System.out.println("Position: " + position);
-        //
-        // System.out.println("East Node: " + this.getEast());
-        // System.out.println("North Node: " + this.getNorth());
-        // System.out.println("North-East Node: " + this.getNorthEast());
-        // System.out.println("North-West Node: " + this.getNorthWest());
-        // System.out.println("South Node: " + this.getSouth());
-        // System.out.println("South-East Node: " + this.getSouthEast());
-        // System.out.println("South-West Node: " + this.getSouthWest());
-        // System.out.println("West Node: " + this.getWest());
-
         switch (position) {
-        case EAST:
-            this.setEast(node);
-            break;
-        case NORTH:
-            this.setNorth(node);
-            break;
-        case NORTHEAST:
-            this.setNorthEast(node);
-            break;
-        case NORTHWEST:
-            this.setNorthWest(node);
-            break;
-        case SOUTH:
-            this.setSouth(node);
-            break;
-        case SOUTHEAST:
-            this.setSouthEast(node);
-            break;
-        case SOUTHWEST:
-            this.setSouthWest(node);
-            break;
-        case WEST:
-            this.setWest(node);
-            break;
-        default:
-            break;
+            case EAST:
+                this.setEast(node);
+                break;
+            case NORTH:
+                this.setNorth(node);
+                break;
+            case NORTHEAST:
+                this.setNorthEast(node);
+                break;
+            case NORTHWEST:
+                this.setNorthWest(node);
+                break;
+            case SOUTH:
+                this.setSouth(node);
+                break;
+            case SOUTHEAST:
+                this.setSouthEast(node);
+                break;
+            case SOUTHWEST:
+                this.setSouthWest(node);
+                break;
+            case WEST:
+                this.setWest(node);
+                break;
+            default:
+                break;
         }
     }
 
@@ -432,24 +412,24 @@ public abstract class WrapperBase<T extends Control>
     protected Node getNode(Position position) {
 
         switch (position) {
-        case EAST:
-            return this.getEast();
-        case NORTH:
-            return this.getNorth();
-        case NORTHEAST:
-            return this.getNorthEast();
-        case NORTHWEST:
-            return this.getNorthWest();
-        case SOUTH:
-            return this.getSouth();
-        case SOUTHEAST:
-            return this.getSouthEast();
-        case SOUTHWEST:
-            return this.getSouthWest();
-        case WEST:
-            return this.getWest();
-        default:
-            return null;
+            case EAST:
+                return this.getEast();
+            case NORTH:
+                return this.getNorth();
+            case NORTHEAST:
+                return this.getNorthEast();
+            case NORTHWEST:
+                return this.getNorthWest();
+            case SOUTH:
+                return this.getSouth();
+            case SOUTHEAST:
+                return this.getSouthEast();
+            case SOUTHWEST:
+                return this.getSouthWest();
+            case WEST:
+                return this.getWest();
+            default:
+                return null;
         }
     }
 
@@ -467,32 +447,32 @@ public abstract class WrapperBase<T extends Control>
         Node node = null;
 
         switch (position) {
-        case EAST:
-            node = this.getEast();
-            break;
-        case NORTH:
-            node = this.getNorth();
-            break;
-        case NORTHEAST:
-            node = this.getNorthEast();
-            break;
-        case NORTHWEST:
-            node = this.getNorthWest();
-            break;
-        case SOUTH:
-            node = this.getSouth();
-            break;
-        case SOUTHEAST:
-            node = this.getSouthEast();
-            break;
-        case SOUTHWEST:
-            node = this.getSouthWest();
-            break;
-        case WEST:
-            node = this.getWest();
-            break;
-        default:
-            return null;
+            case EAST:
+                node = this.getEast();
+                break;
+            case NORTH:
+                node = this.getNorth();
+                break;
+            case NORTHEAST:
+                node = this.getNorthEast();
+                break;
+            case NORTHWEST:
+                node = this.getNorthWest();
+                break;
+            case SOUTH:
+                node = this.getSouth();
+                break;
+            case SOUTHEAST:
+                node = this.getSouthEast();
+                break;
+            case SOUTHWEST:
+                node = this.getSouthWest();
+                break;
+            case WEST:
+                node = this.getWest();
+                break;
+            default:
+                return null;
         }
         this.addNode(null, position);
         super.getChildren().remove(node);
@@ -516,32 +496,32 @@ public abstract class WrapperBase<T extends Control>
         Node node = null;
 
         switch (position) {
-        case EAST:
-            node = this.getEast();
-            break;
-        case NORTH:
-            node = this.getNorth();
-            break;
-        case NORTHEAST:
-            node = this.getNorthEast();
-            break;
-        case NORTHWEST:
-            node = this.getNorthWest();
-            break;
-        case SOUTH:
-            node = this.getSouth();
-            break;
-        case SOUTHEAST:
-            node = this.getSouthEast();
-            break;
-        case SOUTHWEST:
-            node = this.getSouthWest();
-            break;
-        case WEST:
-            node = this.getWest();
-            break;
-        default:
-            return null;
+            case EAST:
+                node = this.getEast();
+                break;
+            case NORTH:
+                node = this.getNorth();
+                break;
+            case NORTHEAST:
+                node = this.getNorthEast();
+                break;
+            case NORTHWEST:
+                node = this.getNorthWest();
+                break;
+            case SOUTH:
+                node = this.getSouth();
+                break;
+            case SOUTHEAST:
+                node = this.getSouthEast();
+                break;
+            case SOUTHWEST:
+                node = this.getSouthWest();
+                break;
+            case WEST:
+                node = this.getWest();
+                break;
+            default:
+                return null;
         }
         if (node != null && node.equals(nodeToRemove)) {
 
@@ -569,31 +549,19 @@ public abstract class WrapperBase<T extends Control>
      * 
      * @return the ContextMenu to show for this control.
      * 
-     * @see: {@link TextField#getContextMenu()},
-     *       {@link TextField#setContextMenu(ContextMenu)}
+     * @see #getContextMenu()
+     * @see #setContextMenu(ContextMenu)
      */
     public final ObjectProperty<ContextMenu> contextMenuProperty() {
 
         return this.getWrapped().contextMenuProperty();
     }
 
-    /**
-     * The Tooltip for this control.
-     * 
-     * @return the Tooltip for this control.
-     * 
-     * @see: {@link TextField#getTooltip()},
-     *       {@link TextField#setTooltip(Tooltip)}
-     */
-    public final ObjectProperty<Tooltip> tooltipProperty() {
-
-        return this.getWrapped().tooltipProperty();
-    }
 
     /**
-     * Gets the value of the property contextMenu.
+     * Gets the value of the context menu property
      * 
-     * @return the value of the property contextMenu.
+     * @return the value of the context menu property
      */
     public final ContextMenu getContextMenu() {
 
@@ -601,10 +569,10 @@ public abstract class WrapperBase<T extends Control>
     }
 
     /**
-     * Sets the value of the property contextMenu.
+     * Sets the value of the context menu property
      * 
      * @param contextMenu
-     *            the value of the property contextMenu.
+     *            the value of the context menu property.
      */
     public final void setContextMenu(final ContextMenu contextMenu) {
 
@@ -612,13 +580,38 @@ public abstract class WrapperBase<T extends Control>
     }
 
     /**
-     * Gets the value of the property tooltip.
+     * The Tooltip for this control.
      * 
-     * @return the value of the property tooltip.
+     * @return the Tooltip for this control.
+     * 
+     * @see #getTooltip()
+     * @see #setTooltip(Tooltip)
+     */
+    public final ObjectProperty<Tooltip> tooltipProperty() {
+
+        return this.getWrapped().tooltipProperty();
+    }
+
+
+    /**
+     * Gets the value of the tooltip property.
+     * 
+     * @return the value of the tooltip property.
      */
     public final Tooltip getTooltip() {
 
         return this.tooltipProperty().get();
+    }
+
+    /**
+     * Sets the value of the tooltip property.
+     * 
+     * @param value
+     *            the value of the tooltip property.
+     */
+    public void setTooltip(Tooltip value) {
+
+        this.getWrapped().setTooltip(value);
     }
 
     /**
@@ -637,14 +630,13 @@ public abstract class WrapperBase<T extends Control>
      * the Control, the Skin is a black box. It listens and responds to changes
      * in state in a Control. There is a one-to-one relationship between a
      * Control and its Skin. Every Skin maintains a back reference to the
-     * Control via the Skin.getSkinnable() method.
-     * 
-     * A skin may be null.
+     * Control via the {@link Skin#getSkinnable()} method. <br>
+     * A skin may be {@code null}.
      * 
      * Specified by: skinProperty in interface {@link Skinnable}
      * 
-     * @see Control#getSkin()
-     * @see Control#setSkin(Skin)
+     * @see #getSkin()
+     * @see #setSkin(Skin)
      * 
      * @return the Skin property.
      */
@@ -663,11 +655,35 @@ public abstract class WrapperBase<T extends Control>
         return this.getWrapped().getSkin();
     }
 
+    /**
+     * Sets the skin.
+     * 
+     * @param value
+     *            the skin.
+     */
+    public void setSkin(Skin<?> value) {
+
+        this.getWrapped().setSkin(value);
+    }
+
+
 
     /**
      * Creates a new instance of the {@link WrapperBase} class.
      */
     public WrapperBase() {
+
+        this(null);
+
+    }
+
+    /**
+     * Creates a new instance of the {@link WrapperBase} class.
+     * 
+     * @param wrapped
+     *            the wrapped control.
+     */
+    public WrapperBase(final T wrapped) {
 
         this.north = new SimpleObjectProperty<>("wrapper", "north");
         this.northEast = new SimpleObjectProperty<>("wrapper", "north-east");
@@ -681,11 +697,15 @@ public abstract class WrapperBase<T extends Control>
         this.wrapped = new SimpleObjectProperty<>("wrapper", "wrapped");
 
 
-
         this.contextMenuActions = FXCollections
                 .observableList(new LinkedList<Action>());
 
         this.setUpEventHandlers();
+
+        if (wrapped != null) {
+
+            this.wrapped.set(wrapped);
+        }
     }
 
     private void setUpEventHandlers() {
@@ -708,8 +728,8 @@ public abstract class WrapperBase<T extends Control>
                 WrapperBase.this
                         .getWrapped()
                         .contextMenuProperty()
-                        .set(ActionUtils
-                                .createContextMenu(WrapperBase.this.contextMenuActions()));
+                        .set(ActionUtils.createContextMenu(WrapperBase.this
+                                .contextMenuActions()));
 
             }
         });
