@@ -490,7 +490,7 @@ public class TableViewWrapper<S>
      */
     public TableViewWrapper() {
 
-        this(null);
+        this((Collection<S>) null);
     }
 
     /**
@@ -502,11 +502,23 @@ public class TableViewWrapper<S>
      */
     public TableViewWrapper(final Collection<S> items) {
 
-        super(new TableView<S>());
+        this(new TableView<S>());
 
         if (items != null) {
 
             this.setItems(FXCollections.observableArrayList(items));
         }
+    }
+
+    /**
+     * Creates a new instance of the {@link TableViewWrapper} class with the
+     * provided table view.
+     * 
+     * @param tableView
+     *            the provided table view.
+     */
+    public TableViewWrapper(TableView<S> tableView) {
+
+        super(tableView);
     }
 }

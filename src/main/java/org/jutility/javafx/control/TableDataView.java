@@ -1,22 +1,23 @@
 package org.jutility.javafx.control;
 
+
 /*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L 
+ * jutility-javafx 
+ * %% 
+ * Copyright (C) 2013 - 2014 jutility.org 
+ * %% 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+ * use this file except in compliance with the License. You may obtain a copy of 
+ * the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  * #L%
  */
 
@@ -58,7 +59,7 @@ public class TableDataView<T>
      * 
      * @return the table property.
      */
-    public ObjectProperty<ITable<T>> table() {
+    public ObjectProperty<ITable<T>> tableProperty() {
 
         return this.table;
     }
@@ -150,8 +151,7 @@ public class TableDataView<T>
         super();
 
         this.table = new SimpleObjectProperty<>();
-        this.stringConverter = new SimpleObjectProperty<>(
-                stringConverter);
+        this.stringConverter = new SimpleObjectProperty<>(stringConverter);
 
 
         this.tableCellFactory = new TableCellFactory<>();
@@ -182,8 +182,8 @@ public class TableDataView<T>
 
                     for (int i = 0; i < newValue.columns(); i++) {
 
-                        TableColumn<List<T>, T> column = new TableColumn<>(
-                                "" + i);
+                        TableColumn<List<T>, T> column = new TableColumn<>(""
+                                + i);
                         column.setCellValueFactory(new TableCellValueFactory<T>(
                                 i));
                         column.setCellFactory(TableDataView.this.tableCellFactory);
@@ -233,8 +233,7 @@ public class TableDataView<T>
      *            the content type.
      */
     private static class TableCellFactory<T>
-            implements
-            Callback<TableColumn<List<T>, T>, TableCell<List<T>, T>> {
+            implements Callback<TableColumn<List<T>, T>, TableCell<List<T>, T>> {
 
 
         private final ObjectProperty<StringConverter<T>> stringConverter;
@@ -281,8 +280,7 @@ public class TableDataView<T>
         }
 
         @Override
-        public TableCell<List<T>, T> call(
-                TableColumn<List<T>, T> column) {
+        public TableCell<List<T>, T> call(TableColumn<List<T>, T> column) {
 
             TableCell<List<T>, T> cell = new TableCell<List<T>, T>() {
 
@@ -294,16 +292,16 @@ public class TableDataView<T>
                     if (TableCellFactory.this.getStringConverter() == null) {
 
                         if (item != null) {
-                            
+
                             this.setText(item.toString());
                         }
                         else {
-                            
+
                             this.setText(null);
                         }
                     }
                     else {
-                        
+
                         this.setText(TableCellFactory.this.getStringConverter()
                                 .toString(item));
                     }
