@@ -27,7 +27,6 @@ import java.util.List;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableCell;
@@ -164,35 +163,30 @@ public class TableDataView<T>
                 .stringConverter());
 
 
-        this.table.addListener(new ChangeListener<ITable<T>>() {
+        this.table
+                .addListener((observable, oldValue, newValue) -> {
 
-            @Override
-            public void changed(
-                    ObservableValue<? extends ITable<T>> observable,
-                    ITable<T> oldValue, ITable<T> newValue) {
+                    this.getItems().clear();
+                    this.getColumns().clear();
 
-                TableDataView.this.getItems().clear();
-                TableDataView.this.getColumns().clear();
+                    if (newValue != null) {
 
-                if (newValue != null) {
-
-                    TableDataView.this.setItems(FXCollections
-                            .observableArrayList(newValue.getRows()));
+                        this.setItems(FXCollections
+                                .observableArrayList(newValue.getRows()));
 
 
-                    for (int i = 0; i < newValue.columns(); i++) {
+                        for (int i = 0; i < newValue.columns(); i++) {
 
-                        TableColumn<List<T>, T> column = new TableColumn<>(""
-                                + i);
-                        column.setCellValueFactory(new TableCellValueFactory<T>(
-                                i));
-                        column.setCellFactory(TableDataView.this.tableCellFactory);
-                        TableDataView.this.getColumns().add(column);
+                            TableColumn<List<T>, T> column = new TableColumn<>(
+                                    "" + i);
+                            column.setCellValueFactory(new TableCellValueFactory<T>(
+                                    i));
+                            column.setCellFactory(this.tableCellFactory);
+                            this.getColumns().add(column);
+                        }
                     }
-                }
 
-            }
-        });
+                });
 
         if (table != null) {
 

@@ -21,17 +21,12 @@ package org.jutility.javafx.control.dialog;
  */
 
 
-import java.util.Optional;
-
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 
-import org.controlsfx.control.ButtonBar;
-import org.controlsfx.control.ButtonBar.ButtonType;
-import org.controlsfx.control.action.Action;
-import org.controlsfx.dialog.DefaultDialogAction;
-import org.controlsfx.dialog.Dialog;
 import org.jutility.common.datatype.table.CellRange;
 import org.jutility.javafx.control.CellRangeGridPane;
 
@@ -43,11 +38,8 @@ import org.jutility.javafx.control.CellRangeGridPane;
  * @since 0.1
  */
 public class CellRangeDialog
-        extends Dialog {
+        extends Dialog<CellRange> {
 
-
-
-    private Action                  confirmAction;
     private GridPane                content;
 
     private final CellRangeGridPane cellRange;
@@ -68,94 +60,40 @@ public class CellRangeDialog
     public CellRangeDialog(String title, Window owner, CellRange validRange,
             CellRange initialValue) {
 
-        super(owner, title);
+        super();
+        this.initOwner(owner);
+        this.setTitle(title);
 
         this.content = new GridPane();
         this.content.setHgap(10);
         this.content.setVgap(10);
 
-        this.setContent(content);
+        this.getDialogPane().setContent(content);
 
         this.cellRange = new CellRangeGridPane(validRange, initialValue);
 
         this.content.add(this.cellRange, 0, 0);
 
-        this.confirmAction = new DefaultDialogAction("Ok") {
+        this.setResultConverter((param) -> {
 
-            {
-                ButtonBar.setType(this, ButtonType.OK_DONE);
+            if (param == ButtonType.OK) {
+
+                return this.cellRange.getCellRange();
             }
 
-            // This method is called when the login button is clicked...
-            @Override
-            public void handle(ActionEvent ae) {
+            return null;
+        });
 
-                if (!isDisabled()) {
-                    if (ae.getSource() instanceof Dialog) {
-                        Dialog dlg = (Dialog) ae.getSource();
+        this.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-                        dlg.setResult(CellRangeDialog.this.confirmAction);
-                    }
-                }
-            }
-        };
-        this.getActions().addAll(confirmAction, Dialog.Actions.CANCEL);
 
-        this.confirmAction.disabledProperty().bind(
-                this.cellRange.invalidProperty());
-        this.cellRange.requestFocus();
+        this.getDialogPane().lookupButton(ButtonType.OK).disableProperty()
+                .bind(this.cellRange.invalidProperty());
 
-    }
+        Platform.runLater(() -> {
 
-    /**
-     * Creates a lightweight dialog for creating or editing a {@link CellRange}.
-     * 
-     * @param validRange
-     *            the range restriction.
-     * @param initialValue
-     *            the initial value.
-     * 
-     * @return the new {@link CellRange}.
-     */
-    public static <T> Optional<CellRange> showCellRangeDialog(
-            CellRange validRange, CellRange initialValue) {
+            this.cellRange.requestFocus();
+        });
 
-        return CellRangeDialog.showCellRangeDialog(null, validRange,
-                initialValue);
-    }
-
-    /**
-     * Creates a dialog for creating or editing a {@link CellRange}.
-     * 
-     * @param validRange
-     *            the range restriction.
-     * @param initialValue
-     *            the initial value.
-     * @param owner
-     *            the owner of the dialog.
-     * @return an {@link Optional} containing the {@link CellRange}.
-     */
-    public static Optional<CellRange> showCellRangeDialog(Window owner,
-            CellRange validRange, CellRange initialValue) {
-
-        CellRangeDialog dialog = null;
-        if (initialValue != null) {
-
-            dialog = new CellRangeDialog("Edit Cell Range", owner, validRange,
-                    initialValue);
-        }
-        else {
-
-            dialog = new CellRangeDialog("Create Cell Range", owner,
-                    validRange, initialValue);
-        }
-        Action result = dialog.show();
-
-        if (result == dialog.confirmAction) {
-
-            return Optional.of(dialog.cellRange.getCellRange());
-        }
-
-        return Optional.empty();
     }
 }

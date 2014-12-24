@@ -1,22 +1,23 @@
 package org.jutility.javafx.control;
 
+
 /*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L 
+ * jutility-javafx 
+ * %% 
+ * Copyright (C) 2013 - 2014 jutility.org 
+ * %% 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+ * use this file except in compliance with the License. You may obtain a copy 
+ * of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. 
  * #L%
  */
 
@@ -28,13 +29,12 @@ import java.util.List;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
+import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -101,7 +101,7 @@ public class LabeledComboBox<T>
      * 
      * @return the invalid property of the control.
      */
-    public ReadOnlyObjectProperty<Boolean> invalidProperty() {
+    public ReadOnlyBooleanProperty invalidProperty() {
 
         return this.validationSupport.invalidProperty();
     }
@@ -374,81 +374,48 @@ public class LabeledComboBox<T>
 
 
 
-        this.contextMenuActions.addListener(new ListChangeListener<Action>() {
+        this.contextMenuActions
+                .addListener((Change<? extends Action> change) -> {
 
-            @Override
-            public void onChanged(Change<? extends Action> change) {
+                    this.contextMenu.getItems().clear();
 
-                LabeledComboBox.this.contextMenu.getItems().clear();
+                    this.contextMenu = ActionUtils
+                            .createContextMenu(this.contextMenuActions);
+                });
 
-                LabeledComboBox.this.contextMenu = ActionUtils
-                        .createContextMenu(LabeledComboBox.this.contextMenuActions);
+
+        this.stringConverter.addListener((observable, oldValue, newValue) -> {
+
+            Callback<ListView<T>, ListCell<T>> cellFactory = null;
+            if (newValue != null) {
+
+                cellFactory = (param) -> {
+
+                    return new TextFieldListCell<>(this.getStringConverter());
+                };
             }
+            else {
+                cellFactory = (param) -> {
+
+                    return new TextFieldListCell<>();
+                };
+            }
+
+            this.comboBox.setCellFactory(cellFactory);
+            this.comboBox.setButtonCell(cellFactory.call(null));
+
+            this.update();
         });
 
 
 
-        this.stringConverter
-                .addListener(new ChangeListener<StringConverter<T>>() {
+        this.addEventHandler(
+                ContextMenuEvent.CONTEXT_MENU_REQUESTED,
+                (event) -> {
 
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends StringConverter<T>> observable,
-                            StringConverter<T> oldValue,
-                            StringConverter<T> newValue) {
-
-                        Callback<ListView<T>, ListCell<T>> cellFactory = null;
-                        if (newValue != null) {
-
-                            cellFactory = new Callback<ListView<T>, ListCell<T>>() {
-
-                                @Override
-                                public ListCell<T> call(ListView<T> param) {
-
-                                    return new TextFieldListCell<>(
-                                            LabeledComboBox.this
-                                                    .getStringConverter());
-                                }
-                            };
-
-
-                        }
-                        else {
-                            cellFactory = new Callback<ListView<T>, ListCell<T>>() {
-
-                                @Override
-                                public ListCell<T> call(ListView<T> param) {
-
-                                    return new TextFieldListCell<>();
-                                }
-                            };
-                        }
-
-                        LabeledComboBox.this.comboBox
-                                .setCellFactory(cellFactory);
-                        LabeledComboBox.this.comboBox.setButtonCell(cellFactory
-                                .call(null));
-
-                        LabeledComboBox.this.update();
-                    }
+                    this.contextMenu.show(this, event.getScreenX(),
+                            event.getScreenY());
                 });
-
-
-
-        this.addEventHandler(ContextMenuEvent.CONTEXT_MENU_REQUESTED,
-                new EventHandler<ContextMenuEvent>() {
-
-                    @Override
-                    public void handle(ContextMenuEvent event) {
-
-                        LabeledComboBox.this.contextMenu.show(
-                                LabeledComboBox.this, event.getScreenX(),
-                                event.getScreenY());
-                    }
-                });
-
-
-
     }
 
     /**

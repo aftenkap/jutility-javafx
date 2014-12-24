@@ -21,7 +21,7 @@ package org.jutility.javafx.control;
  */
 
 
-import javafx.beans.property.ReadOnlyObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -79,7 +79,7 @@ public class CellLocationGridPane
      * 
      * @return the invalid Property of this Control.
      */
-    public ReadOnlyObjectProperty<Boolean> invalidProperty() {
+    public ReadOnlyBooleanProperty invalidProperty() {
 
         return this.validationSupport.invalidProperty();
     }

@@ -252,17 +252,14 @@ public class TableViewWithSearchPanel<T>
         this.contextMenuActions = FXCollections
                 .observableList(new LinkedList<Action>());
 
-        this.contextMenuActions.addListener(new ListChangeListener<Action>() {
+        this.contextMenuActions
+                .addListener((Change<? extends Action> change) -> {
 
-            @Override
-            public void onChanged(Change<? extends Action> change) {
+                    this.contextMenu.getItems().clear();
 
-                TableViewWithSearchPanel.this.contextMenu.getItems().clear();
-
-                TableViewWithSearchPanel.this.contextMenu = ActionUtils
-                        .createContextMenu(TableViewWithSearchPanel.this.contextMenuActions);
-            }
-        });
+                    this.contextMenu = ActionUtils
+                            .createContextMenu(this.contextMenuActions);
+                });
         // searchPanel = new SearchPanel();
         //
         // searchPanel.getClose().addEventHandler(ActionEvent.ACTION,

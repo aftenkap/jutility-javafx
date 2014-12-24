@@ -24,7 +24,7 @@
 		<java.version>1.8</java.version>
 
 		<!-- ControlsFX -->
-		<org.controlsfx.version>8.0.6_20</org.controlsfx.version>
+		<org.controlsfx.version>8.20.8</org.controlsfx.version>
 	</properties>
 
 

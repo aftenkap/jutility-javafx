@@ -1,22 +1,23 @@
 package org.jutility.javafx.control;
 
+
 /*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L 
+ * jutility-javafx 
+ * %% 
+ * Copyright (C) 2013 - 2014 jutility.org 
+ * %% 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+ * use this file except in compliance with the License. You may obtain a copy 
+ * of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  * #L%
  */
 
@@ -26,19 +27,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.controlsfx.control.action.Action;
-import org.controlsfx.control.action.ActionUtils;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
+import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -60,6 +56,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+
+import org.controlsfx.control.action.Action;
+import org.controlsfx.control.action.ActionUtils;
 
 
 
@@ -224,7 +223,7 @@ public class ListViewWithSearchPanel<T>
      */
     public void clearSelection() {
 
-        listView.getSelectionModel().clearSelection();
+        this.listView.getSelectionModel().clearSelection();
     }
 
     /**
@@ -399,146 +398,92 @@ public class ListViewWithSearchPanel<T>
 
 
 
-        this.contextMenuActions.addListener(new ListChangeListener<Action>() {
+        this.contextMenuActions
+                .addListener((Change<? extends Action> change) -> {
 
-            @Override
-            public void onChanged(Change<? extends Action> change) {
+                    this.contextMenu.getItems().clear();
 
-                ListViewWithSearchPanel.this.contextMenu.getItems().clear();
+                    this.contextMenu = ActionUtils
+                            .createContextMenu(this.contextMenuActions);
+                });
 
-                ListViewWithSearchPanel.this.contextMenu = ActionUtils
-                        .createContextMenu(ListViewWithSearchPanel.this.contextMenuActions);
+
+
+        this.stringConverter.addListener((observable, oldValue, newValue) -> {
+
+            if (newValue != null) {
+
+                this.listView.setCellFactory((param) -> {
+
+                    return new TextFieldListCell<>(this.getStringConverter());
+                });
             }
+            else {
+                this.listView.setCellFactory((param) -> {
+
+                    return new TextFieldListCell<>();
+                });
+            }
+
+            this.update();
         });
 
 
 
-        this.stringConverter
-                .addListener(new ChangeListener<StringConverter<T>>() {
+        this.addEventHandler(KeyEvent.KEY_PRESSED, (event) -> {
 
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends StringConverter<T>> observable,
-                            StringConverter<T> oldValue,
-                            StringConverter<T> newValue) {
+            final KeyCombination keyComb1 = new KeyCodeCombination(KeyCode.F,
+                    KeyCombination.SHORTCUT_DOWN);
 
-                        if (newValue != null) {
-                            ListViewWithSearchPanel.this.listView
-                                    .setCellFactory(new Callback<ListView<T>, ListCell<T>>() {
+            if (keyComb1.match(event)) {
 
-                                        @Override
-                                        public ListCell<T> call(
-                                                ListView<T> param) {
+                this.searchPanel.setVisible(true);
+                this.searchPanel.requestFocus();
+            }
 
-                                            return new TextFieldListCell<>(
-                                                    ListViewWithSearchPanel.this
-                                                            .getStringConverter());
-                                        }
-                                    });
-                        }
-                        else {
-                            ListViewWithSearchPanel.this.listView
-                                    .setCellFactory(new Callback<ListView<T>, ListCell<T>>() {
-
-                                        @Override
-                                        public ListCell<T> call(
-                                                ListView<T> param) {
-
-                                            return new TextFieldListCell<>();
-                                        }
-                                    });
-                        }
-
-                        ListViewWithSearchPanel.this.update();
-                    }
-                });
-
-
-
-        this.addEventHandler(KeyEvent.KEY_PRESSED,
-                new EventHandler<KeyEvent>() {
-
-                    @Override
-                    public void handle(KeyEvent event) {
-
-                        final KeyCombination keyComb1 = new KeyCodeCombination(
-                                KeyCode.F, KeyCombination.SHORTCUT_DOWN);
-
-                        if (keyComb1.match(event)) {
-
-                            searchPanel.setVisible(true);
-                            searchPanel.requestFocus();
-                        }
-                    }
-
-                });
+        });
 
 
 
         this.searchPanel.visibleProperty().addListener(
-                new ChangeListener<Boolean>() {
+                (observable, oldValue, newValue) -> {
 
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends Boolean> observable,
-                            Boolean oldValue, Boolean newValue) {
+                    if (Boolean.FALSE.equals(newValue)) {
 
-                        if (Boolean.FALSE.equals(newValue)) {
+                        this.getChildren().remove(this.searchPanel);
+                    }
+                    else if (Boolean.TRUE.equals(newValue)
+                            && !this.getChildren().contains(this.searchPanel)) {
 
-                            ListViewWithSearchPanel.this.getChildren().remove(
-                                    ListViewWithSearchPanel.this.searchPanel);
-                        }
-                        else if (Boolean.TRUE.equals(newValue)
-                                && !ListViewWithSearchPanel.this.getChildren()
-                                        .contains(searchPanel)) {
-
-                            ListViewWithSearchPanel.this.getChildren().add(
-                                    ListViewWithSearchPanel.this.searchPanel);
-                        }
-
+                        this.getChildren().add(this.searchPanel);
                     }
                 });
 
 
 
-        this.addEventHandler(ContextMenuEvent.CONTEXT_MENU_REQUESTED,
-                new EventHandler<ContextMenuEvent>() {
+        this.addEventHandler(
+                ContextMenuEvent.CONTEXT_MENU_REQUESTED,
+                (event) -> {
 
-                    @Override
-                    public void handle(ContextMenuEvent event) {
-
-                        ListViewWithSearchPanel.this.contextMenu.show(
-                                ListViewWithSearchPanel.this,
-                                event.getScreenX(), event.getScreenY());
-                    }
+                    this.contextMenu.show(this, event.getScreenX(),
+                            event.getScreenY());
                 });
 
 
 
-        this.items().addListener(new ListChangeListener<T>() {
+        this.items().addListener((Change<? extends T> change) -> {
 
-            @Override
-            public void onChanged(Change<? extends T> change) {
-
-                ListViewWithSearchPanel.this.update();
-            }
+            this.update();
         });
 
 
         this.searchPanel.filterString().addListener(
-                new ChangeListener<String>() {
+                (observable, oldValue, newValue) -> {
 
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends String> observable,
-                            String oldValue, String newValue) {
-
-                        ListViewWithSearchPanel.this.update();
-                    }
+                    this.update();
                 });
 
     }
-
 
     /**
      * Updates the list view after a change.
@@ -549,8 +494,7 @@ public class ListViewWithSearchPanel<T>
 
         if (!this.items.isEmpty()) {
 
-            List<T> selectedItems = new ArrayList<>(
-                    ListViewWithSearchPanel.this.getSelectedItems());
+            List<T> selectedItems = new ArrayList<>(this.getSelectedItems());
 
             String filterString = this.searchPanel.getFilterString();
 
@@ -624,5 +568,4 @@ public class ListViewWithSearchPanel<T>
 
         return null;
     }
-
 }

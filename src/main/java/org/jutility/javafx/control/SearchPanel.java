@@ -25,7 +25,6 @@ package org.jutility.javafx.control;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -71,18 +70,12 @@ public class SearchPanel
 
 
         this.close = new Button("x");
-        this.close.addEventHandler(ActionEvent.ACTION,
-                new EventHandler<ActionEvent>() {
+        this.close.addEventHandler(ActionEvent.ACTION, (actionEvent) -> {
 
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-
-                        SearchPanel.this.searchBox.setText(null);
-                        SearchPanel.this.setVisible(false);
-                    }
-
-                });
-        this.getChildren().addAll(close, search, searchBox);
+            this.searchBox.setText(null);
+            this.setVisible(false);
+        });
+        this.getChildren().addAll(this.close, this.search, this.searchBox);
 
 
         this.searchBox.disableProperty().bind(this.disabledProperty());
