@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.jutility.javafx.control.validated;
 
 /*
@@ -25,7 +22,6 @@ package org.jutility.javafx.control.validated;
 
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 
 import org.controlsfx.validation.Severity;
@@ -245,7 +241,6 @@ public class ValidationUtils {
      *            severity of a message to be created if value is invalid.
      * @return new validator
      */
-    @SuppressWarnings("unused")
     public static <T> Validator<T> createURIFormatValidator(
             final String message, final Severity severity) {
 
@@ -257,9 +252,9 @@ public class ValidationUtils {
 
                 try {
 
-                    new URI(value.toString());
+                   URI.create(value.toString());
                 }
-                catch (URISyntaxException e) {
+                catch (Exception e) {
 
                     condition = true;
                 }
