@@ -331,7 +331,7 @@ public class ListViewWrapper<T>
     public ListViewWrapper(final ObservableList<T> items,
             final StringConverter<T> converter) {
 
-        super(new ListView<>(items));
+        super(items == null ? new ListView<>() : new ListView<>(items));
 
         this.converterProperty = new SimpleObjectProperty<>(converter);
 

@@ -161,7 +161,7 @@ public class ComboBoxWrapper<T>
      */
     public ComboBoxWrapper(ObservableList<T> items) {
 
-        super(new ComboBox<>(items));
+        super(items == null ? new ComboBox<T>() : new ComboBox<>(items));
     }
 
 
