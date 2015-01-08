@@ -160,6 +160,7 @@ public class ListViewWithSearchPanel<T>
      */
     public void clear() {
 
+        this.getItems().clear();
         this.clearSelection();
     }
 

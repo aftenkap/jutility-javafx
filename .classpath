@@ -6,7 +6,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src/main/resources">
+	<classpathentry including="**/*.java" kind="src" path="src/main/resources">
 		<attributes>
 			<attribute name="ignore_optional_problems" value="true"/>
 		</attributes>
