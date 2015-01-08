@@ -1,11 +1,16 @@
 package org.jutility.javafx.control.wrapper;
 
 
+//@formatter:off
 /*
- * #%L jutility-javafx %% Copyright (C) 2013 - 2014 jutility.org %% Licensed
- * under the Apache License, Version 2.0 (the "License"); you may not use this
- * file except in compliance with the License. You may obtain a copy of the
- * License at
+ * #%L 
+ * jutility-javafx 
+ * %% 
+ * Copyright (C) 2013 - 2014 jutility.org 
+ * %% 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+ * use this file except in compliance with the License. You may obtain a copy of 
+ * the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
@@ -13,23 +18,22 @@ package org.jutility.javafx.control.wrapper;
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
- * the License. #L%
+ * the License. 
+ * #L%
  */
-
+//@formatter:on
 
 import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Optional;
 
-import org.controlsfx.control.action.Action;
-import org.controlsfx.control.action.ActionUtils;
-
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
+import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
@@ -39,21 +43,30 @@ import javafx.scene.control.Skinnable;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 
+import org.controlsfx.control.action.Action;
+import org.controlsfx.control.action.ActionUtils;
+import org.controlsfx.validation.ValidationMessage;
+import org.controlsfx.validation.ValidationResult;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
+import org.controlsfx.validation.decoration.ValidationDecoration;
+
 
 /**
- * The abstract {@link WrapperBase} class provides base functionality for
- * wrapping a {@link Node} within a 3x3 {@link GridPane}.
+ * The abstract {@link ControlWrapper} class provides base functionality for
+ * wrapping a {@link Control} within a 3x3 {@link GridPane}.
  * 
  * @author Peter J. Radics
- * @version 1.0
- * @since 1.0
+ * @version 0.1.2
+ * @since 0.0.1
  * @param <T>
- *            the type of the Node to be wrapped.
+ *            the type of the {@link Control} to be wrapped.
  * 
  */
-public abstract class WrapperBase<T extends Control>
+public abstract class ControlWrapper<T extends Control>
         extends GridPane {
 
+    private final ValidationSupport      validationSupport;
 
     private final ObjectProperty<Node>   north;
     private final ObjectProperty<Node>   northEast;
@@ -67,6 +80,173 @@ public abstract class WrapperBase<T extends Control>
     private final ObjectProperty<T>      wrapped;
 
     private final ObservableList<Action> contextMenuActions;
+
+
+    /**
+     * Returns whether or not the state of the Control is valid.
+     * 
+     * @return {@code true}, if the state of the Control is valid; {@code false}
+     *         otherwise.
+     */
+    public boolean isInvalid() {
+
+        return this.validationSupport.isInvalid();
+    }
+
+    /**
+     * Returns the invalid property of the control.
+     * 
+     * @return the invalid property of the control.
+     */
+    public ReadOnlyBooleanProperty invalidProperty() {
+
+        return this.validationSupport.invalidProperty();
+    }
+
+    /**
+     * Can be used to track validation result changes
+     * 
+     * @return the validation result property.
+     */
+    public ReadOnlyObjectProperty<ValidationResult> validationResultProperty() {
+
+        return this.validationSupport.validationResultProperty();
+    }
+
+    /**
+     * Returns the validation result.
+     * 
+     * @return the validation result.
+     */
+    public ValidationResult getValidationResult() {
+
+        return this.validationSupport.getValidationResult();
+    }
+
+
+    /**
+     * Registers {@link Validator} for specified control with additional
+     * possibility to mark control as required or not.
+     * 
+     * @param required
+     *            true if controls should be required
+     * @param validator
+     *            {@link Validator} to be used
+     * @return true if registration is successful
+     */
+    public boolean registerValidator(boolean required,
+            final Validator<T> validator) {
+
+        return this.validationSupport.registerValidator(this.getWrapped(),
+                required, validator);
+    }
+
+    /**
+     * Registers {@link Validator} for the control and makes control required
+     * 
+     * @param validator
+     *            {@link Validator} to be used
+     * @return true if registration is successful
+     */
+    public boolean registerValidator(final Validator<T> validator) {
+
+        return registerValidator(true, validator);
+    }
+
+
+    /**
+     * Returns the error decoration enabled property.
+     * 
+     * @return the error decoration enabled property.
+     */
+    public BooleanProperty errorDecorationEnabledProperty() {
+
+        return this.validationSupport.errorDecorationEnabledProperty();
+    }
+
+    /**
+     * Returns optional highest severity message for a control
+     * 
+     * @return optional highest severity message for a control
+     */
+    public Optional<ValidationMessage> getHighestMessage() {
+
+        return this.validationSupport.getHighestMessage(this.getWrapped());
+    }
+
+    /**
+     * Returns the current validation decorator.
+     * 
+     * @return the current validation decorator.
+     */
+    public ValidationDecoration getValidationDecorator() {
+
+        return this.validationSupport.getValidationDecorator();
+    }
+
+    /**
+     * Check control's required flag.
+     * 
+     * @return whether or not this control is required.
+     */
+    public boolean isRequired() {
+
+        return ValidationSupport.isRequired(this.getWrapped());
+    }
+
+    /**
+     * Redecorates all known components Only decorations related to validation
+     * are affected
+     */
+    public void redecorate() {
+
+        this.validationSupport.redecorate();
+    }
+
+    /**
+     * Sets the value of the property errorDecorationEnabled.
+     * 
+     * @param enabled
+     *            the value of the property errorDecorationEnabled.
+     */
+    public void setErrorDecorationEnabled(boolean enabled) {
+
+        this.validationSupport.setErrorDecorationEnabled(enabled);
+    }
+
+    /**
+     * Set control's required flag.
+     * 
+     * @param required
+     *            whether or not this control is required.
+     */
+    public void setRequired(boolean required) {
+
+        ValidationSupport.setRequired(this.getWrapped(), required);
+    }
+
+    /**
+     * Sets a new validation decorator
+     * 
+     * @param decorator
+     *            the new validation decorator
+     */
+    public void setValidationDecorator(ValidationDecoration decorator) {
+
+        this.validationSupport.setValidationDecorator(decorator);
+    }
+
+    /**
+     * Returns the validation decorator property.
+     * 
+     * @return the validation decorator property.
+     */
+    public ObjectProperty<ValidationDecoration> validationDecoratorProperty() {
+
+        return this.validationSupport.validationDecoratorProperty();
+    }
+
+
 
     /**
      * Returns the property containing the north {@link Node}.
@@ -565,7 +745,7 @@ public abstract class WrapperBase<T extends Control>
      */
     public final ContextMenu getContextMenu() {
 
-        return this.contextMenuProperty().get();
+        return this.getWrapped().getContextMenu();
     }
 
     /**
@@ -576,7 +756,7 @@ public abstract class WrapperBase<T extends Control>
      */
     public final void setContextMenu(final ContextMenu contextMenu) {
 
-        this.contextMenuProperty().set(contextMenu);
+        this.getWrapped().setContextMenu(contextMenu);
     }
 
     /**
@@ -669,21 +849,25 @@ public abstract class WrapperBase<T extends Control>
 
 
     /**
-     * Creates a new instance of the {@link WrapperBase} class.
+     * Creates a new instance of the {@link ControlWrapper} class.
      */
-    public WrapperBase() {
+    public ControlWrapper() {
 
         this(null);
 
     }
 
     /**
-     * Creates a new instance of the {@link WrapperBase} class.
+     * Creates a new instance of the {@link ControlWrapper} class.
      * 
      * @param wrapped
      *            the wrapped control.
      */
-    public WrapperBase(final T wrapped) {
+    public ControlWrapper(final T wrapped) {
+
+        Objects.nonNull(wrapped);
+
+        this.validationSupport = new ValidationSupport();
 
         this.north = new SimpleObjectProperty<>("wrapper", "north");
         this.northEast = new SimpleObjectProperty<>("wrapper", "north-east");
@@ -702,10 +886,8 @@ public abstract class WrapperBase<T extends Control>
 
         this.setUpEventHandlers();
 
-        if (wrapped != null) {
 
-            this.wrapped.set(wrapped);
-        }
+        this.wrapped.set(wrapped);
     }
 
     private void setUpEventHandlers() {
@@ -720,40 +902,27 @@ public abstract class WrapperBase<T extends Control>
         this.setUpEventHandler(this.northWest);
         this.setUpEventHandler(this.wrapped);
 
-        this.contextMenuActions.addListener(new ListChangeListener<Action>() {
+        this.contextMenuActions
+                .addListener((Change<? extends Action> change) -> {
 
-            @Override
-            public void onChanged(Change<? extends Action> change) {
+                    this.getWrapped()
+                            .contextMenuProperty()
+                            .set(ActionUtils.createContextMenu(this
+                                    .contextMenuActions()));
 
-                WrapperBase.this
-                        .getWrapped()
-                        .contextMenuProperty()
-                        .set(ActionUtils.createContextMenu(WrapperBase.this
-                                .contextMenuActions()));
-
-            }
-        });
+                });
     }
 
     private void setUpEventHandler(ObjectProperty<?> property) {
 
-        property.addListener(new ChangeListener<Object>() {
+        property.addListener((observable, oldValue, newValue) -> {
 
-            @Override
-            public void changed(ObservableValue<? extends Object> observable,
-                    Object oldValue, Object newValue) {
-
-                WrapperBase.this.performLayout();
-            }
+            this.performLayout();
         });
 
-        property.addListener(new InvalidationListener() {
+        property.addListener((observable) -> {
 
-            @Override
-            public void invalidated(Observable observable) {
-
-                WrapperBase.this.performLayout();
-            }
+            this.performLayout();
         });
     }
 
@@ -876,14 +1045,6 @@ public abstract class WrapperBase<T extends Control>
                         + " is disallowed!");
     }
 
-    // @Override
-    // public ObservableList<Node> getChildren() {
-    //
-    // throw new UnsupportedOperationException(
-    // "Read-write access to the children of "
-    // + this.getClass().getCanonicalName()
-    // + " is disallowed!");
-    // }
 
     /**
      * Returns the {@Node Nodes} within this wrapper.
@@ -898,7 +1059,7 @@ public abstract class WrapperBase<T extends Control>
 
     /**
      * The {@link Position} enum enumerates the positions of a decoration
-     * {@link Node} in a {@link WrapperBase Wrapper}.
+     * {@link Node} in a {@link ControlWrapper Wrapper}.
      * 
      * @author Peter J. Radics
      * @version 1.0

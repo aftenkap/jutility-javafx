@@ -1,24 +1,27 @@
 package org.jutility.javafx.control.wrapper;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
+* #%L
+* jutility-javafx
+* %%
+* Copyright (C) 2013 - 2014 jutility.org
+* %%
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+* 
+*      http://www.apache.org/licenses/LICENSE-2.0
+* 
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+* #L%
+*/
+//@formatter:on
 
 
 import java.util.Collection;
@@ -38,15 +41,16 @@ import javafx.util.Callback;
 
 
 /**
- * @param <S>
  * 
- * @author peter
- * @version
- * @since
+ * @author Peter J. Radics
+ * @version 0.1.1
+ * @since 0.1.1
  *
+ * @param <T>
+ *            the content type of the {@link TableView}.
  */
-public class TableViewWrapper<S>
-        extends WrapperBase<TableView<S>> {
+public class TableViewWrapper<T>
+        extends ControlWrapper<TableView<T>> {
 
     /**
      * The underlying data model for the TableView. Note that it has a generic
@@ -57,7 +61,7 @@ public class TableViewWrapper<S>
      * 
      * @return the items property.
      */
-    public final ObjectProperty<ObservableList<S>> itemsProperty() {
+    public final ObjectProperty<ObservableList<T>> itemsProperty() {
 
         return this.getWrapped().itemsProperty();
     }
@@ -68,7 +72,7 @@ public class TableViewWrapper<S>
      * @param value
      *            the value of the items property.
      */
-    public final void setItems(ObservableList<S> value) {
+    public final void setItems(ObservableList<T> value) {
 
         this.getWrapped().setItems(value);
     }
@@ -78,7 +82,7 @@ public class TableViewWrapper<S>
      * 
      * @return the value of the items property.
      */
-    public final ObservableList<S> getItems() {
+    public final ObservableList<T> getItems() {
 
         return this.getWrapped().getItems();
     }
@@ -183,7 +187,7 @@ public class TableViewWrapper<S>
      * 
      * @return the row factory property
      */
-    public final ObjectProperty<Callback<TableView<S>, TableRow<S>>> rowFactoryProperty() {
+    public final ObjectProperty<Callback<TableView<T>, TableRow<T>>> rowFactoryProperty() {
 
         return this.getWrapped().rowFactoryProperty();
     }
@@ -194,7 +198,7 @@ public class TableViewWrapper<S>
      * @param value
      *            the value of the row factory property.
      */
-    public final void setRowFactory(Callback<TableView<S>, TableRow<S>> value) {
+    public final void setRowFactory(Callback<TableView<T>, TableRow<T>> value) {
 
         this.getWrapped().setRowFactory(value);
     }
@@ -204,7 +208,7 @@ public class TableViewWrapper<S>
      * 
      * @return the value of the row factory property.
      */
-    public final Callback<TableView<S>, TableRow<S>> getRowFactory() {
+    public final Callback<TableView<T>, TableRow<T>> getRowFactory() {
 
         return this.getWrapped().getRowFactory();
     }
@@ -258,7 +262,7 @@ public class TableViewWrapper<S>
      * @see #setSelectionModel(TableView.TableViewSelectionModel)
      * @return the selection model property.
      */
-    public final ObjectProperty<TableView.TableViewSelectionModel<S>> selectionModelProperty() {
+    public final ObjectProperty<TableView.TableViewSelectionModel<T>> selectionModelProperty() {
 
         return this.getWrapped().selectionModelProperty();
     }
@@ -270,7 +274,7 @@ public class TableViewWrapper<S>
      *            the value of the selection model property.
      */
     public final void setSelectionModel(
-            TableView.TableViewSelectionModel<S> value) {
+            TableView.TableViewSelectionModel<T> value) {
 
         this.getWrapped().setSelectionModel(value);
     }
@@ -280,7 +284,7 @@ public class TableViewWrapper<S>
      * 
      * @return the value of the selection model property.
      */
-    public final TableView.TableViewSelectionModel<S> getSelectionModel() {
+    public final TableView.TableViewSelectionModel<T> getSelectionModel() {
 
         return this.getWrapped().getSelectionModel();
     }
@@ -295,7 +299,7 @@ public class TableViewWrapper<S>
      * @see #setFocusModel(TableViewFocusModel)
      * @return the focus model property.
      */
-    public final ObjectProperty<TableViewFocusModel<S>> focusModelProperty() {
+    public final ObjectProperty<TableViewFocusModel<T>> focusModelProperty() {
 
         return this.getWrapped().focusModelProperty();
     }
@@ -306,7 +310,7 @@ public class TableViewWrapper<S>
      * @param value
      *            the value of the focus model property.
      */
-    public final void setFocusModel(TableView.TableViewFocusModel<S> value) {
+    public final void setFocusModel(TableView.TableViewFocusModel<T> value) {
 
         this.getWrapped().setFocusModel(value);
     }
@@ -316,7 +320,7 @@ public class TableViewWrapper<S>
      * 
      * @return the value of the focus model property.
      */
-    public final TableView.TableViewFocusModel<S> getFocusModel() {
+    public final TableView.TableViewFocusModel<T> getFocusModel() {
 
         return this.getWrapped().getFocusModel();
     }
@@ -367,7 +371,7 @@ public class TableViewWrapper<S>
      *         cell being edited.
      * 
      */
-    public final ReadOnlyObjectProperty<TablePosition<S, ?>> editingCellProperty() {
+    public final ReadOnlyObjectProperty<TablePosition<T, ?>> editingCellProperty() {
 
         return this.getWrapped().editingCellProperty();
     }
@@ -377,7 +381,7 @@ public class TableViewWrapper<S>
      * 
      * @return the value of the property editingCell.
      */
-    public final TablePosition<S, ?> getEditingCell() {
+    public final TablePosition<T, ?> getEditingCell() {
 
         return this.getWrapped().getEditingCell();
     }
@@ -392,7 +396,7 @@ public class TableViewWrapper<S>
      * 
      * @return the TableColumns that are part of this TableView
      */
-    public final ObservableList<TableColumn<S, ?>> getColumns() {
+    public final ObservableList<TableColumn<T, ?>> getColumns() {
 
         return this.getWrapped().getColumns();
     }
@@ -415,7 +419,7 @@ public class TableViewWrapper<S>
      * 
      * @return An ObservableList containing zero or more TableColumn instances.
      */
-    public final ObservableList<TableColumn<S, ?>> getSortOrder() {
+    public final ObservableList<TableColumn<T, ?>> getSortOrder() {
 
         return this.getWrapped().getSortOrder();
     }
@@ -444,7 +448,7 @@ public class TableViewWrapper<S>
      * @return {@code true}, if the column has been resized; {@code false}
      *         otherwise.
      */
-    public boolean resizeColumn(TableColumn<S, ?> column, double delta) {
+    public boolean resizeColumn(TableColumn<T, ?> column, double delta) {
 
         return this.getWrapped().resizeColumn(column, delta);
     }
@@ -459,7 +463,7 @@ public class TableViewWrapper<S>
      * @param column
      *            the column index.
      */
-    public void edit(int row, TableColumn<S, ?> column) {
+    public void edit(int row, TableColumn<T, ?> column) {
 
         this.getWrapped().edit(row, column);
     }
@@ -471,7 +475,7 @@ public class TableViewWrapper<S>
      * @return an unmodifiable list containing the currently visible leaf
      *         columns.
      */
-    public ObservableList<TableColumn<S, ?>> getVisibleLeafColumns() {
+    public ObservableList<TableColumn<T, ?>> getVisibleLeafColumns() {
 
         return this.getWrapped().getVisibleLeafColumns();
     }
@@ -485,7 +489,7 @@ public class TableViewWrapper<S>
      * @return the position of the given column, relative to all other visible
      *         leaf columns.
      */
-    public int getVisibleLeafIndex(TableColumn<S, ?> column) {
+    public int getVisibleLeafIndex(TableColumn<T, ?> column) {
 
         return this.getWrapped().getVisibleLeafIndex(column);
     }
@@ -499,7 +503,7 @@ public class TableViewWrapper<S>
      * @return the TableColumn in the given column index, relative to all other
      *         visible leaf columns.
      */
-    public TableColumn<S, ?> getVisibleLeafColumn(int column) {
+    public TableColumn<T, ?> getVisibleLeafColumn(int column) {
 
         return this.getWrapped().getVisibleLeafColumn(column);
     }
@@ -510,7 +514,7 @@ public class TableViewWrapper<S>
      */
     public TableViewWrapper() {
 
-        this((Collection<S>) null);
+        this((Collection<T>) null);
     }
 
     /**
@@ -520,9 +524,9 @@ public class TableViewWrapper<S>
      * @param items
      *            the items.
      */
-    public TableViewWrapper(final Collection<S> items) {
+    public TableViewWrapper(final Collection<T> items) {
 
-        this(new TableView<S>());
+        this(new TableView<T>());
 
         if (items != null) {
 
@@ -537,7 +541,7 @@ public class TableViewWrapper<S>
      * @param tableView
      *            the provided table view.
      */
-    public TableViewWrapper(TableView<S> tableView) {
+    public TableViewWrapper(TableView<T> tableView) {
 
         super(tableView);
     }

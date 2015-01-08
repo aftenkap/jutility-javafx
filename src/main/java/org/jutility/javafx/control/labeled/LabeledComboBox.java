@@ -1,49 +1,53 @@
 package org.jutility.javafx.control.labeled;
 
 
-//@formatter:off
+// @formatter:off
 /*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2014 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * #%L 
+ * jutility-javafx 
+ * %% 
+ * Copyright (C) 2013 - 2014 jutility.org 
+ * %% 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
+ * use this file except in compliance with the License. You may obtain a copy 
+ * of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License. 
  * #L%
  */
+
 //@formatter:on
+
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import org.jutility.javafx.control.wrapper.TextFieldWrapper;
+import org.jutility.javafx.control.wrapper.ComboBoxWrapper;
+
 
 
 /**
- * The {@link LabeledTextField} class provides a {@TextField} with a
- * freely positionable {@link Label}.
+ * The {@link LabeledComboBox} class provides a {@link ComboBox} with a freely
+ * positionable {@link Label}.
  * 
- * @author Peter J. Radics
+ * @author Shawn P. Neuman, Peter J. Radics
+ * @param <T>
+ *            the content type of the {@link ComboBox}.
  * 
- * @version 0.1.2
- * @since 0.1.0
  */
-public class LabeledTextField
-        extends TextFieldWrapper
+public class LabeledComboBox<T>
+        extends ComboBoxWrapper<T>
         implements ILabeledControl {
 
     private final ObjectProperty<Label>    label;
@@ -88,20 +92,20 @@ public class LabeledTextField
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@link LabeledComboBox} class with the
      * provided label text, positioning the {@link Label} to the left of the
      * {@link TextField}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
      */
-    public LabeledTextField(final String labelText) {
+    public LabeledComboBox(final String labelText) {
 
         this(labelText, Position.WEST);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@link LabeledComboBox} class with the
      * provided label text, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided
      * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
@@ -114,13 +118,13 @@ public class LabeledTextField
      *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
      *            Position} of the {@link Label}.
      */
-    public LabeledTextField(final String labelText, final Position position) {
+    public LabeledComboBox(final String labelText, final Position position) {
 
         this(labelText, position, null);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@link LabeledComboBox} class with the
      * provided label text, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided
      * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
@@ -132,30 +136,30 @@ public class LabeledTextField
      *            the desired
      *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
      *            Position} of the {@link Label}.
-     * @param text
-     *            the initial text of the {@link TextField}.
+     * @param items
+     *            the initial items of the {@link ComboBox}.
      */
-    public LabeledTextField(final String labelText, final Position position,
-            final String text) {
+    public LabeledComboBox(final String labelText, final Position position,
+            final ObservableList<T> items) {
 
-        this(new Label(labelText), position, text);
+        this(new Label(labelText), position, items);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@link LabeledComboBox} class with the
      * provided {@link Label}, positioning the {@link Label} to the left of the
      * {@link TextField}.
      * 
      * @param label
      *            the {@link Label}.
      */
-    public LabeledTextField(final Label label) {
+    public LabeledComboBox(final Label label) {
 
         this(label, Position.WEST);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@link LabeledComboBox} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided
      * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
@@ -168,13 +172,13 @@ public class LabeledTextField
      *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
      *            Position} of the {@link Label}.
      */
-    public LabeledTextField(final Label label, final Position position) {
+    public LabeledComboBox(final Label label, final Position position) {
 
         this(label, position, null);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@link LabeledComboBox} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided
      * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
@@ -186,13 +190,13 @@ public class LabeledTextField
      *            the desired
      *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
      *            Position} of the {@link Label}.
-     * @param text
-     *            the initial text of the {@link TextField}.
+     * @param items
+     *            the initial items of the {@link ComboBox}.
      */
-    public LabeledTextField(final Label label, final Position position,
-            final String text) {
+    public LabeledComboBox(final Label label, final Position position,
+            final ObservableList<T> items) {
 
-        super(text);
+        super(items);
 
         this.label = new SimpleObjectProperty<>(label);
         this.labelPosition = new SimpleObjectProperty<>(position);
@@ -231,14 +235,6 @@ public class LabeledTextField
             if (newValue != null) {
 
                 this.addNode(this.getLabel(), newValue);
-            }
-        });
-
-        this.wrapped().addListener((observable, oldValue, newValue) -> {
-
-            if (this.getLabel() != null && newValue != null) {
-
-                this.getLabel().setLabelFor(newValue);
             }
         });
     }

@@ -1,5 +1,7 @@
 package org.jutility.javafx.control;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-javafx
@@ -19,18 +21,21 @@ package org.jutility.javafx.control;
  * limitations under the License.
  * #L%
  */
+// @formatter:on
 
 
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+
+import org.controlsfx.control.textfield.CustomTextField;
+import org.controlsfx.control.textfield.TextFields;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
+import org.jutility.javafx.control.labeled.LabeledTextField;
+import org.jutility.javafx.filter.StringFilter;
 
 
 /**
@@ -38,90 +43,59 @@ import javafx.scene.text.Font;
  * list views to show only items that match search filter
  * 
  * @author Shawn P. Neuman, Peter J. Radics
- * @version 1.0
+ * @version 0.1.2
+ * @since 0.1.1
  * 
+ * @param <T>
+ *            the type of the objects to be searched for.
  */
-public class SearchPanel
-        extends HBox {
+public class SearchPanel<T>
+        extends LabeledTextField {
 
-    private StringProperty filterString;
-    private Label          search;
-    private TextField      searchBox;
-    private Button         close;
+
+    private final StringFilter<T> stringFilter;
+    private final Hyperlink       close;
 
     /**
-     * constructor
+     * Returns the string filter of this {@code SearchPanel}.
+     * 
+     * @return the string filter of this {@code SearchPanel}.
+     */
+    public StringFilter<T> getStringFilter() {
+
+        return this.stringFilter;
+    }
+
+
+    /**
+     * Creates a new instance of the {@link SearchPanel} class.
      */
     public SearchPanel() {
 
-        this.filterString = new SimpleStringProperty();
-        this.setPadding(new Insets(5, 0, 0, 0));
-        this.setSpacing(5);
-        this.search = new Label("Find");
+        super((String) null);
 
-        this.search.minHeight(25);
-        this.search.setFont(Font.font("Verdana", 14));
-        this.searchBox = new TextField("");
-        this.searchBox.setMinHeight(25);
-        this.search.setLabelFor(this.searchBox);
+        this.stringFilter = new StringFilter<>();
+
+        this.setWrapped(TextFields.createClearableTextField());
+        this.getWrapped().setPromptText("Find");
+        if (this.getWrapped() instanceof CustomTextField) {
+
+            ((CustomTextField) this.getWrapped()).setLeft(new Glyph(
+                    "FontAwesome", FontAwesome.Glyph.SEARCH));
+        }
+
+        GridPane.setHgrow(this.getWrapped(), Priority.SOMETIMES);
+        this.stringFilter.filterStringProperty().bindBidirectional(
+                this.getWrapped().textProperty());
 
 
-        this.filterString.bindBidirectional(this.searchBox.textProperty());
-
-
-        this.close = new Button("x");
+        this.close = new Hyperlink("Close");
         this.close.addEventHandler(ActionEvent.ACTION, (actionEvent) -> {
 
-            this.searchBox.setText(null);
+            this.getWrapped().setText("");
             this.setVisible(false);
+            this.close.setVisited(false);
         });
-        this.getChildren().addAll(this.close, this.search, this.searchBox);
-
-
-        this.searchBox.disableProperty().bind(this.disabledProperty());
-
-
-        this.searchBox.requestFocus();
-
+        this.setEast(this.close);
     }
-
-    /**
-     * Returns the filter string property.
-     * 
-     * @return the filter string property.
-     */
-    public StringProperty filterString() {
-
-        return filterString;
-    }
-
-    /**
-     * Returns the filter string.
-     * 
-     * @return the filter string.
-     */
-    public String getFilterString() {
-
-        return filterString.get();
-    }
-
-    /**
-     * Sets the filter string.
-     * 
-     * @param filterString
-     *            the filter string.
-     */
-    public void setFilterString(String filterString) {
-
-        this.filterString.set(filterString);
-    }
-
-
-    @Override
-    public void requestFocus() {
-
-        super.requestFocus();
-        this.searchBox.requestFocus();
-    }
-
 }
