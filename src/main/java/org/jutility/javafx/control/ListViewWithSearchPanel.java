@@ -284,12 +284,12 @@ public class ListViewWithSearchPanel<T>
             final KeyCombination acceleratorKey = new KeyCodeCombination(
                     KeyCode.F, KeyCombination.SHORTCUT_DOWN);
 
-            if (acceleratorKey.match(event)) {
+            if (acceleratorKey.match(event) && this.getItems() != null
+                    && !this.getItems().isEmpty()) {
 
                 this.searchPanel.setVisible(true);
                 this.searchPanel.requestFocus();
             }
-
         });
 
 
