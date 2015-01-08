@@ -150,6 +150,9 @@ public class ListViewWithSearchPanel<T>
 
         this.searchPanel.setVisible(false);
 
+        this.searchPanel.getStringFilter().converterProperty()
+                .bind(this.converterProperty());
+
         this.updateFilteredItems();
 
         this.setupEventHandlers();
