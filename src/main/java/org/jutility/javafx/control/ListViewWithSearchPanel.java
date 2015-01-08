@@ -30,6 +30,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.ListView;
@@ -94,8 +95,7 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided
-     * title.
+     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
      * 
      * @param title
      *            title of this panel
@@ -107,8 +107,7 @@ public class ListViewWithSearchPanel<T>
 
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided
-     * title.
+     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
      * 
      * @param title
      *            title of this panel
@@ -122,8 +121,7 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided
-     * title.
+     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
      * 
      * @param items
      *            the initial item list of the {@link ListView}
@@ -140,12 +138,16 @@ public class ListViewWithSearchPanel<T>
 
 
         this.itemsProperty = new SimpleObjectProperty<>(items);
+        if (items == null) {
+
+            this.setItems(FXCollections.observableArrayList());
+        }
         this.filteredItemsProperty = new SimpleObjectProperty<>();
 
         this.filteredItemsProperty.bindBidirectional(super.itemsProperty());
 
         this.searchPanel = new SearchPanel<>();
-        
+
         this.searchPanel.setVisible(false);
 
         this.updateFilteredItems();
@@ -316,17 +318,19 @@ public class ListViewWithSearchPanel<T>
                             ObservableList<T> filteredItems = this.filteredItemsProperty
                                     .get();
 
-                            LOG.debug("filteredItems is null? " + (filteredItems == null));
-                            LOG.debug("filteredItems is FilteredList<?>? " + (filteredItems instanceof FilteredList<?>));
-                            
+                            LOG.debug("filteredItems is null? "
+                                    + (filteredItems == null));
+                            LOG.debug("filteredItems is FilteredList<?>? "
+                                    + (filteredItems instanceof FilteredList<?>));
+
                             if (filteredItems != null
                                     && filteredItems instanceof FilteredList<?>) {
 
-                                FilteredList<T> filteredList =  ((FilteredList<T>) filteredItems);
+                                FilteredList<T> filteredList = ((FilteredList<T>) filteredItems);
                                 LOG.debug("Invalidating predicate");
                                 filteredList.setPredicate(t -> true);
                                 filteredList.setPredicate(this.searchPanel
-                                                .getStringFilter());
+                                        .getStringFilter());
                             }
                         });
 
