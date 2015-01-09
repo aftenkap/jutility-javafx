@@ -81,6 +81,15 @@ public abstract class ControlWrapper<T extends Control>
 
     private final ObservableList<Action> contextMenuActions;
 
+    /**
+     * Returns the {@link ValidationSupport}.
+     * 
+     * @return the {@link ValidationSupport}.
+     */
+    public ValidationSupport validationSupport() {
+
+        return this.validationSupport;
+    }
 
     /**
      * Returns whether or not the state of the Control is valid.
