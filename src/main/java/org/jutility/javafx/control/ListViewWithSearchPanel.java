@@ -239,7 +239,7 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
-     * removes the provided elements from the list view.
+     * Removes the provided elements from the {@link ListView}.
      * 
      * @param elements
      *            the elements to remove.
@@ -251,8 +251,11 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
+     * Removes the element at the provided index from the {@link ListView}.
+     * 
      * @param index
-     *            the index of the string value to be removed from the list
+     *            the index of the string value to be removed from the
+     *            {@link ListView}.
      */
     public void remove(int index) {
 
@@ -260,8 +263,10 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
+     * Removes the provided item from the {@link ListView}.
+     * 
      * @param item
-     *            the item to be removed
+     *            the item to remove.
      */
     public void removeAll(Object item) {
 
@@ -320,11 +325,6 @@ public class ListViewWithSearchPanel<T>
                             LOG.debug("FilterString invalidated!");
                             ObservableList<T> filteredItems = this.filteredItemsProperty
                                     .get();
-
-                            LOG.debug("filteredItems is null? "
-                                    + (filteredItems == null));
-                            LOG.debug("filteredItems is FilteredList<?>? "
-                                    + (filteredItems instanceof FilteredList<?>));
 
                             if (filteredItems != null
                                     && filteredItems instanceof FilteredList<?>) {
