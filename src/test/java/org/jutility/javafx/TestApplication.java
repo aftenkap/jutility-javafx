@@ -31,7 +31,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import org.jutility.javafx.control.OldListViewWithSearchPanel;
 import org.jutility.javafx.control.ListViewWithSearchPanel;
 
 
@@ -76,14 +75,12 @@ public class TestApplication
 
         List<String> items = Arrays.asList("foo", "bar", "baz", "meh");
         GridPane root = new GridPane();
-        
+
         ListViewWithSearchPanel<String> tester = new ListViewWithSearchPanel<>(
                 FXCollections.observableArrayList(items), null, "TestList");
-        OldListViewWithSearchPanel<String> tester2 = new OldListViewWithSearchPanel<>("TestList2");
 
         root.add(tester, 0, 0);
-        root.add(tester2, 1, 0);
-        
+
         this.mainScene = new Scene(root, 1440, 900, Color.LIGHTSLATEGREY);
 
 

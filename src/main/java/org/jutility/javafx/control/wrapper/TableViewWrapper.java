@@ -65,7 +65,7 @@ public class TableViewWrapper<T>
      */
     public final ObjectProperty<ObservableList<T>> itemsProperty() {
 
-        return this.getWrapped().itemsProperty();
+        return this.getWrappedControl().itemsProperty();
     }
 
     /**
@@ -76,7 +76,7 @@ public class TableViewWrapper<T>
      */
     public final void setItems(ObservableList<T> value) {
 
-        this.getWrapped().setItems(value);
+        this.getWrappedControl().setItems(value);
     }
 
     /**
@@ -86,7 +86,7 @@ public class TableViewWrapper<T>
      */
     public final ObservableList<T> getItems() {
 
-        return this.getWrapped().getItems();
+        return this.getWrappedControl().getItems();
     }
 
 
@@ -104,7 +104,7 @@ public class TableViewWrapper<T>
      */
     public final BooleanProperty tableMenuButtonVisibleProperty() {
 
-        return this.getWrapped().tableMenuButtonVisibleProperty();
+        return this.getWrappedControl().tableMenuButtonVisibleProperty();
     }
 
     /**
@@ -115,7 +115,7 @@ public class TableViewWrapper<T>
      */
     public final void setTableMenuButtonVisible(boolean value) {
 
-        this.getWrapped().setTableMenuButtonVisible(value);
+        this.getWrappedControl().setTableMenuButtonVisible(value);
     }
 
     /**
@@ -125,7 +125,7 @@ public class TableViewWrapper<T>
      */
     public final boolean isTableMenuButtonVisible() {
 
-        return this.getWrapped().isTableMenuButtonVisible();
+        return this.getWrappedControl().isTableMenuButtonVisible();
     }
 
 
@@ -144,7 +144,7 @@ public class TableViewWrapper<T>
     @SuppressWarnings("rawtypes")
     public final ObjectProperty<Callback<TableView.ResizeFeatures, java.lang.Boolean>> columnResizePolicyProperty() {
 
-        return this.getWrapped().columnResizePolicyProperty();
+        return this.getWrappedControl().columnResizePolicyProperty();
     }
 
     /**
@@ -156,7 +156,7 @@ public class TableViewWrapper<T>
     public final void setColumnResizePolicy(
             @SuppressWarnings("rawtypes") Callback<TableView.ResizeFeatures, java.lang.Boolean> callback) {
 
-        this.getWrapped().setColumnResizePolicy(callback);
+        this.getWrappedControl().setColumnResizePolicy(callback);
     }
 
     /**
@@ -167,7 +167,7 @@ public class TableViewWrapper<T>
     @SuppressWarnings("rawtypes")
     public final Callback<TableView.ResizeFeatures, java.lang.Boolean> getColumnResizePolicy() {
 
-        return this.getWrapped().getColumnResizePolicy();
+        return this.getWrappedControl().getColumnResizePolicy();
     }
 
 
@@ -191,7 +191,7 @@ public class TableViewWrapper<T>
      */
     public final ObjectProperty<Callback<TableView<T>, TableRow<T>>> rowFactoryProperty() {
 
-        return this.getWrapped().rowFactoryProperty();
+        return this.getWrappedControl().rowFactoryProperty();
     }
 
     /**
@@ -202,7 +202,7 @@ public class TableViewWrapper<T>
      */
     public final void setRowFactory(Callback<TableView<T>, TableRow<T>> value) {
 
-        this.getWrapped().setRowFactory(value);
+        this.getWrappedControl().setRowFactory(value);
     }
 
     /**
@@ -212,7 +212,7 @@ public class TableViewWrapper<T>
      */
     public final Callback<TableView<T>, TableRow<T>> getRowFactory() {
 
-        return this.getWrapped().getRowFactory();
+        return this.getWrappedControl().getRowFactory();
     }
 
 
@@ -229,7 +229,7 @@ public class TableViewWrapper<T>
      */
     public final ObjectProperty<Node> placeholderProperty() {
 
-        return this.getWrapped().placeholderProperty();
+        return this.getWrappedControl().placeholderProperty();
     }
 
     /**
@@ -240,7 +240,7 @@ public class TableViewWrapper<T>
      */
     public final void setPlaceholder(Node value) {
 
-        this.getWrapped().setPlaceholder(value);
+        this.getWrappedControl().setPlaceholder(value);
     }
 
     /**
@@ -250,7 +250,7 @@ public class TableViewWrapper<T>
      */
     public final Node getPlaceholder() {
 
-        return this.getWrapped().getPlaceholder();
+        return this.getWrappedControl().getPlaceholder();
     }
 
 
@@ -266,7 +266,7 @@ public class TableViewWrapper<T>
      */
     public final ObjectProperty<TableView.TableViewSelectionModel<T>> selectionModelProperty() {
 
-        return this.getWrapped().selectionModelProperty();
+        return this.getWrappedControl().selectionModelProperty();
     }
 
     /**
@@ -278,7 +278,7 @@ public class TableViewWrapper<T>
     public final void setSelectionModel(
             TableView.TableViewSelectionModel<T> value) {
 
-        this.getWrapped().setSelectionModel(value);
+        this.getWrappedControl().setSelectionModel(value);
     }
 
     /**
@@ -288,7 +288,7 @@ public class TableViewWrapper<T>
      */
     public final TableView.TableViewSelectionModel<T> getSelectionModel() {
 
-        return this.getWrapped().getSelectionModel();
+        return this.getWrappedControl().getSelectionModel();
     }
 
 
@@ -303,7 +303,7 @@ public class TableViewWrapper<T>
      */
     public final ObjectProperty<TableViewFocusModel<T>> focusModelProperty() {
 
-        return this.getWrapped().focusModelProperty();
+        return this.getWrappedControl().focusModelProperty();
     }
 
     /**
@@ -314,7 +314,7 @@ public class TableViewWrapper<T>
      */
     public final void setFocusModel(TableView.TableViewFocusModel<T> value) {
 
-        this.getWrapped().setFocusModel(value);
+        this.getWrappedControl().setFocusModel(value);
     }
 
     /**
@@ -324,7 +324,7 @@ public class TableViewWrapper<T>
      */
     public final TableView.TableViewFocusModel<T> getFocusModel() {
 
-        return this.getWrapped().getFocusModel();
+        return this.getWrappedControl().getFocusModel();
     }
 
 
@@ -339,7 +339,7 @@ public class TableViewWrapper<T>
      */
     public final BooleanProperty editableProperty() {
 
-        return this.getWrapped().editableProperty();
+        return this.getWrappedControl().editableProperty();
     }
 
     /**
@@ -350,7 +350,7 @@ public class TableViewWrapper<T>
      */
     public final void setEditable(boolean value) {
 
-        this.getWrapped().setEditable(value);
+        this.getWrappedControl().setEditable(value);
     }
 
     /**
@@ -360,7 +360,7 @@ public class TableViewWrapper<T>
      */
     public final boolean isEditable() {
 
-        return this.getWrapped().isEditable();
+        return this.getWrappedControl().isEditable();
     }
 
 
@@ -375,7 +375,7 @@ public class TableViewWrapper<T>
      */
     public final ReadOnlyObjectProperty<TablePosition<T, ?>> editingCellProperty() {
 
-        return this.getWrapped().editingCellProperty();
+        return this.getWrappedControl().editingCellProperty();
     }
 
     /**
@@ -385,7 +385,7 @@ public class TableViewWrapper<T>
      */
     public final TablePosition<T, ?> getEditingCell() {
 
-        return this.getWrapped().getEditingCell();
+        return this.getWrappedControl().getEditingCell();
     }
 
 
@@ -400,7 +400,7 @@ public class TableViewWrapper<T>
      */
     public final ObservableList<TableColumn<T, ?>> getColumns() {
 
-        return this.getWrapped().getColumns();
+        return this.getWrappedControl().getColumns();
     }
 
 
@@ -423,7 +423,7 @@ public class TableViewWrapper<T>
      */
     public final ObservableList<TableColumn<T, ?>> getSortOrder() {
 
-        return this.getWrapped().getSortOrder();
+        return this.getWrappedControl().getSortOrder();
     }
 
     /**
@@ -436,7 +436,7 @@ public class TableViewWrapper<T>
      */
     public void scrollTo(int index) {
 
-        this.getWrapped().scrollTo(index);
+        this.getWrappedControl().scrollTo(index);
     }
 
     /**
@@ -452,7 +452,7 @@ public class TableViewWrapper<T>
      */
     public boolean resizeColumn(TableColumn<T, ?> column, double delta) {
 
-        return this.getWrapped().resizeColumn(column, delta);
+        return this.getWrappedControl().resizeColumn(column, delta);
     }
 
     /**
@@ -467,7 +467,7 @@ public class TableViewWrapper<T>
      */
     public void edit(int row, TableColumn<T, ?> column) {
 
-        this.getWrapped().edit(row, column);
+        this.getWrappedControl().edit(row, column);
     }
 
     /**
@@ -479,7 +479,7 @@ public class TableViewWrapper<T>
      */
     public ObservableList<TableColumn<T, ?>> getVisibleLeafColumns() {
 
-        return this.getWrapped().getVisibleLeafColumns();
+        return this.getWrappedControl().getVisibleLeafColumns();
     }
 
     /**
@@ -493,7 +493,7 @@ public class TableViewWrapper<T>
      */
     public int getVisibleLeafIndex(TableColumn<T, ?> column) {
 
-        return this.getWrapped().getVisibleLeafIndex(column);
+        return this.getWrappedControl().getVisibleLeafIndex(column);
     }
 
     /**
@@ -507,7 +507,7 @@ public class TableViewWrapper<T>
      */
     public TableColumn<T, ?> getVisibleLeafColumn(int column) {
 
-        return this.getWrapped().getVisibleLeafColumn(column);
+        return this.getWrappedControl().getVisibleLeafColumn(column);
     }
 
 

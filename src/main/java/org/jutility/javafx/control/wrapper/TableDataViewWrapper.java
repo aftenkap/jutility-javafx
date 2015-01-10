@@ -56,7 +56,7 @@ public class TableDataViewWrapper<T>
      */
     public ObjectProperty<ITable<T>> tableProperty() {
 
-        return this.getWrapped().tableProperty();
+        return this.getWrappedControl().tableProperty();
     }
 
     /**
@@ -66,7 +66,7 @@ public class TableDataViewWrapper<T>
      */
     public ITable<T> getTable() {
 
-        return this.getWrapped().getTable();
+        return this.getWrappedControl().getTable();
     }
 
     /**
@@ -77,15 +77,15 @@ public class TableDataViewWrapper<T>
      */
     public void setTable(final ITable<T> table) {
 
-        this.getWrapped().setTable(table);
+        this.getWrappedControl().setTable(table);
     }
 
     @Override
-    protected TableDataView<T> getWrapped() {
+    protected TableDataView<T> getWrappedControl() {
 
-        if (super.getWrapped() instanceof TableDataView) {
+        if (super.getWrappedControl() instanceof TableDataView) {
 
-            return (TableDataView<T>) super.getWrapped();
+            return (TableDataView<T>) super.getWrappedControl();
         }
 
         return null;
@@ -96,7 +96,7 @@ public class TableDataViewWrapper<T>
      */
     protected void setWrapped(TableDataView<T> wrapped) {
 
-        super.setWrapped(wrapped);
+        super.setWrappedControl(wrapped);
     }
 
     /**

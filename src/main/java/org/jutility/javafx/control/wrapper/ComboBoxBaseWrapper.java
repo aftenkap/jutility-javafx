@@ -76,7 +76,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public ObjectProperty<T> valueProperty() {
 
-        return this.getWrapped().valueProperty();
+        return this.getWrappedControl().valueProperty();
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setValue(T value) {
 
-        this.getWrapped().setValue(value);
+        this.getWrappedControl().setValue(value);
     }
 
     /**
@@ -97,7 +97,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final T getValue() {
 
-        return this.getWrapped().getValue();
+        return this.getWrappedControl().getValue();
     }
 
     /**
@@ -111,7 +111,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public BooleanProperty editableProperty() {
 
-        return this.getWrapped().editableProperty();
+        return this.getWrappedControl().editableProperty();
     }
 
 
@@ -123,7 +123,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setEditable(boolean value) {
 
-        this.getWrapped().setEditable(value);
+        this.getWrappedControl().setEditable(value);
     }
 
     /**
@@ -133,7 +133,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final boolean isEditable() {
 
-        return this.getWrapped().isEditable();
+        return this.getWrappedControl().isEditable();
     }
 
     /**
@@ -145,7 +145,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public ReadOnlyBooleanProperty showingProperty() {
 
-        return this.getWrapped().showingProperty();
+        return this.getWrappedControl().showingProperty();
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final boolean isShowing() {
 
-        return this.getWrapped().isShowing();
+        return this.getWrappedControl().isShowing();
     }
 
     /**
@@ -170,7 +170,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final StringProperty promptTextProperty() {
 
-        return this.getWrapped().promptTextProperty();
+        return this.getWrappedControl().promptTextProperty();
     }
 
     /**
@@ -180,7 +180,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final String getPromptText() {
 
-        return this.getWrapped().getPromptText();
+        return this.getWrappedControl().getPromptText();
     }
 
     /**
@@ -191,7 +191,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setPromptText(String value) {
 
-        this.getWrapped().setPromptText(value);
+        this.getWrappedControl().setPromptText(value);
     }
 
     /**
@@ -205,7 +205,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public BooleanProperty armedProperty() {
 
-        return this.getWrapped().armedProperty();
+        return this.getWrappedControl().armedProperty();
     }
 
     /**
@@ -215,7 +215,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final boolean isArmed() {
 
-        return this.getWrapped().isArmed();
+        return this.getWrappedControl().isArmed();
     }
 
     /**
@@ -230,7 +230,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final ObjectProperty<EventHandler<ActionEvent>> onActionProperty() {
 
-        return this.getWrapped().onActionProperty();
+        return this.getWrappedControl().onActionProperty();
     }
 
     /**
@@ -241,7 +241,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setOnAction(EventHandler<ActionEvent> value) {
 
-        this.getWrapped().setOnAction(value);
+        this.getWrappedControl().setOnAction(value);
     }
 
     /**
@@ -251,7 +251,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final EventHandler<ActionEvent> getOnAction() {
 
-        return this.getWrapped().getOnAction();
+        return this.getWrappedControl().getOnAction();
     }
 
     /**
@@ -261,7 +261,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final ObjectProperty<EventHandler<Event>> onShowingProperty() {
 
-        return this.getWrapped().onShowingProperty();
+        return this.getWrappedControl().onShowingProperty();
     }
 
     /**
@@ -272,7 +272,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setOnShowing(EventHandler<Event> value) {
 
-        this.getWrapped().setOnShowing(value);
+        this.getWrappedControl().setOnShowing(value);
     }
 
     /**
@@ -282,7 +282,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final EventHandler<Event> getOnShowing() {
 
-        return this.getWrapped().getOnShowing();
+        return this.getWrappedControl().getOnShowing();
     }
 
     /**
@@ -292,7 +292,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final ObjectProperty<EventHandler<Event>> onShownProperty() {
 
-        return this.getWrapped().onShownProperty();
+        return this.getWrappedControl().onShownProperty();
     }
 
     /**
@@ -303,7 +303,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setOnShown(EventHandler<Event> value) {
 
-        this.getWrapped().setOnShown(value);
+        this.getWrappedControl().setOnShown(value);
     }
 
     /**
@@ -313,7 +313,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final EventHandler<Event> getOnShown() {
 
-        return this.getWrapped().getOnShown();
+        return this.getWrappedControl().getOnShown();
     }
 
     /**
@@ -323,7 +323,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final ObjectProperty<EventHandler<Event>> onHidingProperty() {
 
-        return this.getWrapped().onHidingProperty();
+        return this.getWrappedControl().onHidingProperty();
     }
 
     /**
@@ -334,7 +334,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setOnHiding(EventHandler<Event> value) {
 
-        this.getWrapped().setOnHiding(value);
+        this.getWrappedControl().setOnHiding(value);
     }
 
     /**
@@ -344,7 +344,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final EventHandler<Event> getOnHiding() {
 
-        return this.getWrapped().getOnHiding();
+        return this.getWrappedControl().getOnHiding();
     }
 
     /**
@@ -354,7 +354,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final ObjectProperty<EventHandler<Event>> onHiddenProperty() {
 
-        return this.getWrapped().onHiddenProperty();
+        return this.getWrappedControl().onHiddenProperty();
     }
 
     /**
@@ -365,7 +365,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final void setOnHidden(EventHandler<Event> value) {
 
-        this.getWrapped().setOnHidden(value);
+        this.getWrappedControl().setOnHidden(value);
     }
 
     /**
@@ -375,7 +375,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public final EventHandler<Event> getOnHidden() {
 
-        return this.getWrapped().getOnHidden();
+        return this.getWrappedControl().getOnHidden();
     }
 
     /**
@@ -386,7 +386,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public void show() {
 
-        this.getWrapped().show();
+        this.getWrappedControl().show();
     }
 
     /**
@@ -394,7 +394,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public void hide() {
 
-        this.getWrapped().hide();
+        this.getWrappedControl().hide();
     }
 
     /**
@@ -403,7 +403,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public void arm() {
 
-        this.getWrapped().arm();
+        this.getWrappedControl().arm();
     }
 
     /**
@@ -413,7 +413,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      */
     public void disarm() {
 
-        this.getWrapped().disarm();
+        this.getWrappedControl().disarm();
     }
 
 

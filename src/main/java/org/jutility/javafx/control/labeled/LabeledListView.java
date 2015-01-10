@@ -29,7 +29,7 @@ package org.jutility.javafx.control.labeled;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -53,9 +53,9 @@ public class LabeledListView<T>
         extends ListViewWrapper<T>
         implements ILabeledControl {
 
-    private final ObjectProperty<Label>    labelProperty;
+    private final ObjectProperty<Label> labelProperty;
 
-    private final ObjectProperty<Position> labelPositionProperty;
+    private final ObjectProperty<Pos>   labelPositionProperty;
 
 
     @Override
@@ -77,19 +77,19 @@ public class LabeledListView<T>
     }
 
     @Override
-    public ObjectProperty<Position> labelPositionProperty() {
+    public ObjectProperty<Pos> labelPositionProperty() {
 
         return this.labelPositionProperty;
     }
 
     @Override
-    public Position getLabelPosition() {
+    public Pos getLabelPosition() {
 
         return this.labelPositionProperty.get();
     }
 
     @Override
-    public void setLabelPosition(final Position labelPosition) {
+    public void setLabelPosition(final Pos labelPosition) {
 
         this.labelPositionProperty.set(labelPosition);
     }
@@ -104,24 +104,20 @@ public class LabeledListView<T>
      */
     public LabeledListView(final String labelText) {
 
-        this(labelText, Position.WEST);
+        this(labelText, Pos.CENTER_LEFT);
     }
 
     /**
      * Creates a new instance of the {@link LabeledListView} class with the
      * provided labelProperty text, positioning the {@link Label} relative to
-     * the {@link TextField} according to the provided
-     * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     * Position}.
+     * the {@link TextField} according to the provided {@link Pos Position}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     *            Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledListView(final String labelText, final Position position) {
+    public LabeledListView(final String labelText, final Pos position) {
 
         this(null, labelText, position);
     }
@@ -129,21 +125,17 @@ public class LabeledListView<T>
     /**
      * Creates a new instance of the {@link LabeledListView} class with the
      * provided labelProperty text, positioning the {@link Label} relative to
-     * the {@link TextField} according to the provided
-     * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     * Position}.
+     * the {@link TextField} according to the provided {@link Pos Position}.
      * 
      * @param items
      *            the initial items of the {@link ListView}.
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     *            Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
     public LabeledListView(final ObservableList<T> items,
-            final String labelText, final Position position) {
+            final String labelText, final Pos position) {
 
         this(items, null, labelText, position);
     }
@@ -153,9 +145,7 @@ public class LabeledListView<T>
     /**
      * Creates a new instance of the {@link LabeledListView} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided
-     * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     * Position}.
+     * {@link TextField} according to the provided {@link Pos Position}.
      * 
      * @param items
      *            the initial items of the {@link ListView}.
@@ -164,13 +154,11 @@ public class LabeledListView<T>
      * @param labelText
      *            the text for the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     *            Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
     public LabeledListView(final ObservableList<T> items,
             final StringConverter<T> converter, final String labelText,
-            final Position position) {
+            final Pos position) {
 
         super(items, converter);
 
@@ -180,7 +168,7 @@ public class LabeledListView<T>
 
             label = new Label(labelText);
             this.addNode(label, position);
-            label.setLabelFor(this.getWrapped());
+            label.setLabelFor(this.getWrappedControl());
 
         }
 
@@ -201,7 +189,7 @@ public class LabeledListView<T>
             }
             if (newValue != null) {
 
-                this.getLabel().setLabelFor(this.getWrapped());
+                this.getLabel().setLabelFor(this.getWrappedControl());
             }
 
             this.addNode(newValue, this.getLabelPosition());
@@ -219,36 +207,13 @@ public class LabeledListView<T>
                     }
                 });
 
-        this.wrapped().addListener((observable, oldValue, newValue) -> {
+        this.wrappedControlProperty().addListener(
+                (observable, oldValue, newValue) -> {
 
-            if (this.getLabel() != null && newValue != null) {
+                    if (this.getLabel() != null && newValue != null) {
 
-                this.getLabel().setLabelFor(newValue);
-            }
-        });
-    }
-
-    @Override
-    public void requestFocus() {
-
-        this.getWrapped().requestFocus();
-    }
-
-    @Override
-    protected ObservableList<Node> getNodes() {
-
-        return super.getNodes();
-    }
-
-    @Override
-    protected void addNode(Node node, Position position) {
-
-        super.addNode(node, position);
-    }
-
-    @Override
-    protected Node removeNode(Node nodeToRemove, Position position) {
-
-        return super.removeNode(nodeToRemove, position);
+                        this.getLabel().setLabelFor(newValue);
+                    }
+                });
     }
 }

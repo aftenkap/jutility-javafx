@@ -33,6 +33,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
@@ -134,7 +135,7 @@ public class ListViewWithSearchPanel<T>
     public ListViewWithSearchPanel(final ObservableList<T> items,
             StringConverter<T> converter, final String title) {
 
-        super(null, converter, title, Position.NORTH);
+        super(null, converter, title, Pos.TOP_CENTER);
 
 
         this.itemsProperty = new SimpleObjectProperty<>(items);
@@ -305,14 +306,14 @@ public class ListViewWithSearchPanel<T>
                     if (Boolean.FALSE.equals(newValue)) {
 
                         LOG.debug("Removing search panel.");
-                        this.setSouth(null);
+                        this.setBottomCenterNode(null);
                         this.getChildren().remove(this.searchPanel);
                     }
                     else if (Boolean.TRUE.equals(newValue)
                             && !this.getChildren().contains(this.searchPanel)) {
 
                         LOG.debug("Adding search panel.");
-                        this.addNode(this.searchPanel, Position.SOUTH);
+                        this.addNode(this.searchPanel, Pos.BOTTOM_CENTER);
                     }
                 });
 
