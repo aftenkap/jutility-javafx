@@ -35,6 +35,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Control;
@@ -60,7 +61,7 @@ import org.controlsfx.validation.decoration.ValidationDecoration;
  * @version 0.1.2
  * @since 0.0.1
  * @param <T>
- *            the type of the {@link Control} to be wrapped.
+ *            the type of the {@link Control} to be wrappedControlProperty.
  * 
  */
 public abstract class ControlWrapper<T extends Control>
@@ -68,16 +69,16 @@ public abstract class ControlWrapper<T extends Control>
 
     private final ValidationSupport      validationSupport;
 
-    private final ObjectProperty<Node>   north;
-    private final ObjectProperty<Node>   northEast;
-    private final ObjectProperty<Node>   east;
-    private final ObjectProperty<Node>   southEast;
-    private final ObjectProperty<Node>   south;
-    private final ObjectProperty<Node>   southWest;
-    private final ObjectProperty<Node>   west;
-    private final ObjectProperty<Node>   northWest;
+    private final ObjectProperty<Node>   topLeftNodeProperty;
+    private final ObjectProperty<Node>   topCenterNodeProperty;
+    private final ObjectProperty<Node>   topRightNodeProperty;
+    private final ObjectProperty<Node>   centerLeftNodeProperty;
+    private final ObjectProperty<Node>   centerRightNodeProperty;
+    private final ObjectProperty<Node>   bottomLeftNodeProperty;
+    private final ObjectProperty<Node>   bottomCenterNodeProperty;
+    private final ObjectProperty<Node>   bottomRightNodeProperty;
 
-    private final ObjectProperty<T>      wrapped;
+    private final ObjectProperty<T>      wrappedControlProperty;
 
     private final ObservableList<Action> contextMenuActions;
 
@@ -146,8 +147,8 @@ public abstract class ControlWrapper<T extends Control>
     public boolean registerValidator(boolean required,
             final Validator<T> validator) {
 
-        return this.validationSupport.registerValidator(this.getWrapped(),
-                required, validator);
+        return this.validationSupport.registerValidator(
+                this.getWrappedControl(), required, validator);
     }
 
     /**
@@ -180,7 +181,8 @@ public abstract class ControlWrapper<T extends Control>
      */
     public Optional<ValidationMessage> getHighestMessage() {
 
-        return this.validationSupport.getHighestMessage(this.getWrapped());
+        return this.validationSupport.getHighestMessage(this
+                .getWrappedControl());
     }
 
     /**
@@ -200,7 +202,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public boolean isRequired() {
 
-        return ValidationSupport.isRequired(this.getWrapped());
+        return ValidationSupport.isRequired(this.getWrappedControl());
     }
 
     /**
@@ -231,7 +233,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public void setRequired(boolean required) {
 
-        ValidationSupport.setRequired(this.getWrapped(), required);
+        ValidationSupport.setRequired(this.getWrappedControl(), required);
     }
 
     /**
@@ -258,262 +260,263 @@ public abstract class ControlWrapper<T extends Control>
 
 
     /**
-     * Returns the property containing the north {@link Node}.
+     * Returns the property containing the top left {@link Node}.
      * 
-     * @return the property containing the north {@link Node}.
+     * @return the property containing the top left {@link Node}.
      */
-    protected ObjectProperty<Node> north() {
+    protected ObjectProperty<Node> topLeftNodeProperty() {
 
-        return this.north;
+        return this.topLeftNodeProperty;
     }
 
     /**
-     * Returns the north {@link Node}.
+     * Returns the top left {@link Node}.
      * 
-     * @return the north {@link Node}.
+     * @return the top left {@link Node}.
      */
-    protected Node getNorth() {
+    protected Node getTopLeftNode() {
 
-        return this.north.get();
-    }
-
-    /**
-     * Sets the north {@link Node}.
-     * 
-     * @param north
-     *            the north {@link Node}.
-     */
-    protected void setNorth(Node north) {
-
-        this.north.set(north);
-    }
-
-    /**
-     * Returns the property containing the north-east {@link Node}.
-     * 
-     * @return the property containing the north-east {@link Node}.
-     */
-    protected ObjectProperty<Node> northEast() {
-
-        return this.northEast;
-    }
-
-    /**
-     * Returns the north-east {@link Node}.
-     * 
-     * @return the north-east {@link Node}.
-     */
-    protected Node getNorthEast() {
-
-        return this.northEast.get();
+        return this.topLeftNodeProperty.get();
     }
 
 
     /**
-     * Sets the north-east {@link Node}.
+     * Sets the top left {@link Node}.
      * 
-     * @param northEast
-     *            the north-east {@link Node}.
+     * @param value
+     *            the top left {@link Node}.
      */
-    protected void setNorthEast(Node northEast) {
+    protected void setTopLeftNode(Node value) {
 
-        this.northEast.set(northEast);
+        this.topLeftNodeProperty.set(value);
+    }
+
+    /**
+     * Returns the property containing the top center {@link Node}.
+     * 
+     * @return the property containing the top center {@link Node}.
+     */
+    protected ObjectProperty<Node> topCenterNodeProperty() {
+
+        return this.topCenterNodeProperty;
+    }
+
+    /**
+     * Returns the top center {@link Node}.
+     * 
+     * @return the top center {@link Node}.
+     */
+    protected Node getTopCenterNode() {
+
+        return this.topCenterNodeProperty.get();
+    }
+
+    /**
+     * Sets the top center {@link Node}.
+     * 
+     * @param value
+     *            the the top center {@link Node}.
+     */
+    protected void setTopCenterNode(Node value) {
+
+        this.topCenterNodeProperty.set(value);
+    }
+
+    /**
+     * Returns the property containing the top right {@link Node}.
+     * 
+     * @return the property containing the top right {@link Node}.
+     */
+    protected ObjectProperty<Node> topRightNodeProperty() {
+
+        return this.topRightNodeProperty;
+    }
+
+    /**
+     * Returns the top right {@link Node}.
+     * 
+     * @return the top right {@link Node}.
+     */
+    protected Node getTopRightNode() {
+
+        return this.topRightNodeProperty.get();
     }
 
 
     /**
-     * Returns the property containing the east {@link Node}.
+     * Sets the top right {@link Node}.
      * 
-     * @return the property containing the east {@link Node}.
+     * @param value
+     *            the top right {@link Node}.
      */
-    protected ObjectProperty<Node> east() {
+    protected void setTopRightNode(Node value) {
 
-        return this.east;
-    }
-
-    /**
-     * Returns the east {@link Node}.
-     * 
-     * @return the east {@link Node}.
-     */
-    protected Node getEast() {
-
-        return this.east.get();
+        this.topRightNodeProperty.set(value);
     }
 
 
-    /**
-     * Sets the east {@link Node}.
-     * 
-     * @param east
-     *            the east {@link Node}.
-     */
-    protected void setEast(Node east) {
-
-        this.east.set(east);
-    }
-
 
     /**
-     * Returns the property containing the south-east {@link Node}.
+     * Returns the property containing the center left {@link Node}.
      * 
-     * @return the property containing the south-east {@link Node}.
+     * @return the property containing the center left {@link Node}.
      */
-    protected ObjectProperty<Node> southEast() {
+    protected ObjectProperty<Node> centerLeftNodeProperty() {
 
-        return this.southEast;
+        return this.centerLeftNodeProperty;
     }
 
     /**
-     * Returns the south-east {@link Node}.
+     * Returns the center left {@link Node}.
      * 
-     * @return the south-east {@link Node}.
+     * @return the center left {@link Node}.
      */
-    protected Node getSouthEast() {
+    protected Node getCenterLeftNode() {
 
-        return this.southEast.get();
+        return this.centerLeftNodeProperty.get();
     }
 
 
     /**
-     * Sets the south-east {@link Node}.
+     * Sets the center left {@link Node}.
      * 
-     * @param southEast
-     *            the south-east {@link Node}.
+     * @param value
+     *            the center left {@link Node}.
      */
-    protected void setSouthEast(Node southEast) {
+    protected void setCenterLeftNode(Node value) {
 
-        this.southEast.set(southEast);
-    }
-
-    /**
-     * Returns the property containing the south {@link Node}.
-     * 
-     * @return the property containing the south {@link Node}.
-     */
-    protected ObjectProperty<Node> south() {
-
-        return this.south;
-    }
-
-    /**
-     * Returns the south {@link Node}.
-     * 
-     * @return the south {@link Node}.
-     */
-    protected Node getSouth() {
-
-        return this.south.get();
+        this.centerLeftNodeProperty.set(value);
     }
 
 
     /**
-     * Sets the south {@link Node}.
+     * Returns the property containing the center right {@link Node}.
      * 
-     * @param south
-     *            the south {@link Node}.
+     * @return the property containing the center right {@link Node}.
      */
-    protected void setSouth(Node south) {
+    protected ObjectProperty<Node> centerRightNodeProperty() {
 
-        this.south.set(south);
+        return this.centerRightNodeProperty;
     }
 
     /**
-     * Returns the property containing the south-west {@link Node}.
+     * Returns the center right {@link Node}.
      * 
-     * @return the property containing the south-west {@link Node}.
+     * @return the center right {@link Node}.
      */
-    protected ObjectProperty<Node> southWest() {
+    protected Node getCenterRightNode() {
 
-        return this.southWest;
-    }
-
-    /**
-     * Returns the south-west {@link Node}.
-     * 
-     * @return the south-west {@link Node}.
-     */
-    protected Node getSouthWest() {
-
-        return this.southWest.get();
+        return this.centerRightNodeProperty.get();
     }
 
 
     /**
-     * Sets the south-west {@link Node}.
+     * Sets the center right {@link Node}.
      * 
-     * @param southWest
-     *            the south-west {@link Node}.
+     * @param value
+     *            the center right {@link Node}.
      */
-    protected void setSouthWest(Node southWest) {
+    protected void setCenterRightNode(Node value) {
 
-        this.southWest.set(southWest);
+        this.centerRightNodeProperty.set(value);
     }
 
 
     /**
-     * Returns the property containing the west {@link Node}.
+     * Returns the property containing the bottom left {@link Node}.
      * 
-     * @return the property containing the west {@link Node}.
+     * @return the property containing the bottom left {@link Node}.
      */
-    protected ObjectProperty<Node> west() {
+    protected ObjectProperty<Node> bottomLeftNodeProperty() {
 
-        return this.west;
+        return this.bottomLeftNodeProperty;
     }
 
     /**
-     * Returns the west {@link Node}.
+     * Returns the bottom left {@link Node}.
      * 
-     * @return the west {@link Node}.
+     * @return the bottom left {@link Node}.
      */
-    protected Node getWest() {
+    protected Node getBottomLeftNode() {
 
-        return this.west.get();
-    }
-
-
-    /**
-     * Sets the west {@link Node}.
-     * 
-     * @param west
-     *            the west {@link Node}.
-     */
-    protected void setWest(Node west) {
-
-        this.west.set(west);
+        return this.bottomLeftNodeProperty.get();
     }
 
 
     /**
-     * Returns the property containing the north-west {@link Node}.
+     * Sets the bottom left {@link Node}.
      * 
-     * @return the property containing the north-west {@link Node}.
+     * @param value
+     *            the bottom left {@link Node}.
      */
-    protected ObjectProperty<Node> northWest() {
+    protected void setBottomLeftNode(Node value) {
 
-        return this.northWest;
-    }
-
-    /**
-     * Returns the north-west {@link Node}.
-     * 
-     * @return the north-west {@link Node}.
-     */
-    protected Node getNorthWest() {
-
-        return this.northWest.get();
+        this.bottomLeftNodeProperty.set(value);
     }
 
 
     /**
-     * Sets the north-west {@link Node}.
+     * Returns the property containing the bottom center {@link Node}.
      * 
-     * @param northWest
-     *            the north-west {@link Node}.
+     * @return the property containing the bottom center {@link Node}.
      */
-    protected void setNorthWest(Node northWest) {
+    protected ObjectProperty<Node> bottomCenterNodeProperty() {
 
-        this.northWest.set(northWest);
+        return this.bottomCenterNodeProperty;
+    }
+
+    /**
+     * Returns the bottom center {@link Node}.
+     * 
+     * @return the bottom center {@link Node}.
+     */
+    protected Node getBottomCenterNode() {
+
+        return this.bottomCenterNodeProperty.get();
+    }
+
+
+    /**
+     * Sets the bottom center {@link Node}.
+     * 
+     * @param value
+     *            the bottom center {@link Node}.
+     */
+    protected void setBottomCenterNode(Node value) {
+
+        this.bottomCenterNodeProperty.set(value);
+    }
+
+    /**
+     * Returns the property containing the bottom right {@link Node}.
+     * 
+     * @return the property containing the bottom right {@link Node}.
+     */
+    protected ObjectProperty<Node> bottomRightNodeProperty() {
+
+        return this.bottomRightNodeProperty;
+    }
+
+    /**
+     * Returns the bottom right {@link Node}.
+     * 
+     * @return the bottom right {@link Node}.
+     */
+    protected Node getBottomRightNode() {
+
+        return this.bottomRightNodeProperty.get();
+    }
+
+
+    /**
+     * Sets the bottom right {@link Node}.
+     * 
+     * @param value
+     *            the bottom right {@link Node}.
+     */
+    protected void setBottomRightNode(Node value) {
+
+        this.bottomRightNodeProperty.set(value);
     }
 
 
@@ -523,100 +526,105 @@ public abstract class ControlWrapper<T extends Control>
      * 
      * @return the property containing the wrapped {@link Node}.
      */
-    protected ObjectProperty<T> wrapped() {
+    protected ObjectProperty<T> wrappedControlProperty() {
 
-        return this.wrapped;
+        return this.wrappedControlProperty;
     }
 
     /**
-     * Returns the wrapped {@link Node}.
+     * Returns the wrapped {@link Control}.
      * 
-     * @return the wrapped{@link Node}.
+     * @return the wrapped{@link Control}.
      */
-    protected T getWrapped() {
+    protected T getWrappedControl() {
 
-        return this.wrapped.get();
+        return this.wrappedControlProperty.get();
     }
 
 
     /**
-     * Sets the wrapped {@link Node}.
+     * Sets the wrapped {@link Control}.
      * 
-     * @param wrapped
-     *            the wrapped {@link Node}.
+     * @param value
+     *            the wrapped {@link Control}.
      */
-    protected void setWrapped(T wrapped) {
+    protected void setWrappedControl(T value) {
 
-        this.wrapped.set(wrapped);
+        this.wrappedControlProperty.set(value);
     }
 
 
     /**
-     * Adds the provided {@link Node} at the desired {@link Position}.
+     * Adds the provided {@link Node} at the desired {@link Pos Position}.
      * 
      * @param node
      *            the {@link Node} to add.
      * @param position
-     *            the desired {@link Position}.
+     *            the desired {@link Pos Position}.
      */
-    protected void addNode(Node node, Position position) {
+    protected void addNode(Node node, Pos position) {
 
         switch (position) {
-            case EAST:
-                this.setEast(node);
+
+            case TOP_LEFT:
+                this.setTopLeftNode(node);
                 break;
-            case NORTH:
-                this.setNorth(node);
+            case TOP_CENTER:
+                this.setTopCenterNode(node);
                 break;
-            case NORTHEAST:
-                this.setNorthEast(node);
+            case TOP_RIGHT:
+                this.setTopRightNode(node);
                 break;
-            case NORTHWEST:
-                this.setNorthWest(node);
+            case CENTER_LEFT:
+                this.setCenterLeftNode(node);
                 break;
-            case SOUTH:
-                this.setSouth(node);
+            case CENTER_RIGHT:
+                this.setCenterRightNode(node);
                 break;
-            case SOUTHEAST:
-                this.setSouthEast(node);
+            case BOTTOM_LEFT:
+                this.setBottomLeftNode(node);
                 break;
-            case SOUTHWEST:
-                this.setSouthWest(node);
+            case BOTTOM_CENTER:
+                this.setBottomCenterNode(node);
                 break;
-            case WEST:
-                this.setWest(node);
+            case BOTTOM_RIGHT:
+                this.setBottomRightNode(node);
                 break;
             default:
-                break;
+                throw new IllegalArgumentException(
+                        "Cannot set node at position " + position);
         }
     }
 
     /**
-     * Returns the {@link Node} at the provided {@link Position}.
+     * Returns the {@link Node} at the provided {@link Pos Position}.
      * 
      * @param position
-     *            the desired {@link Position}.
-     * @return the {@link Node} at the provided {@link Position}.
+     *            the desired {@link Pos Position}.
+     * @return the {@link Node} at the provided {@link Pos Position}.
      */
-    protected Node getNode(Position position) {
+    protected Node getNode(Pos position) {
 
         switch (position) {
-            case EAST:
-                return this.getEast();
-            case NORTH:
-                return this.getNorth();
-            case NORTHEAST:
-                return this.getNorthEast();
-            case NORTHWEST:
-                return this.getNorthWest();
-            case SOUTH:
-                return this.getSouth();
-            case SOUTHEAST:
-                return this.getSouthEast();
-            case SOUTHWEST:
-                return this.getSouthWest();
-            case WEST:
-                return this.getWest();
+
+            case TOP_LEFT:
+                return this.getTopLeftNode();
+            case TOP_CENTER:
+                return this.getTopCenterNode();
+            case TOP_RIGHT:
+                return this.getTopRightNode();
+            case CENTER_LEFT:
+                return this.getCenterLeftNode();
+            case CENTER:
+                return this.getWrappedControl();
+            case CENTER_RIGHT:
+                return this.getCenterRightNode();
+            case BOTTOM_LEFT:
+                return this.getBottomLeftNode();
+            case BOTTOM_CENTER:
+                return this.getBottomCenterNode();
+            case BOTTOM_RIGHT:
+                return this.getBottomRightNode();
             default:
                 return null;
         }
@@ -624,44 +632,101 @@ public abstract class ControlWrapper<T extends Control>
 
 
     /**
-     * Removes the {@link Node} from the provided {@link Position}.
+     * Removes the provided {@link Node}.
+     * 
+     * @param node
+     *            the {@link Node} to remove.
+     * @return the removed {@link Node} or {@code null}, if no element was
+     *         found.
+     */
+    protected Node removeNode(Node node) {
+
+        if (!this.getChildren().contains(node) || node == null) {
+
+            return null;
+        }
+
+        if (node.equals(this.getTopLeftNode())) {
+
+            return this.removeNode(Pos.TOP_LEFT);
+        }
+        if (node.equals(this.getTopCenterNode())) {
+
+            return this.removeNode(Pos.TOP_CENTER);
+        }
+        if (node.equals(this.getTopRightNode())) {
+
+            return this.removeNode(Pos.TOP_RIGHT);
+        }
+        if (node.equals(this.getCenterLeftNode())) {
+
+            return this.removeNode(Pos.CENTER_LEFT);
+        }
+        if (node.equals(this.getCenterRightNode())) {
+
+            return this.removeNode(Pos.CENTER_RIGHT);
+        }
+        if (node.equals(this.getBottomLeftNode())) {
+
+            return this.removeNode(Pos.BOTTOM_LEFT);
+        }
+        if (node.equals(this.getBottomCenterNode())) {
+
+            return this.removeNode(Pos.BOTTOM_CENTER);
+        }
+        if (node.equals(this.getBottomRightNode())) {
+
+            return this.removeNode(Pos.BOTTOM_RIGHT);
+        }
+        if (node.equals(this.getWrappedControl())) {
+
+            throw new IllegalArgumentException("Cannot removed wrapped node!");
+        }
+
+        return null;
+    }
+
+    /**
+     * Removes the {@link Node} from the provided {@link Pos Position}.
      * 
      * @param position
-     *            the {@link Position} of the {@link Node} to remove.
+     *            the {@link Pos Position} of the {@link Node} to remove.
      * @return the removed {@link Node} or {@code null}, if no element was found
-     *         at the provided {@link Position}.
+     *         at the provided {@link Pos Position}.
      */
-    protected Node removeNode(Position position) {
+    protected Node removeNode(Pos position) {
 
         Node node = null;
 
         switch (position) {
-            case EAST:
-                node = this.getEast();
+
+            case TOP_LEFT:
+                node = this.getTopLeftNode();
                 break;
-            case NORTH:
-                node = this.getNorth();
+            case TOP_CENTER:
+                node = this.getTopCenterNode();
                 break;
-            case NORTHEAST:
-                node = this.getNorthEast();
+            case TOP_RIGHT:
+                node = this.getTopRightNode();
                 break;
-            case NORTHWEST:
-                node = this.getNorthWest();
+            case CENTER_LEFT:
+                node = this.getCenterLeftNode();
                 break;
-            case SOUTH:
-                node = this.getSouth();
+            case CENTER_RIGHT:
+                node = this.getCenterRightNode();
                 break;
-            case SOUTHEAST:
-                node = this.getSouthEast();
+            case BOTTOM_LEFT:
+                node = this.getBottomLeftNode();
                 break;
-            case SOUTHWEST:
-                node = this.getSouthWest();
+            case BOTTOM_CENTER:
+                node = this.getBottomCenterNode();
                 break;
-            case WEST:
-                node = this.getWest();
+            case BOTTOM_RIGHT:
+                node = this.getBottomRightNode();
                 break;
             default:
-                return null;
+                throw new IllegalArgumentException(
+                        "Cannot remove node from position " + position);
         }
         this.addNode(null, position);
         super.getChildren().remove(node);
@@ -671,46 +736,48 @@ public abstract class ControlWrapper<T extends Control>
 
 
     /**
-     * Removes the {@link Node} from the provided {@link Position}.
+     * Removes the {@link Node} from the provided {@link Pos Position}.
      * 
      * @param nodeToRemove
      *            the node to remove.
      * @param position
-     *            the {@link Position} of the {@link Node} to remove.
+     *            the {@link Pos Position} of the {@link Node} to remove.
      * @return the removed {@link Node} or {@code null}, if no element was found
-     *         at the provided {@link Position}.
+     *         at the provided {@link Pos Position}.
      */
-    protected Node removeNode(Node nodeToRemove, Position position) {
+    protected Node removeNode(Node nodeToRemove, Pos position) {
 
         Node node = null;
 
         switch (position) {
-            case EAST:
-                node = this.getEast();
+
+            case TOP_LEFT:
+                node = this.getTopLeftNode();
                 break;
-            case NORTH:
-                node = this.getNorth();
+            case TOP_CENTER:
+                node = this.getTopCenterNode();
                 break;
-            case NORTHEAST:
-                node = this.getNorthEast();
+            case TOP_RIGHT:
+                node = this.getTopRightNode();
                 break;
-            case NORTHWEST:
-                node = this.getNorthWest();
+            case CENTER_LEFT:
+                node = this.getCenterLeftNode();
                 break;
-            case SOUTH:
-                node = this.getSouth();
+            case CENTER_RIGHT:
+                node = this.getCenterRightNode();
                 break;
-            case SOUTHEAST:
-                node = this.getSouthEast();
+            case BOTTOM_LEFT:
+                node = this.getBottomLeftNode();
                 break;
-            case SOUTHWEST:
-                node = this.getSouthWest();
+            case BOTTOM_CENTER:
+                node = this.getBottomCenterNode();
                 break;
-            case WEST:
-                node = this.getWest();
+            case BOTTOM_RIGHT:
+                node = this.getBottomRightNode();
                 break;
             default:
-                return null;
+                throw new IllegalArgumentException(
+                        "Cannot remove node from position " + position);
         }
         if (node != null && node.equals(nodeToRemove)) {
 
@@ -743,7 +810,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final ObjectProperty<ContextMenu> contextMenuProperty() {
 
-        return this.getWrapped().contextMenuProperty();
+        return this.getWrappedControl().contextMenuProperty();
     }
 
 
@@ -754,7 +821,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final ContextMenu getContextMenu() {
 
-        return this.getWrapped().getContextMenu();
+        return this.getWrappedControl().getContextMenu();
     }
 
     /**
@@ -765,7 +832,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final void setContextMenu(final ContextMenu contextMenu) {
 
-        this.getWrapped().setContextMenu(contextMenu);
+        this.getWrappedControl().setContextMenu(contextMenu);
     }
 
     /**
@@ -778,7 +845,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final ObjectProperty<Tooltip> tooltipProperty() {
 
-        return this.getWrapped().tooltipProperty();
+        return this.getWrappedControl().tooltipProperty();
     }
 
 
@@ -800,7 +867,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public void setTooltip(Tooltip value) {
 
-        this.getWrapped().setTooltip(value);
+        this.getWrappedControl().setTooltip(value);
     }
 
     /**
@@ -831,7 +898,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final ObjectProperty<Skin<?>> skinProperty() {
 
-        return this.getWrapped().skinProperty();
+        return this.getWrappedControl().skinProperty();
     }
 
     /**
@@ -841,7 +908,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final Skin<?> getSkin() {
 
-        return this.getWrapped().getSkin();
+        return this.getWrappedControl().getSkin();
     }
 
     /**
@@ -852,7 +919,7 @@ public abstract class ControlWrapper<T extends Control>
      */
     public void setSkin(Skin<?> value) {
 
-        this.getWrapped().setSkin(value);
+        this.getWrappedControl().setSkin(value);
     }
 
 
@@ -869,25 +936,34 @@ public abstract class ControlWrapper<T extends Control>
     /**
      * Creates a new instance of the {@link ControlWrapper} class.
      * 
-     * @param wrapped
+     * @param wrappedControl
      *            the wrapped control.
      */
-    public ControlWrapper(final T wrapped) {
+    public ControlWrapper(final T wrappedControl) {
 
-        Objects.nonNull(wrapped);
+        Objects.nonNull(wrappedControl);
 
         this.validationSupport = new ValidationSupport();
 
-        this.north = new SimpleObjectProperty<>("wrapper", "north");
-        this.northEast = new SimpleObjectProperty<>("wrapper", "north-east");
-        this.east = new SimpleObjectProperty<>("wrapper", "east");
-        this.southEast = new SimpleObjectProperty<>("wrapper", "south-east");
-        this.south = new SimpleObjectProperty<>("wrapper", "south");
-        this.southWest = new SimpleObjectProperty<>("wrapper", "south-west");
-        this.west = new SimpleObjectProperty<>("wrapper", "west");
-        this.northWest = new SimpleObjectProperty<>("wrapper", "north-west");
+        this.topCenterNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "topCenterNode");
+        this.topRightNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "topRightNode");
+        this.centerRightNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "centerRightNode");
+        this.bottomRightNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "bottomRightNode");
+        this.bottomCenterNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "bottomCenterNode");
+        this.bottomLeftNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "bottomLeftNode");
+        this.centerLeftNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "centerLeftNode");
+        this.topLeftNodeProperty = new SimpleObjectProperty<>("wrapper",
+                "topLeftNode");
 
-        this.wrapped = new SimpleObjectProperty<>("wrapper", "wrapped");
+        this.wrappedControlProperty = new SimpleObjectProperty<>("wrapper",
+                "wrappedControl");
 
 
         this.contextMenuActions = FXCollections
@@ -895,26 +971,25 @@ public abstract class ControlWrapper<T extends Control>
 
         this.setUpEventHandlers();
 
-
-        this.wrapped.set(wrapped);
+        this.wrappedControlProperty.set(wrappedControl);
     }
 
     private void setUpEventHandlers() {
 
-        this.setUpEventHandler(this.north);
-        this.setUpEventHandler(this.northEast);
-        this.setUpEventHandler(this.east);
-        this.setUpEventHandler(this.southEast);
-        this.setUpEventHandler(this.south);
-        this.setUpEventHandler(this.southWest);
-        this.setUpEventHandler(this.west);
-        this.setUpEventHandler(this.northWest);
-        this.setUpEventHandler(this.wrapped);
+        this.setUpEventHandler(this.topCenterNodeProperty);
+        this.setUpEventHandler(this.topRightNodeProperty);
+        this.setUpEventHandler(this.centerRightNodeProperty);
+        this.setUpEventHandler(this.bottomRightNodeProperty);
+        this.setUpEventHandler(this.bottomCenterNodeProperty);
+        this.setUpEventHandler(this.bottomLeftNodeProperty);
+        this.setUpEventHandler(this.centerLeftNodeProperty);
+        this.setUpEventHandler(this.topLeftNodeProperty);
+        this.setUpEventHandler(this.wrappedControlProperty);
 
         this.contextMenuActions
                 .addListener((Change<? extends Action> change) -> {
 
-                    this.getWrapped()
+                    this.getWrappedControl()
                             .contextMenuProperty()
                             .set(ActionUtils.createContextMenu(this
                                     .contextMenuActions()));
@@ -940,30 +1015,33 @@ public abstract class ControlWrapper<T extends Control>
      */
     protected void performLayout() {
 
-        boolean northPresent = this.getNorth() != null;
-        boolean northEastPresent = this.getNorthEast() != null;
-        boolean eastPresent = this.getEast() != null;
-        boolean southEastPresent = this.getSouthEast() != null;
-        boolean southPresent = this.getSouth() != null;
-        boolean southWestPresent = this.getSouthWest() != null;
-        boolean westPresent = this.getWest() != null;
-        boolean northWestPresent = this.getNorthWest() != null;
-        boolean wrappedPresent = this.getWrapped() != null;
+        boolean topLeftNodePresent = this.getTopLeftNode() != null;
+        boolean topCenterNodePresent = this.getTopCenterNode() != null;
+        boolean topRightNodePresent = this.getTopRightNode() != null;
+
+        boolean centerLeftNodePresent = this.getCenterLeftNode() != null;
+        boolean centerRightNodePresent = this.getCenterRightNode() != null;
+
+        boolean bottomLeftNodePresent = this.getBottomLeftNode() != null;
+        boolean bottomCenterNodePresent = this.getBottomCenterNode() != null;
+        boolean bottomRightNodePresent = this.getBottomRightNode() != null;
+
+        boolean wrappedControlPresent = this.getWrappedControl() != null;
 
 
-        boolean northOccupied = northPresent || northEastPresent
-                || northWestPresent;
-        boolean westOccupied = westPresent || northWestPresent
-                || southWestPresent;
+        boolean topRowOccupied = topCenterNodePresent || topRightNodePresent
+                || topLeftNodePresent;
+        boolean leftColumnOccupied = centerLeftNodePresent
+                || topLeftNodePresent || bottomLeftNodePresent;
 
         int centerRow = 0;
         int centerCol = 0;
 
-        if (northOccupied) {
+        if (topRowOccupied) {
 
             centerRow++;
         }
-        if (westOccupied) {
+        if (leftColumnOccupied) {
 
             centerCol++;
         }
@@ -972,47 +1050,47 @@ public abstract class ControlWrapper<T extends Control>
         this.getChildren().clear();
 
 
-        if (northWestPresent) {
+        if (topLeftNodePresent) {
 
-            super.add(this.getNorthWest(), 0, 0);
+            super.add(this.getTopLeftNode(), 0, 0);
         }
-        if (northPresent) {
+        if (topCenterNodePresent) {
 
-            super.add(this.getNorth(), centerCol, 0);
+            super.add(this.getTopCenterNode(), centerCol, 0);
         }
-        if (northEastPresent) {
+        if (topRightNodePresent) {
 
-            super.add(this.getNorthEast(), centerCol + 1, 0);
-        }
-
-        if (westPresent) {
-
-            super.add(this.getWest(), 0, centerRow);
+            super.add(this.getTopRightNode(), centerCol + 1, 0);
         }
 
+        if (centerLeftNodePresent) {
 
-        if (wrappedPresent) {
-
-            super.add(this.getWrapped(), centerCol, centerRow);
+            super.add(this.getCenterLeftNode(), 0, centerRow);
         }
 
 
-        if (eastPresent) {
+        if (wrappedControlPresent) {
 
-            super.add(this.getEast(), centerCol + 1, centerRow);
+            super.add(this.getWrappedControl(), centerCol, centerRow);
         }
 
-        if (southWestPresent) {
 
-            super.add(this.getSouthWest(), 0, centerRow + 1);
+        if (centerRightNodePresent) {
+
+            super.add(this.getCenterRightNode(), centerCol + 1, centerRow);
         }
-        if (southPresent) {
 
-            super.add(this.getSouth(), centerCol, centerRow + 1);
+        if (bottomLeftNodePresent) {
+
+            super.add(this.getBottomLeftNode(), 0, centerRow + 1);
         }
-        if (southEastPresent) {
+        if (bottomCenterNodePresent) {
 
-            super.add(this.getSouthWest(), centerCol + 1, centerRow + 1);
+            super.add(this.getBottomCenterNode(), centerCol, centerRow + 1);
+        }
+        if (bottomRightNodePresent) {
+
+            super.add(this.getBottomLeftNode(), centerCol + 1, centerRow + 1);
         }
 
     }
@@ -1063,50 +1141,5 @@ public abstract class ControlWrapper<T extends Control>
     protected ObservableList<Node> getNodes() {
 
         return super.getChildren();
-    }
-
-
-    /**
-     * The {@link Position} enum enumerates the positions of a decoration
-     * {@link Node} in a {@link ControlWrapper Wrapper}.
-     * 
-     * @author Peter J. Radics
-     * @version 1.0
-     * @since 1.0
-     */
-    public static enum Position {
-
-        /**
-         * Positions the {@link Node} north of the wrapped {@link Node}
-         */
-        NORTH,
-        /**
-         * Positions the {@link Node} north-east of the wrapped {@link Node}
-         */
-        NORTHEAST,
-        /**
-         * Positions the {@link Node} east of the wrapped {@link Node}
-         */
-        EAST,
-        /**
-         * Positions the {@link Node} south-east of the wrapped {@link Node}
-         */
-        SOUTHEAST,
-        /**
-         * Positions the {@link Node} south of the wrapped {@link Node}
-         */
-        SOUTH,
-        /**
-         * Positions the {@link Node} south-west of the wrapped {@link Node}
-         */
-        SOUTHWEST,
-        /**
-         * Positions the {@link Node} west of the wrapped {@link Node}
-         */
-        WEST,
-        /**
-         * Positions the {@link Node} north-west of the wrapped {@link Node}
-         */
-        NORTHWEST;
     }
 }

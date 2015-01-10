@@ -76,26 +76,26 @@ public class SearchPanel<T>
 
         this.stringFilter = new StringFilter<>();
 
-        this.setWrapped(TextFields.createClearableTextField());
-        this.getWrapped().setPromptText("Find");
-        if (this.getWrapped() instanceof CustomTextField) {
+        this.setWrappedControl(TextFields.createClearableTextField());
+        this.getWrappedControl().setPromptText("Find");
+        if (this.getWrappedControl() instanceof CustomTextField) {
 
-            ((CustomTextField) this.getWrapped()).setLeft(new Glyph(
+            ((CustomTextField) this.getWrappedControl()).setLeft(new Glyph(
                     "FontAwesome", FontAwesome.Glyph.SEARCH));
         }
 
-        GridPane.setHgrow(this.getWrapped(), Priority.SOMETIMES);
+        GridPane.setHgrow(this.getWrappedControl(), Priority.SOMETIMES);
         this.stringFilter.filterStringProperty().bindBidirectional(
-                this.getWrapped().textProperty());
+                this.getWrappedControl().textProperty());
 
 
         this.close = new Hyperlink("Close");
         this.close.addEventHandler(ActionEvent.ACTION, (actionEvent) -> {
 
-            this.getWrapped().setText("");
+            this.getWrappedControl().setText("");
             this.setVisible(false);
             this.close.setVisited(false);
         });
-        this.setEast(this.close);
+        this.setCenterRightNode(this.close);
     }
 }

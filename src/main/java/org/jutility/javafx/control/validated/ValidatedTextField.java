@@ -32,6 +32,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -55,7 +57,7 @@ public class ValidatedTextField
 
     private static final double                        iconSize = 15;
 
-    private final LayoutDirection                      layoutDirection;
+    private final Orientation                          orientation;
 
     private final SimpleBooleanProperty                valid;
     private final SimpleBooleanProperty                alwaysShowingGraphic;
@@ -286,49 +288,47 @@ public class ValidatedTextField
      */
     public ValidatedTextField(String labelText, String notificationText) {
 
-        this(labelText, notificationText, LayoutDirection.HORIZONTAL);
+        this(labelText, notificationText, Orientation.HORIZONTAL);
     }
 
     /**
      * Creates a new instance of the {@link ValidatedTextField} class with the
      * provided label text, positioning the {@link Label} and warning relative
-     * to the {@link TextField} according to the provided
-     * {@link LayoutDirection}.
+     * to the {@link TextField} according to the provided {@link Orientation}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
      * @param notificationText
      *            the text of the notification.
-     * @param layoutDirection
-     *            the desired {@link LayoutDirection} of the
+     * @param orientation
+     *            the desired {@link Orientation} of the
      *            {@link ValidatedTextField} (positioning of label and warning).
      */
     public ValidatedTextField(String labelText, String notificationText,
-            LayoutDirection layoutDirection) {
+            Orientation orientation) {
 
-        this(labelText, notificationText, layoutDirection, null);
+        this(labelText, notificationText, orientation, null);
     }
 
     /**
      * Creates a new instance of the {@link ValidatedTextField} class with the
      * provided label text, positioning the {@link Label} and warning relative
-     * to the {@link TextField} according to the provided
-     * {@link LayoutDirection}.
+     * to the {@link TextField} according to the provided {@link Orientation}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
      * @param notificationText
      *            the text of the notification.
-     * @param layoutDirection
-     *            the desired {@link LayoutDirection} of the
+     * @param orientation
+     *            the desired {@link Orientation} of the
      *            {@link ValidatedTextField} (positioning of label and warning).
      * @param text
      *            the initial text of the {@link TextField}.
      */
     public ValidatedTextField(String labelText, String notificationText,
-            LayoutDirection layoutDirection, String text) {
+            Orientation orientation, String text) {
 
-        this(new Label(labelText), notificationText, layoutDirection, text);
+        this(new Label(labelText), notificationText, orientation, text);
     }
 
     /**
@@ -343,51 +343,50 @@ public class ValidatedTextField
      */
     public ValidatedTextField(Label label, String notificationText) {
 
-        this(label, notificationText, LayoutDirection.HORIZONTAL);
+        this(label, notificationText, Orientation.HORIZONTAL);
     }
 
     /**
      * Creates a new instance of the {@link ValidatedTextField} class. with the
      * provided {@link Label}, positioning the {@link Label} and warning
      * relative to the {@link TextField} according to the provided
-     * {@link LayoutDirection}.
+     * {@link Orientation}.
      * 
      * @param label
      *            the {@link Label}.
      * @param notificationText
      *            the text of the notification.
-     * @param layoutDirection
-     *            the desired {@link LayoutDirection} of the
+     * @param orientation
+     *            the desired {@link Orientation} of the
      *            {@link ValidatedTextField} (positioning of label and warning).
      */
     public ValidatedTextField(Label label, String notificationText,
-            LayoutDirection layoutDirection) {
+            Orientation orientation) {
 
-        this(label, notificationText, layoutDirection, null);
+        this(label, notificationText, orientation, null);
     }
 
     /**
      * Creates a new instance of the {@link ValidatedTextField} class with the
      * provided {@link Label}, positioning the {@link Label} and warning
      * relative to the {@link TextField} according to the provided
-     * {@link LayoutDirection}.
+     * {@link Orientation}.
      * 
      * @param label
      *            the {@link Label}.
      * @param notificationText
      *            the text of the notification.
-     * @param layoutDirection
-     *            the desired {@link LayoutDirection} of the
+     * @param orientation
+     *            the desired {@link Orientation} of the
      *            {@link ValidatedTextField} (positioning of label and warning).
      * @param text
      *            the initial text of the {@link TextField}.
      */
     public ValidatedTextField(Label label, String notificationText,
-            LayoutDirection layoutDirection, String text) {
+            Orientation orientation, String text) {
 
-        super(label,
-                (layoutDirection == LayoutDirection.HORIZONTAL ? Position.WEST
-                        : Position.NORTH), text);
+        super(label, (orientation == Orientation.HORIZONTAL ? Pos.CENTER_LEFT
+                : Pos.TOP_CENTER), text);
 
         this.valid = new SimpleBooleanProperty(true);
         this.alwaysShowingGraphic = new SimpleBooleanProperty(false);
@@ -396,7 +395,7 @@ public class ValidatedTextField
         this.notificationSeverity = new SimpleObjectProperty<>(
                 NotificationSeverity.WARNING);
 
-        this.layoutDirection = layoutDirection;
+        this.orientation = orientation;
 
         this.notificationLabel = new Label(notificationText);
         this.notificationLabel.setTextFill(Color.RED);
@@ -404,16 +403,16 @@ public class ValidatedTextField
 
         this.notificationLabel.visibleProperty().bind(Bindings.not(this.valid));
 
-        switch (this.layoutDirection) {
-        case HORIZONTAL:
+        switch (this.orientation) {
+            case HORIZONTAL:
 
-            this.addNode(notificationLabel, Position.EAST);
-            break;
-        case VERTICAL:
-            this.addNode(notificationLabel, Position.SOUTH);
-            break;
-        default:
-            break;
+                this.addNode(notificationLabel, Pos.CENTER_RIGHT);
+                break;
+            case VERTICAL:
+                this.addNode(notificationLabel, Pos.BOTTOM_CENTER);
+                break;
+            default:
+                break;
 
         }
 
@@ -504,20 +503,20 @@ public class ValidatedTextField
             if (notificationGraphic == null) {
 
                 switch (this.getNotificationSeverity()) {
-                case ERROR:
-                    notificationGraphic = new ErrorIcon(
-                            ValidatedTextField.iconSize);
-                    break;
-                case INFO:
-                    notificationGraphic = new ErrorIcon(
-                            ValidatedTextField.iconSize);
-                    break;
-                case WARNING:
-                    notificationGraphic = new ErrorIcon(
-                            ValidatedTextField.iconSize);
-                    break;
-                default:
-                    break;
+                    case ERROR:
+                        notificationGraphic = new ErrorIcon(
+                                ValidatedTextField.iconSize);
+                        break;
+                    case INFO:
+                        notificationGraphic = new ErrorIcon(
+                                ValidatedTextField.iconSize);
+                        break;
+                    case WARNING:
+                        notificationGraphic = new ErrorIcon(
+                                ValidatedTextField.iconSize);
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -525,20 +524,20 @@ public class ValidatedTextField
         this.graphicsNode = notificationGraphic;
         this.graphicsNode.setVisible(this.showNotification());
 
-        switch (this.layoutDirection) {
-        case HORIZONTAL:
+        switch (this.orientation) {
+            case HORIZONTAL:
 
-            this.notificationLabel.setGraphic(this.graphicsNode);
+                this.notificationLabel.setGraphic(this.graphicsNode);
 
-            break;
-        case VERTICAL:
+                break;
+            case VERTICAL:
 
-            this.getChildren().remove(this.graphicsNode);
-            this.addNode(notificationGraphic, Position.EAST);
+                this.getChildren().remove(this.graphicsNode);
+                this.addNode(notificationGraphic, Pos.CENTER_RIGHT);
 
-            break;
-        default:
-            break;
+                break;
+            default:
+                break;
         }
     }
 
@@ -546,26 +545,6 @@ public class ValidatedTextField
     private boolean showNotification() {
 
         return this.isAlwaysShowingGraphic() || !this.isValid();
-    }
-
-    /**
-     * The {@link LayoutDirection} enum specifies the direction in which a
-     * {@link Node} is to be laid out.
-     * 
-     * @author Peter J. Radics
-     * @version 1.0
-     * @since 1.0
-     */
-    public static enum LayoutDirection {
-
-        /**
-         * Node to be laid out horizontally.
-         */
-        HORIZONTAL,
-        /**
-         * Node to be laid out vertically.
-         */
-        VERTICAL;
     }
 
     /**

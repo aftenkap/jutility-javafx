@@ -62,7 +62,7 @@ public class ComboBoxWrapper<T>
      */
     public ObjectProperty<ListCell<T>> buttonCellProperty() {
 
-        return this.getWrapped().buttonCellProperty();
+        return this.getWrappedControl().buttonCellProperty();
     }
 
     /**
@@ -73,7 +73,7 @@ public class ComboBoxWrapper<T>
      */
     public ObjectProperty<Callback<ListView<T>, ListCell<T>>> cellFactoryProperty() {
 
-        return this.getWrapped().cellFactoryProperty();
+        return this.getWrappedControl().cellFactoryProperty();
     }
 
     /**
@@ -85,7 +85,7 @@ public class ComboBoxWrapper<T>
      */
     public ObjectProperty<StringConverter<T>> converterProperty() {
 
-        return this.getWrapped().converterProperty();
+        return this.getWrappedControl().converterProperty();
     }
 
     /**
@@ -95,7 +95,7 @@ public class ComboBoxWrapper<T>
      */
     public ReadOnlyObjectProperty<TextField> editorProperty() {
 
-        return this.getWrapped().editorProperty();
+        return this.getWrappedControl().editorProperty();
     }
 
     /**
@@ -105,7 +105,7 @@ public class ComboBoxWrapper<T>
      */
     public ObjectProperty<ObservableList<T>> itemsProperty() {
 
-        return this.getWrapped().itemsProperty();
+        return this.getWrappedControl().itemsProperty();
     }
 
     /**
@@ -115,7 +115,7 @@ public class ComboBoxWrapper<T>
      */
     public ObjectProperty<Node> placeholderProperty() {
 
-        return this.getWrapped().placeholderProperty();
+        return this.getWrappedControl().placeholderProperty();
     }
 
     /**
@@ -125,7 +125,7 @@ public class ComboBoxWrapper<T>
      */
     public ObjectProperty<SingleSelectionModel<T>> selectionModelProperty() {
 
-        return this.getWrapped().selectionModelProperty();
+        return this.getWrappedControl().selectionModelProperty();
     }
 
 
@@ -137,7 +137,7 @@ public class ComboBoxWrapper<T>
      */
     public IntegerProperty visibleRowCountProperty() {
 
-        return this.getWrapped().visibleRowCountProperty();
+        return this.getWrappedControl().visibleRowCountProperty();
     }
 
 
@@ -172,7 +172,7 @@ public class ComboBoxWrapper<T>
      */
     public ListCell<T> getButtonCell() {
 
-        return this.getWrapped().getButtonCell();
+        return this.getWrappedControl().getButtonCell();
     }
 
 
@@ -184,7 +184,7 @@ public class ComboBoxWrapper<T>
      */
     public void setButtonCell(ListCell<T> value) {
 
-        this.getWrapped().setButtonCell(value);
+        this.getWrappedControl().setButtonCell(value);
     }
 
     /**
@@ -194,7 +194,7 @@ public class ComboBoxWrapper<T>
      */
     public Callback<ListView<T>, ListCell<T>> getCellFactory() {
 
-        return this.getWrapped().getCellFactory();
+        return this.getWrappedControl().getCellFactory();
     }
 
 
@@ -207,7 +207,7 @@ public class ComboBoxWrapper<T>
      */
     public void setCellFactory(Callback<ListView<T>, ListCell<T>> value) {
 
-        this.getWrapped().setCellFactory(value);
+        this.getWrappedControl().setCellFactory(value);
     }
 
     /**
@@ -217,7 +217,7 @@ public class ComboBoxWrapper<T>
      */
     public StringConverter<T> getConverter() {
 
-        return this.getWrapped().getConverter();
+        return this.getWrappedControl().getConverter();
     }
 
 
@@ -230,7 +230,7 @@ public class ComboBoxWrapper<T>
      */
     public void setConverter(StringConverter<T> value) {
 
-        this.getWrapped().setConverter(value);
+        this.getWrappedControl().setConverter(value);
     }
 
     /**
@@ -240,7 +240,7 @@ public class ComboBoxWrapper<T>
      */
     public TextField getEditor() {
 
-        return this.getWrapped().getEditor();
+        return this.getWrappedControl().getEditor();
     }
 
     /**
@@ -250,7 +250,7 @@ public class ComboBoxWrapper<T>
      */
     public ObservableList<T> getItems() {
 
-        return this.getWrapped().getItems();
+        return this.getWrappedControl().getItems();
     }
 
 
@@ -263,7 +263,7 @@ public class ComboBoxWrapper<T>
      */
     public void setItems(ObservableList<T> value) {
 
-        this.getWrapped().setItems(value);
+        this.getWrappedControl().setItems(value);
     }
 
 
@@ -274,7 +274,7 @@ public class ComboBoxWrapper<T>
      */
     public Node getPlaceholder() {
 
-        return this.getWrapped().getPlaceholder();
+        return this.getWrappedControl().getPlaceholder();
     }
 
 
@@ -287,7 +287,7 @@ public class ComboBoxWrapper<T>
      */
     public void setPlaceholder(Node value) {
 
-        this.getWrapped().setPlaceholder(value);
+        this.getWrappedControl().setPlaceholder(value);
     }
 
     /**
@@ -297,7 +297,7 @@ public class ComboBoxWrapper<T>
      */
     public SingleSelectionModel<T> getSelectionModel() {
 
-        return this.getWrapped().getSelectionModel();
+        return this.getWrappedControl().getSelectionModel();
     }
 
 
@@ -309,7 +309,7 @@ public class ComboBoxWrapper<T>
      */
     public void setSelectionModel(SingleSelectionModel<T> value) {
 
-        this.getWrapped().setSelectionModel(value);
+        this.getWrappedControl().setSelectionModel(value);
     }
 
 
@@ -320,7 +320,7 @@ public class ComboBoxWrapper<T>
      */
     public int getVisibleRowCount() {
 
-        return this.getWrapped().getVisibleRowCount();
+        return this.getWrappedControl().getVisibleRowCount();
     }
 
 
@@ -332,7 +332,7 @@ public class ComboBoxWrapper<T>
      */
     public void setVisibleRowCount(int value) {
 
-        this.getWrapped().setVisibleRowCount(value);
+        this.getWrappedControl().setVisibleRowCount(value);
     }
 
 

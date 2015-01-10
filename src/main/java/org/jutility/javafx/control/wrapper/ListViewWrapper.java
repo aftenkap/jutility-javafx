@@ -102,7 +102,7 @@ public class ListViewWrapper<T>
      */
     public ObjectProperty<ObservableList<T>> itemsProperty() {
 
-        return this.getWrapped().itemsProperty();
+        return this.getWrappedControl().itemsProperty();
     }
 
     /**
@@ -115,7 +115,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<Node> placeholderProperty() {
 
-        return this.getWrapped().placeholderProperty();
+        return this.getWrappedControl().placeholderProperty();
     }
 
     /**
@@ -128,7 +128,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<MultipleSelectionModel<T>> selectionModelProperty() {
 
-        return this.getWrapped().selectionModelProperty();
+        return this.getWrappedControl().selectionModelProperty();
     }
 
     /**
@@ -140,7 +140,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<FocusModel<T>> focusModelProperty() {
 
-        return this.getWrapped().focusModelProperty();
+        return this.getWrappedControl().focusModelProperty();
     }
 
     /**
@@ -151,7 +151,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<Orientation> orientationProperty() {
 
-        return this.getWrapped().orientationProperty();
+        return this.getWrappedControl().orientationProperty();
     }
 
     /**
@@ -167,7 +167,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<Callback<ListView<T>, ListCell<T>>> cellFactoryProperty() {
 
-        return this.getWrapped().cellFactoryProperty();
+        return this.getWrappedControl().cellFactoryProperty();
     }
 
 
@@ -194,7 +194,7 @@ public class ListViewWrapper<T>
      */
     public final DoubleProperty fixedCellSizeProperty() {
 
-        return this.getWrapped().fixedCellSizeProperty();
+        return this.getWrappedControl().fixedCellSizeProperty();
     }
 
     /**
@@ -206,7 +206,7 @@ public class ListViewWrapper<T>
      */
     public final BooleanProperty editableProperty() {
 
-        return this.getWrapped().editableProperty();
+        return this.getWrappedControl().editableProperty();
     }
 
     /**
@@ -221,7 +221,7 @@ public class ListViewWrapper<T>
      */
     public final ReadOnlyIntegerProperty editingIndexProperty() {
 
-        return this.getWrapped().editingIndexProperty();
+        return this.getWrappedControl().editingIndexProperty();
     }
 
 
@@ -233,7 +233,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<EventHandler<ListView.EditEvent<T>>> onEditStartProperty() {
 
-        return this.getWrapped().onEditStartProperty();
+        return this.getWrappedControl().onEditStartProperty();
     }
 
     /**
@@ -249,7 +249,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<EventHandler<ListView.EditEvent<T>>> onEditCommitProperty() {
 
-        return this.getWrapped().onEditCommitProperty();
+        return this.getWrappedControl().onEditCommitProperty();
     }
 
     /**
@@ -259,7 +259,7 @@ public class ListViewWrapper<T>
      */
     public final ObjectProperty<EventHandler<ListView.EditEvent<T>>> onEditCancelProperty() {
 
-        return this.getWrapped().onEditCancelProperty();
+        return this.getWrappedControl().onEditCancelProperty();
     }
 
     /**
@@ -270,7 +270,7 @@ public class ListViewWrapper<T>
      */
     public ObjectProperty<EventHandler<ScrollToEvent<Integer>>> onScrollToProperty() {
 
-        return this.getWrapped().onScrollToProperty();
+        return this.getWrappedControl().onScrollToProperty();
     }
 
 
@@ -347,7 +347,7 @@ public class ListViewWrapper<T>
      */
     public void setItems(ObservableList<T> value) {
 
-        this.getWrapped().setItems(value);
+        this.getWrappedControl().setItems(value);
     }
 
     /**
@@ -361,7 +361,7 @@ public class ListViewWrapper<T>
      */
     public ObservableList<T> getItems() {
 
-        return this.getWrapped().getItems();
+        return this.getWrappedControl().getItems();
     }
 
 
@@ -373,7 +373,7 @@ public class ListViewWrapper<T>
      */
     public final void setPlaceholder(Node value) {
 
-        this.getWrapped().setPlaceholder(value);
+        this.getWrappedControl().setPlaceholder(value);
     }
 
     /**
@@ -383,7 +383,7 @@ public class ListViewWrapper<T>
      */
     public final Node getPlaceholder() {
 
-        return this.getWrapped().getPlaceholder();
+        return this.getWrappedControl().getPlaceholder();
     }
 
     /**
@@ -398,7 +398,7 @@ public class ListViewWrapper<T>
      */
     public final void setSelectionModel(MultipleSelectionModel<T> value) {
 
-        this.getWrapped().setSelectionModel(value);
+        this.getWrappedControl().setSelectionModel(value);
     }
 
     /**
@@ -408,7 +408,7 @@ public class ListViewWrapper<T>
      */
     public final MultipleSelectionModel<T> getSelectionModel() {
 
-        return this.getWrapped().getSelectionModel();
+        return this.getWrappedControl().getSelectionModel();
     }
 
     /**
@@ -419,7 +419,7 @@ public class ListViewWrapper<T>
      */
     public final void setFocusModel(FocusModel<T> value) {
 
-        this.getWrapped().setFocusModel(value);
+        this.getWrappedControl().setFocusModel(value);
     }
 
     /**
@@ -429,7 +429,7 @@ public class ListViewWrapper<T>
      */
     public final FocusModel<T> getFocusModel() {
 
-        return this.getWrapped().getFocusModel();
+        return this.getWrappedControl().getFocusModel();
     }
 
     /**
@@ -441,7 +441,7 @@ public class ListViewWrapper<T>
      */
     public final void setOrientation(Orientation value) {
 
-        this.getWrapped().setOrientation(value);
+        this.getWrappedControl().setOrientation(value);
     }
 
     /**
@@ -452,7 +452,7 @@ public class ListViewWrapper<T>
      */
     public final Orientation getOrientation() {
 
-        return this.getWrapped().getOrientation();
+        return this.getWrappedControl().getOrientation();
     }
 
     /**
@@ -465,7 +465,7 @@ public class ListViewWrapper<T>
      */
     public final void setCellFactory(Callback<ListView<T>, ListCell<T>> value) {
 
-        this.getWrapped().setCellFactory(value);
+        this.getWrappedControl().setCellFactory(value);
     }
 
     /**
@@ -475,7 +475,7 @@ public class ListViewWrapper<T>
      */
     public final Callback<ListView<T>, ListCell<T>> getCellFactory() {
 
-        return this.getWrapped().getCellFactory();
+        return this.getWrappedControl().getCellFactory();
     }
 
     /**
@@ -490,7 +490,7 @@ public class ListViewWrapper<T>
      */
     public final void setFixedCellSize(double value) {
 
-        this.getWrapped().setFixedCellSize(value);
+        this.getWrappedControl().setFixedCellSize(value);
     }
 
     /**
@@ -504,7 +504,7 @@ public class ListViewWrapper<T>
      */
     public final double getFixedCellSize() {
 
-        return this.getWrapped().getFixedCellSize();
+        return this.getWrappedControl().getFixedCellSize();
     }
 
     /**
@@ -515,7 +515,7 @@ public class ListViewWrapper<T>
      */
     public final void setEditable(boolean value) {
 
-        this.getWrapped().setEditable(value);
+        this.getWrappedControl().setEditable(value);
     }
 
     /**
@@ -525,7 +525,7 @@ public class ListViewWrapper<T>
      */
     public final boolean isEditable() {
 
-        return this.getWrapped().isEditable();
+        return this.getWrappedControl().isEditable();
     }
 
     /**
@@ -536,7 +536,7 @@ public class ListViewWrapper<T>
      */
     public final int getEditingIndex() {
 
-        return this.getWrapped().getEditingIndex();
+        return this.getWrappedControl().getEditingIndex();
     }
 
     /**
@@ -549,7 +549,7 @@ public class ListViewWrapper<T>
      */
     public final void setOnEditStart(EventHandler<ListView.EditEvent<T>> value) {
 
-        this.getWrapped().setOnEditStart(value);
+        this.getWrappedControl().setOnEditStart(value);
     }
 
 
@@ -561,7 +561,7 @@ public class ListViewWrapper<T>
      */
     public final EventHandler<ListView.EditEvent<T>> getOnEditStart() {
 
-        return this.getWrapped().getOnEditStart();
+        return this.getWrappedControl().getOnEditStart();
     }
 
     /**
@@ -576,7 +576,7 @@ public class ListViewWrapper<T>
      */
     public final void setOnEditCommit(EventHandler<ListView.EditEvent<T>> value) {
 
-        this.getWrapped().setOnEditCommit(value);
+        this.getWrappedControl().setOnEditCommit(value);
     }
 
 
@@ -588,7 +588,7 @@ public class ListViewWrapper<T>
      */
     public final EventHandler<ListView.EditEvent<T>> getOnEditCommit() {
 
-        return this.getWrapped().getOnEditCommit();
+        return this.getWrappedControl().getOnEditCommit();
     }
 
     /**
@@ -599,7 +599,7 @@ public class ListViewWrapper<T>
      */
     public final void setOnEditCancel(EventHandler<ListView.EditEvent<T>> value) {
 
-        this.getWrapped().setOnEditCancel(value);
+        this.getWrappedControl().setOnEditCancel(value);
     }
 
     /**
@@ -610,7 +610,7 @@ public class ListViewWrapper<T>
      */
     public final EventHandler<ListView.EditEvent<T>> getOnEditCancel() {
 
-        return this.getWrapped().getOnEditCancel();
+        return this.getWrappedControl().getOnEditCancel();
     }
 
     /**
@@ -625,7 +625,7 @@ public class ListViewWrapper<T>
      */
     public void edit(int itemIndex) {
 
-        this.getWrapped().edit(itemIndex);
+        this.getWrappedControl().edit(itemIndex);
     }
 
     /**
@@ -640,7 +640,7 @@ public class ListViewWrapper<T>
      */
     public void scrollTo(int index) {
 
-        this.getWrapped().scrollTo(index);
+        this.getWrappedControl().scrollTo(index);
     }
 
     /**
@@ -652,7 +652,7 @@ public class ListViewWrapper<T>
      */
     public void scrollTo(T object) {
 
-        this.getWrapped().scrollTo(object);
+        this.getWrappedControl().scrollTo(object);
     }
 
     /**
@@ -662,7 +662,7 @@ public class ListViewWrapper<T>
      */
     public void setOnScrollTo(EventHandler<ScrollToEvent<Integer>> value) {
 
-        this.getWrapped().setOnScrollTo(value);
+        this.getWrappedControl().setOnScrollTo(value);
     }
 
     /**
@@ -672,7 +672,7 @@ public class ListViewWrapper<T>
      */
     public EventHandler<ScrollToEvent<Integer>> getOnScrollTo() {
 
-        return this.getWrapped().getOnScrollTo();
+        return this.getWrappedControl().getOnScrollTo();
     }
 
     /**
@@ -693,7 +693,7 @@ public class ListViewWrapper<T>
      */
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() {
 
-        return this.getWrapped().getControlCssMetaData();
+        return this.getWrappedControl().getControlCssMetaData();
     }
 
     private void setupEventHandlers() {

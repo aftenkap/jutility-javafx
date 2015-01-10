@@ -67,7 +67,7 @@ public class TextFieldWrapper
      */
     public final ObjectProperty<Pos> textAlignmentProperty() {
 
-        return this.getWrapped().alignmentProperty();
+        return this.getWrappedControl().alignmentProperty();
     }
 
     /**
@@ -84,7 +84,7 @@ public class TextFieldWrapper
      */
     public final ObjectProperty<EventHandler<ActionEvent>> onActionProperty() {
 
-        return this.getWrapped().onActionProperty();
+        return this.getWrappedControl().onActionProperty();
     }
 
     /**
@@ -97,7 +97,7 @@ public class TextFieldWrapper
      */
     public final IntegerProperty prefColumnCountProperty() {
 
-        return this.getWrapped().prefColumnCountProperty();
+        return this.getWrappedControl().prefColumnCountProperty();
     }
 
     /**
@@ -108,7 +108,7 @@ public class TextFieldWrapper
      */
     public final StringProperty promptTextProperty() {
 
-        return this.getWrapped().promptTextProperty();
+        return this.getWrappedControl().promptTextProperty();
     }
 
     /**
@@ -118,7 +118,7 @@ public class TextFieldWrapper
      */
     public final StringProperty textProperty() {
 
-        return this.getWrapped().textProperty();
+        return this.getWrappedControl().textProperty();
     }
 
     /**
@@ -128,7 +128,7 @@ public class TextFieldWrapper
      */
     public final ReadOnlyIntegerProperty lengthProperty() {
 
-        return this.getWrapped().lengthProperty();
+        return this.getWrappedControl().lengthProperty();
     }
 
     /**
@@ -139,7 +139,7 @@ public class TextFieldWrapper
      */
     public final BooleanProperty editableProperty() {
 
-        return this.getWrapped().editableProperty();
+        return this.getWrappedControl().editableProperty();
     }
 
     /**
@@ -149,7 +149,7 @@ public class TextFieldWrapper
      */
     public final ReadOnlyObjectProperty<IndexRange> selectionProperty() {
 
-        return this.getWrapped().selectionProperty();
+        return this.getWrappedControl().selectionProperty();
     }
 
     /**
@@ -159,7 +159,7 @@ public class TextFieldWrapper
      */
     public final ReadOnlyStringProperty selectedTextProperty() {
 
-        return this.getWrapped().selectedTextProperty();
+        return this.getWrappedControl().selectedTextProperty();
     }
 
     /**
@@ -169,7 +169,7 @@ public class TextFieldWrapper
      */
     public final ReadOnlyIntegerProperty anchorProperty() {
 
-        return this.getWrapped().anchorProperty();
+        return this.getWrappedControl().anchorProperty();
     }
 
     /**
@@ -179,7 +179,7 @@ public class TextFieldWrapper
      */
     public final ReadOnlyIntegerProperty caretPositionProperty() {
 
-        return this.getWrapped().caretPositionProperty();
+        return this.getWrappedControl().caretPositionProperty();
     }
 
 
@@ -203,10 +203,10 @@ public class TextFieldWrapper
 
         super(new TextField());
 
-        GridPane.setHgrow(this.getWrapped(), Priority.SOMETIMES);
+        GridPane.setHgrow(this.getWrappedControl(), Priority.SOMETIMES);
         if (text != null) {
 
-            this.getWrapped().setText(text);
+            this.getWrappedControl().setText(text);
         }
     }
 
@@ -218,7 +218,7 @@ public class TextFieldWrapper
      */
     public void appendText(String text) {
 
-        this.getWrapped().appendText(text);
+        this.getWrappedControl().appendText(text);
     }
 
     /**
@@ -226,7 +226,7 @@ public class TextFieldWrapper
      */
     public void backward() {
 
-        this.getWrapped().backward();
+        this.getWrappedControl().backward();
     }
 
     /**
@@ -234,7 +234,7 @@ public class TextFieldWrapper
      */
     public void clear() {
 
-        this.getWrapped().clear();
+        this.getWrappedControl().clear();
     }
 
     /**
@@ -243,7 +243,7 @@ public class TextFieldWrapper
      */
     public void copy() {
 
-        this.getWrapped().copy();
+        this.getWrappedControl().copy();
     }
 
     /**
@@ -252,7 +252,7 @@ public class TextFieldWrapper
      */
     public void cut() {
 
-        this.getWrapped().cut();
+        this.getWrappedControl().cut();
     }
 
     /**
@@ -266,7 +266,7 @@ public class TextFieldWrapper
      */
     public boolean deleteNextChar() {
 
-        return this.getWrapped().deleteNextChar();
+        return this.getWrappedControl().deleteNextChar();
     }
 
     /**
@@ -280,7 +280,7 @@ public class TextFieldWrapper
      */
     public boolean deletePreviousChar() {
 
-        return this.getWrapped().deletePreviousChar();
+        return this.getWrappedControl().deletePreviousChar();
     }
 
     /**
@@ -291,7 +291,7 @@ public class TextFieldWrapper
      */
     public void deleteText(IndexRange range) {
 
-        this.getWrapped().deleteText(range);
+        this.getWrappedControl().deleteText(range);
     }
 
     /**
@@ -304,7 +304,7 @@ public class TextFieldWrapper
      */
     public void deleteText(int start, int end) {
 
-        this.getWrapped().deleteText(start, end);
+        this.getWrappedControl().deleteText(start, end);
     }
 
     /**
@@ -312,7 +312,7 @@ public class TextFieldWrapper
      */
     public void deselect() {
 
-        this.getWrapped().deselect();
+        this.getWrappedControl().deselect();
     }
 
     /**
@@ -320,7 +320,7 @@ public class TextFieldWrapper
      */
     public void end() {
 
-        this.getWrapped().end();
+        this.getWrappedControl().end();
     }
 
     /**
@@ -328,7 +328,7 @@ public class TextFieldWrapper
      */
     public void endOfNextWord() {
 
-        this.getWrapped().endOfNextWord();
+        this.getWrappedControl().endOfNextWord();
     }
 
     /**
@@ -340,7 +340,7 @@ public class TextFieldWrapper
      */
     public void extendSelection(int pos) {
 
-        this.getWrapped().extendSelection(pos);
+        this.getWrappedControl().extendSelection(pos);
     }
 
     /**
@@ -348,7 +348,7 @@ public class TextFieldWrapper
      */
     public void forward() {
 
-        this.getWrapped().forward();
+        this.getWrappedControl().forward();
     }
 
     /**
@@ -363,7 +363,7 @@ public class TextFieldWrapper
      */
     public int getAnchor() {
 
-        return this.getWrapped().getAnchor();
+        return this.getWrappedControl().getAnchor();
     }
 
     /**
@@ -378,7 +378,7 @@ public class TextFieldWrapper
      */
     public int getCaretPosition() {
 
-        return this.getWrapped().getCaretPosition();
+        return this.getWrappedControl().getCaretPosition();
     }
 
 
@@ -389,7 +389,7 @@ public class TextFieldWrapper
      */
     public int getLength() {
 
-        return this.getWrapped().getLength();
+        return this.getWrappedControl().getLength();
     }
 
     /**
@@ -399,7 +399,7 @@ public class TextFieldWrapper
      */
     public String getPromptText() {
 
-        return this.getWrapped().getPromptText();
+        return this.getWrappedControl().getPromptText();
     }
 
     /**
@@ -409,7 +409,7 @@ public class TextFieldWrapper
      */
     public String getSelectedText() {
 
-        return this.getWrapped().getSelectedText();
+        return this.getWrappedControl().getSelectedText();
     }
 
     /**
@@ -419,7 +419,7 @@ public class TextFieldWrapper
      */
     public IndexRange getSelection() {
 
-        return this.getWrapped().getSelection();
+        return this.getWrappedControl().getSelection();
     }
 
     /**
@@ -429,7 +429,7 @@ public class TextFieldWrapper
      */
     public String getText() {
 
-        return this.getWrapped().getText();
+        return this.getWrappedControl().getText();
     }
 
     /**
@@ -443,7 +443,7 @@ public class TextFieldWrapper
      */
     public String getText(int start, int end) {
 
-        return this.getWrapped().getText(start, end);
+        return this.getWrappedControl().getText(start, end);
     }
 
     /**
@@ -451,7 +451,7 @@ public class TextFieldWrapper
      */
     public void home() {
 
-        this.getWrapped().home();
+        this.getWrappedControl().home();
     }
 
     /**
@@ -464,7 +464,7 @@ public class TextFieldWrapper
      */
     public void insertText(int index, String text) {
 
-        this.getWrapped().insertText(index, text);
+        this.getWrappedControl().insertText(index, text);
     }
 
 
@@ -476,7 +476,7 @@ public class TextFieldWrapper
      */
     public boolean isEditable() {
 
-        return this.getWrapped().isEditable();
+        return this.getWrappedControl().isEditable();
     }
 
 
@@ -485,7 +485,7 @@ public class TextFieldWrapper
      */
     public void nextWord() {
 
-        this.getWrapped().nextWord();
+        this.getWrappedControl().nextWord();
     }
 
     /**
@@ -494,7 +494,7 @@ public class TextFieldWrapper
      */
     public void paste() {
 
-        this.getWrapped().paste();
+        this.getWrappedControl().paste();
     }
 
     /**
@@ -505,7 +505,7 @@ public class TextFieldWrapper
      */
     public void positionCaret(int pos) {
 
-        this.getWrapped().positionCaret(pos);
+        this.getWrappedControl().positionCaret(pos);
     }
 
     /**
@@ -513,7 +513,7 @@ public class TextFieldWrapper
      */
     public void previousWord() {
 
-        this.getWrapped().previousWord();
+        this.getWrappedControl().previousWord();
     }
 
     /**
@@ -524,7 +524,7 @@ public class TextFieldWrapper
      */
     public void replaceSelection(String replacement) {
 
-        this.getWrapped().replaceSelection(replacement);
+        this.getWrappedControl().replaceSelection(replacement);
     }
 
     /**
@@ -537,7 +537,7 @@ public class TextFieldWrapper
      */
     public void replaceText(IndexRange range, String text) {
 
-        this.getWrapped().replaceText(range, text);
+        this.getWrappedControl().replaceText(range, text);
     }
 
     /**
@@ -552,7 +552,7 @@ public class TextFieldWrapper
      */
     public void replaceText(int start, int end, String text) {
 
-        this.getWrapped().replaceText(start, end, text);
+        this.getWrappedControl().replaceText(start, end, text);
     }
 
     /**
@@ -560,7 +560,7 @@ public class TextFieldWrapper
      */
     public void selectAll() {
 
-        this.getWrapped().selectAll();
+        this.getWrappedControl().selectAll();
     }
 
     /**
@@ -568,7 +568,7 @@ public class TextFieldWrapper
      */
     public void selectBackward() {
 
-        this.getWrapped().selectBackward();
+        this.getWrappedControl().selectBackward();
     }
 
     /**
@@ -576,7 +576,7 @@ public class TextFieldWrapper
      */
     public void selectEnd() {
 
-        this.getWrapped().selectEnd();
+        this.getWrappedControl().selectEnd();
     }
 
     /**
@@ -584,7 +584,7 @@ public class TextFieldWrapper
      */
     public void selectEndOfNextWord() {
 
-        this.getWrapped().selectEndOfNextWord();
+        this.getWrappedControl().selectEndOfNextWord();
     }
 
     /**
@@ -592,7 +592,7 @@ public class TextFieldWrapper
      */
     public void selectForward() {
 
-        this.getWrapped().selectForward();
+        this.getWrappedControl().selectForward();
     }
 
     /**
@@ -600,7 +600,7 @@ public class TextFieldWrapper
      */
     public void selectHome() {
 
-        this.getWrapped().selectHome();
+        this.getWrappedControl().selectHome();
     }
 
     /**
@@ -608,7 +608,7 @@ public class TextFieldWrapper
      */
     public void selectNextWord() {
 
-        this.getWrapped().selectNextWord();
+        this.getWrappedControl().selectNextWord();
     }
 
     /**
@@ -620,7 +620,7 @@ public class TextFieldWrapper
      */
     public void selectPositionCaret(int pos) {
 
-        this.getWrapped().selectPositionCaret(pos);
+        this.getWrappedControl().selectPositionCaret(pos);
     }
 
     /**
@@ -628,7 +628,7 @@ public class TextFieldWrapper
      */
     public void selectPreviousWord() {
 
-        this.getWrapped().selectPreviousWord();
+        this.getWrappedControl().selectPreviousWord();
     }
 
     /**
@@ -641,7 +641,7 @@ public class TextFieldWrapper
      */
     public void selectRange(int anchor, int caretPosition) {
 
-        this.getWrapped().selectRange(anchor, caretPosition);
+        this.getWrappedControl().selectRange(anchor, caretPosition);
     }
 
     /**
@@ -652,7 +652,7 @@ public class TextFieldWrapper
      */
     public void setEditable(boolean value) {
 
-        this.getWrapped().setEditable(value);
+        this.getWrappedControl().setEditable(value);
     }
 
     /**
@@ -663,7 +663,7 @@ public class TextFieldWrapper
      */
     public void setPromptText(String value) {
 
-        this.getWrapped().setPromptText(value);
+        this.getWrappedControl().setPromptText(value);
     }
 
     /**
@@ -674,7 +674,7 @@ public class TextFieldWrapper
      */
     public void setText(String value) {
 
-        this.getWrapped().setText(value);
+        this.getWrappedControl().setText(value);
     }
 
 
@@ -688,7 +688,7 @@ public class TextFieldWrapper
      */
     public CharSequence getCharacters() {
 
-        return this.getWrapped().getCharacters();
+        return this.getWrappedControl().getCharacters();
     }
 
 
@@ -700,7 +700,7 @@ public class TextFieldWrapper
      */
     public final int getPrefColumnCount() {
 
-        return this.getWrapped().getPrefColumnCount();
+        return this.getWrappedControl().getPrefColumnCount();
     }
 
 
@@ -713,7 +713,7 @@ public class TextFieldWrapper
      */
     public final void setPrefColumnCount(int value) {
 
-        this.getWrapped().setPrefColumnCount(value);
+        this.getWrappedControl().setPrefColumnCount(value);
     }
 
 
@@ -727,7 +727,7 @@ public class TextFieldWrapper
      */
     public final EventHandler<ActionEvent> getOnAction() {
 
-        return this.getWrapped().getOnAction();
+        return this.getWrappedControl().getOnAction();
     }
 
     /**
@@ -740,7 +740,7 @@ public class TextFieldWrapper
      */
     public final void setOnAction(EventHandler<ActionEvent> value) {
 
-        this.getWrapped().setOnAction(value);
+        this.getWrappedControl().setOnAction(value);
     }
 
 
@@ -753,7 +753,7 @@ public class TextFieldWrapper
      */
     public final void setTextAlignment(Pos value) {
 
-        this.getWrapped().setAlignment(value);
+        this.getWrappedControl().setAlignment(value);
     }
 
     /**
@@ -764,7 +764,7 @@ public class TextFieldWrapper
      */
     public final Pos getTextAlignment() {
 
-        return this.getWrapped().getAlignment();
+        return this.getWrappedControl().getAlignment();
     }
 
 

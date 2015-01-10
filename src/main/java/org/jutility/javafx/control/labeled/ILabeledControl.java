@@ -23,9 +23,9 @@ package org.jutility.javafx.control.labeled;
 //@formatter:on
 
 import javafx.beans.property.ObjectProperty;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 
-import org.jutility.javafx.control.wrapper.ControlWrapper.Position;
 
 
 /**
@@ -62,24 +62,24 @@ public interface ILabeledControl {
     public abstract void setLabel(final Label label);
 
     /**
-     * Returns the label position property.
+     * Returns the label {@link Pos Position} property.
      * 
-     * @return the label position property.
+     * @return the label {@link Pos Position} property.
      */
-    public abstract ObjectProperty<Position> labelPositionProperty();
+    public abstract ObjectProperty<Pos> labelPositionProperty();
 
     /**
-     * Returns the {@link Position} of the {@link Label}.
+     * Returns the {@link Pos Position} of the {@link Label}.
      * 
-     * @return the {@link Position} of the {@link Label}.
+     * @return the {@link Pos Position} of the {@link Label}.
      */
-    public abstract Position getLabelPosition();
+    public abstract Pos getLabelPosition();
 
     /**
-     * Sets the {@link Position} of the {@link Label}.
+     * Sets the {@link Pos Position} of the {@link Label}.
      * 
      * @param labelPosition
-     *            the {@link Position} of the {@link Label}.
+     *            the {@link Pos Position} of the {@link Label}.
      */
-    public abstract void setLabelPosition(final Position labelPosition);
+    public abstract void setLabelPosition(final Pos labelPosition);
 }

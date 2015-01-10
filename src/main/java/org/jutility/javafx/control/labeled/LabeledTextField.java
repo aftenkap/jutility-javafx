@@ -25,8 +25,7 @@ package org.jutility.javafx.control.labeled;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -46,9 +45,9 @@ public class LabeledTextField
         extends TextFieldWrapper
         implements ILabeledControl {
 
-    private final ObjectProperty<Label>    label;
+    private final ObjectProperty<Label> label;
 
-    private final ObjectProperty<Position> labelPosition;
+    private final ObjectProperty<Pos>   labelPosition;
 
 
     @Override
@@ -70,19 +69,19 @@ public class LabeledTextField
     }
 
     @Override
-    public ObjectProperty<Position> labelPositionProperty() {
+    public ObjectProperty<Pos> labelPositionProperty() {
 
         return this.labelPosition;
     }
 
     @Override
-    public Position getLabelPosition() {
+    public Pos getLabelPosition() {
 
         return this.labelPosition.get();
     }
 
     @Override
-    public void setLabelPosition(final Position labelPosition) {
+    public void setLabelPosition(final Pos labelPosition) {
 
         this.labelPosition.set(labelPosition);
     }
@@ -97,24 +96,20 @@ public class LabeledTextField
      */
     public LabeledTextField(final String labelText) {
 
-        this(labelText, Position.WEST);
+        this(labelText, Pos.CENTER_LEFT);
     }
 
     /**
      * Creates a new instance of the {@link LabeledTextField} class with the
      * provided label text, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided
-     * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     * Position}.
+     * {@link TextField} according to the provided {@link Pos Position}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     *            Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledTextField(final String labelText, final Position position) {
+    public LabeledTextField(final String labelText, final Pos position) {
 
         this(labelText, position, null);
     }
@@ -122,20 +117,16 @@ public class LabeledTextField
     /**
      * Creates a new instance of the {@link LabeledTextField} class with the
      * provided label text, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided
-     * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     * Position}.
+     * {@link TextField} according to the provided {@link Pos Position}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     *            Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      * @param text
      *            the initial text of the {@link TextField}.
      */
-    public LabeledTextField(final String labelText, final Position position,
+    public LabeledTextField(final String labelText, final Pos position,
             final String text) {
 
         this(new Label(labelText), position, text);
@@ -151,24 +142,20 @@ public class LabeledTextField
      */
     public LabeledTextField(final Label label) {
 
-        this(label, Position.WEST);
+        this(label, Pos.CENTER_LEFT);
     }
 
     /**
      * Creates a new instance of the {@link LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided
-     * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     * Position}.
+     * {@link TextField} according to the provided {@link Pos Position}.
      * 
      * @param label
      *            the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     *            Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledTextField(final Label label, final Position position) {
+    public LabeledTextField(final Label label, final Pos position) {
 
         this(label, position, null);
     }
@@ -176,20 +163,16 @@ public class LabeledTextField
     /**
      * Creates a new instance of the {@link LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided
-     * {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     * Position}.
+     * {@link TextField} according to the provided {@link Pos Position}.
      * 
      * @param label
      *            the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link org.jutility.javafx.control.wrapper.ControlWrapper.Position
-     *            Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      * @param text
      *            the initial text of the {@link TextField}.
      */
-    public LabeledTextField(final Label label, final Position position,
+    public LabeledTextField(final Label label, final Pos position,
             final String text) {
 
         super(text);
@@ -201,7 +184,7 @@ public class LabeledTextField
 
         if (label != null) {
 
-            label.setLabelFor(this.getWrapped());
+            label.setLabelFor(this.getWrappedControl());
         }
 
         this.setUpEventHandlers();
@@ -217,7 +200,7 @@ public class LabeledTextField
             }
             if (newValue != null) {
 
-                this.getLabel().setLabelFor(this.getWrapped());
+                this.getLabel().setLabelFor(this.getWrappedControl());
             }
 
             this.addNode(newValue, this.getLabelPosition());
@@ -234,36 +217,14 @@ public class LabeledTextField
             }
         });
 
-        this.wrapped().addListener((observable, oldValue, newValue) -> {
+        this.wrappedControlProperty().addListener(
+                (observable, oldValue, newValue) -> {
 
-            if (this.getLabel() != null && newValue != null) {
+                    if (this.getLabel() != null && newValue != null) {
 
-                this.getLabel().setLabelFor(newValue);
-            }
-        });
+                        this.getLabel().setLabelFor(newValue);
+                    }
+                });
     }
 
-    @Override
-    public void requestFocus() {
-
-        this.getWrapped().requestFocus();
-    }
-
-    @Override
-    protected ObservableList<Node> getNodes() {
-
-        return super.getNodes();
-    }
-
-    @Override
-    protected void addNode(Node node, Position position) {
-
-        super.addNode(node, position);
-    }
-
-    @Override
-    protected Node removeNode(Node nodeToRemove, Position position) {
-
-        return super.removeNode(nodeToRemove, position);
-    }
 }
