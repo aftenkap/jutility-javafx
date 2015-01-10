@@ -25,18 +25,12 @@ package org.jutility.javafx.control.wrapper;
 
 
 import javafx.beans.DefaultProperty;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.ReadOnlyStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.IndexRange;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -48,12 +42,12 @@ import javafx.scene.layout.Priority;
  * {@link GridPane} with six surrounding {@link Node Nodes}.
  * 
  * @author Peter J. Radics
- * @version 1.0
- * @since 1.0
+ * @version 0.1.2
+ * @since 0.0.1
  */
 @DefaultProperty(value = "text")
 public class TextFieldWrapper
-        extends ControlWrapper<TextField> {
+        extends TextInputControlWrapper<TextField> {
 
 
 
@@ -100,88 +94,6 @@ public class TextFieldWrapper
         return this.getWrappedControl().prefColumnCountProperty();
     }
 
-    /**
-     * The prompt text to display in the TextField, or {@code null} if no prompt
-     * text is displayed.
-     * 
-     * @return the prompt text to display.
-     */
-    public final StringProperty promptTextProperty() {
-
-        return this.getWrappedControl().promptTextProperty();
-    }
-
-    /**
-     * The textual content of this TextInputControl.
-     * 
-     * @return the textual content of this TextInputControl.
-     */
-    public final StringProperty textProperty() {
-
-        return this.getWrappedControl().textProperty();
-    }
-
-    /**
-     * The number of characters in the text input.
-     * 
-     * @return the number of characters in the text input.
-     */
-    public final ReadOnlyIntegerProperty lengthProperty() {
-
-        return this.getWrappedControl().lengthProperty();
-    }
-
-    /**
-     * Indicates whether this TextInputControl can be edited by the user.
-     * 
-     * @return {@code true}, if this TextInputControl can be edited by the user;
-     *         {@code false} otherwise.
-     */
-    public final BooleanProperty editableProperty() {
-
-        return this.getWrappedControl().editableProperty();
-    }
-
-    /**
-     * The current selection.
-     * 
-     * @return the current selection.
-     */
-    public final ReadOnlyObjectProperty<IndexRange> selectionProperty() {
-
-        return this.getWrappedControl().selectionProperty();
-    }
-
-    /**
-     * Defines the characters in the TextInputControl which are selected.
-     * 
-     * @return the characters in the TextInputControl which are selected
-     */
-    public final ReadOnlyStringProperty selectedTextProperty() {
-
-        return this.getWrappedControl().selectedTextProperty();
-    }
-
-    /**
-     * The anchor of the text selection.
-     * 
-     * @return the anchor of the text selection.
-     */
-    public final ReadOnlyIntegerProperty anchorProperty() {
-
-        return this.getWrappedControl().anchorProperty();
-    }
-
-    /**
-     * The current position of the caret within the text.
-     * 
-     * @return the current position of the caret within the text.
-     */
-    public final ReadOnlyIntegerProperty caretPositionProperty() {
-
-        return this.getWrappedControl().caretPositionProperty();
-    }
-
 
 
     /**
@@ -201,480 +113,9 @@ public class TextFieldWrapper
      */
     public TextFieldWrapper(final String text) {
 
-        super(new TextField());
+        super(text == null ? new TextField() : new TextField(text));
 
         GridPane.setHgrow(this.getWrappedControl(), Priority.SOMETIMES);
-        if (text != null) {
-
-            this.getWrappedControl().setText(text);
-        }
-    }
-
-    /**
-     * Appends a sequence of characters to the content.
-     * 
-     * @param text
-     *            the text to append.
-     */
-    public void appendText(String text) {
-
-        this.getWrappedControl().appendText(text);
-    }
-
-    /**
-     * Moves the caret position backward.
-     */
-    public void backward() {
-
-        this.getWrappedControl().backward();
-    }
-
-    /**
-     * Clears the text.
-     */
-    public void clear() {
-
-        this.getWrappedControl().clear();
-    }
-
-    /**
-     * Transfers the currently selected range in the text to the clipboard,
-     * leaving the current selection.
-     */
-    public void copy() {
-
-        this.getWrappedControl().copy();
-    }
-
-    /**
-     * Transfers the currently selected range in the text to the clipboard,
-     * removing the current selection.
-     */
-    public void cut() {
-
-        this.getWrappedControl().cut();
-    }
-
-    /**
-     * Deletes the character that follows the current caret position from the
-     * text if there is no selection, or deletes the selection if there is one.
-     * 
-     * @return Deletes the character that follows the current caret position
-     *         from the text if there is no selection, or deletes the selection
-     *         if there is one. This function returns true if the deletion
-     *         succeeded, false otherwise.
-     */
-    public boolean deleteNextChar() {
-
-        return this.getWrappedControl().deleteNextChar();
-    }
-
-    /**
-     * Deletes the character that precedes the current caret position from the
-     * text if there is no selection, or deletes the selection if there is one.
-     * 
-     * @return Deletes the character that precedes the current caret position
-     *         from the text if there is no selection, or deletes the selection
-     *         if there is one. This function returns true if the deletion
-     *         succeeded, false otherwise.
-     */
-    public boolean deletePreviousChar() {
-
-        return this.getWrappedControl().deletePreviousChar();
-    }
-
-    /**
-     * Removes a range of characters from the content.
-     * 
-     * @param range
-     *            the range to delete.
-     */
-    public void deleteText(IndexRange range) {
-
-        this.getWrappedControl().deleteText(range);
-    }
-
-    /**
-     * Removes a range of characters from the content.
-     * 
-     * @param start
-     *            the start index.
-     * @param end
-     *            the end index.
-     */
-    public void deleteText(int start, int end) {
-
-        this.getWrappedControl().deleteText(start, end);
-    }
-
-    /**
-     * Clears the selection.
-     */
-    public void deselect() {
-
-        this.getWrappedControl().deselect();
-    }
-
-    /**
-     * Moves the caret to after the last char of the text.
-     */
-    public void end() {
-
-        this.getWrappedControl().end();
-    }
-
-    /**
-     * Moves the caret to the end of the next word.
-     */
-    public void endOfNextWord() {
-
-        this.getWrappedControl().endOfNextWord();
-    }
-
-    /**
-     * This function will extend the selection to include the specified
-     * position.
-     * 
-     * @param pos
-     *            the position
-     */
-    public void extendSelection(int pos) {
-
-        this.getWrappedControl().extendSelection(pos);
-    }
-
-    /**
-     * Moves the caret position forward.
-     */
-    public void forward() {
-
-        this.getWrappedControl().forward();
-    }
-
-    /**
-     * Gets the value of the property anchor.
-     * 
-     * @return The anchor of the text selection. The anchor and caretPosition
-     *         make up the selection range. Selection must always be specified
-     *         in terms of begin <= end, but anchor may be less than, equal to,
-     *         or greater than the caretPosition. Depending on how the user
-     *         selects text, the anchor might represent the lower or upper bound
-     *         of the selection.
-     */
-    public int getAnchor() {
-
-        return this.getWrappedControl().getAnchor();
-    }
-
-    /**
-     * Gets the value of the property caretPosition.
-     * 
-     * @return The current position of the caret within the text. The anchor and
-     *         caretPosition make up the selection range. Selection must always
-     *         be specified in terms of begin <= end, but anchor may be less
-     *         than, equal to, or greater than the caretPosition. Depending on
-     *         how the user selects text, the caretPosition might represent the
-     *         lower or upper bound of the selection.
-     */
-    public int getCaretPosition() {
-
-        return this.getWrappedControl().getCaretPosition();
-    }
-
-
-    /**
-     * Gets the value of the property length.
-     * 
-     * @return the value of the property length.
-     */
-    public int getLength() {
-
-        return this.getWrappedControl().getLength();
-    }
-
-    /**
-     * Gets the value of the property promptText.
-     * 
-     * @return the value of the property promptText.
-     */
-    public String getPromptText() {
-
-        return this.getWrappedControl().getPromptText();
-    }
-
-    /**
-     * Gets the value of the property selectedText.
-     * 
-     * @return the value of the property selectedText.
-     */
-    public String getSelectedText() {
-
-        return this.getWrappedControl().getSelectedText();
-    }
-
-    /**
-     * Gets the value of the property selection.
-     * 
-     * @return the value of the property selection.
-     */
-    public IndexRange getSelection() {
-
-        return this.getWrappedControl().getSelection();
-    }
-
-    /**
-     * Gets the value of the property text.
-     * 
-     * @return the value of the property text.
-     */
-    public String getText() {
-
-        return this.getWrappedControl().getText();
-    }
-
-    /**
-     * Returns a subset of the text input's content.
-     * 
-     * @param start
-     *            the start index.
-     * @param end
-     *            the end index.
-     * @return a subset of the text input's content.
-     */
-    public String getText(int start, int end) {
-
-        return this.getWrappedControl().getText(start, end);
-    }
-
-    /**
-     * Moves the caret to before the first char of the text.
-     */
-    public void home() {
-
-        this.getWrappedControl().home();
-    }
-
-    /**
-     * Inserts a sequence of characters into the content.
-     * 
-     * @param index
-     *            the insertion index.
-     * @param text
-     *            the text to insert.
-     */
-    public void insertText(int index, String text) {
-
-        this.getWrappedControl().insertText(index, text);
-    }
-
-
-    /**
-     * Gets the value of the property editable.
-     * 
-     * @return {@code true}, if the {@link TextField} is editable; {@code false}
-     *         otherwise.
-     */
-    public boolean isEditable() {
-
-        return this.getWrappedControl().isEditable();
-    }
-
-
-    /**
-     * Moves the caret to the beginning of next word.
-     */
-    public void nextWord() {
-
-        this.getWrappedControl().nextWord();
-    }
-
-    /**
-     * Transfers the contents in the clipboard into this text, replacing the
-     * current selection.
-     */
-    public void paste() {
-
-        this.getWrappedControl().paste();
-    }
-
-    /**
-     * Positions the caret to the position indicated by pos.
-     * 
-     * @param pos
-     *            the new caret position.
-     */
-    public void positionCaret(int pos) {
-
-        this.getWrappedControl().positionCaret(pos);
-    }
-
-    /**
-     * Moves the caret to the beginning of previous word.
-     */
-    public void previousWord() {
-
-        this.getWrappedControl().previousWord();
-    }
-
-    /**
-     * Replaces the selection with the given replacement String.
-     * 
-     * @param replacement
-     *            the replacement String.
-     */
-    public void replaceSelection(String replacement) {
-
-        this.getWrappedControl().replaceSelection(replacement);
-    }
-
-    /**
-     * Replaces a range of characters with the given text.
-     * 
-     * @param range
-     *            the range.
-     * @param text
-     *            the replacement text.
-     */
-    public void replaceText(IndexRange range, String text) {
-
-        this.getWrappedControl().replaceText(range, text);
-    }
-
-    /**
-     * Replaces a range of characters with the given text.
-     * 
-     * @param start
-     *            the start index of the range.
-     * @param end
-     *            the end index of the range.
-     * @param text
-     *            the replacement text.
-     */
-    public void replaceText(int start, int end, String text) {
-
-        this.getWrappedControl().replaceText(start, end, text);
-    }
-
-    /**
-     * Selects all text in the text input.
-     */
-    public void selectAll() {
-
-        this.getWrappedControl().selectAll();
-    }
-
-    /**
-     * Moves the selection backward one char in the text.
-     */
-    public void selectBackward() {
-
-        this.getWrappedControl().selectBackward();
-    }
-
-    /**
-     * Moves the caret to after the last char of text.
-     */
-    public void selectEnd() {
-
-        this.getWrappedControl().selectEnd();
-    }
-
-    /**
-     * Moves the caret to the end of the next word.
-     */
-    public void selectEndOfNextWord() {
-
-        this.getWrappedControl().selectEndOfNextWord();
-    }
-
-    /**
-     * Moves the selection forward one char in the text.
-     */
-    public void selectForward() {
-
-        this.getWrappedControl().selectForward();
-    }
-
-    /**
-     * Moves the caret to before the first char of text.
-     */
-    public void selectHome() {
-
-        this.getWrappedControl().selectHome();
-    }
-
-    /**
-     * Moves the caret to the beginning of next word.
-     */
-    public void selectNextWord() {
-
-        this.getWrappedControl().selectNextWord();
-    }
-
-    /**
-     * Positions the caret to the position indicated by pos and extends the
-     * selection, if there is one.
-     * 
-     * @param pos
-     *            the position.
-     */
-    public void selectPositionCaret(int pos) {
-
-        this.getWrappedControl().selectPositionCaret(pos);
-    }
-
-    /**
-     * Moves the caret to the beginning of previous word.
-     */
-    public void selectPreviousWord() {
-
-        this.getWrappedControl().selectPreviousWord();
-    }
-
-    /**
-     * Positions the anchor and caretPosition explicitly.
-     * 
-     * @param anchor
-     *            the anchor.
-     * @param caretPosition
-     *            the caret position.
-     */
-    public void selectRange(int anchor, int caretPosition) {
-
-        this.getWrappedControl().selectRange(anchor, caretPosition);
-    }
-
-    /**
-     * Sets the value of the property editable.
-     * 
-     * @param value
-     *            the new value.
-     */
-    public void setEditable(boolean value) {
-
-        this.getWrappedControl().setEditable(value);
-    }
-
-    /**
-     * Sets the value of the property promptText.
-     * 
-     * @param value
-     *            the new prompt text.
-     */
-    public void setPromptText(String value) {
-
-        this.getWrappedControl().setPromptText(value);
-    }
-
-    /**
-     * Sets the value of the property text.
-     * 
-     * @param value
-     *            the new text value.
-     */
-    public void setText(String value) {
-
-        this.getWrappedControl().setText(value);
     }
 
 
@@ -743,6 +184,16 @@ public class TextFieldWrapper
         this.getWrappedControl().setOnAction(value);
     }
 
+    /**
+     * Gets the value of the property alignment.
+     * 
+     * @return Specifies how the text should be aligned when there is empty
+     *         space within the TextField.
+     */
+    public final Pos getTextAlignment() {
+
+        return this.getWrappedControl().getAlignment();
+    }
 
     /**
      * Sets the value of the property alignment.
@@ -756,16 +207,6 @@ public class TextFieldWrapper
         this.getWrappedControl().setAlignment(value);
     }
 
-    /**
-     * Gets the value of the property alignment.
-     * 
-     * @return Specifies how the text should be aligned when there is empty
-     *         space within the TextField.
-     */
-    public final Pos getTextAlignment() {
-
-        return this.getWrappedControl().getAlignment();
-    }
 
 
 }
