@@ -59,11 +59,12 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
     /**
      * Creates a new instance of the {@link ComboBoxBaseWrapper} class.
      * 
-     * @param wrapped
+     * @param wrappedControl
+     *            the control to wrap.
      */
-    public ComboBoxBaseWrapper(S wrapped) {
+    public ComboBoxBaseWrapper(S wrappedControl) {
 
-        super(wrapped);
+        super(wrappedControl);
     }
 
 
