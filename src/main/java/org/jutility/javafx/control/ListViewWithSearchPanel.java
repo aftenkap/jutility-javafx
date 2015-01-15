@@ -307,6 +307,7 @@ public class ListViewWithSearchPanel<T>
                         LOG.debug("Removing search panel.");
                         this.setBottomCenterNode(null);
                         this.getChildren().remove(this.searchPanel);
+                        this.requestFocus();
                     }
                     else if (Boolean.TRUE.equals(newValue)
                             && !this.getChildren().contains(this.searchPanel)) {
