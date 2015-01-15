@@ -338,6 +338,7 @@ public class ListViewWrapper<T>
         this.converterProperty = new SimpleObjectProperty<>(converter);
 
         this.setupEventHandlers();
+        this.updateCellFactory();
     }
 
     /**
