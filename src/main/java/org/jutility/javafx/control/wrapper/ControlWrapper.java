@@ -145,8 +145,8 @@ public abstract class ControlWrapper<T extends Control>
      *            {@link Validator} to be used
      * @return true if registration is successful
      */
-    public boolean registerValidator(boolean required,
-            final Validator<T> validator) {
+    public <S> boolean registerValidator(final boolean required,
+            final Validator<S> validator) {
 
         return this.validationSupport.registerValidator(
                 this.getWrappedControl(), required, validator);
@@ -159,7 +159,7 @@ public abstract class ControlWrapper<T extends Control>
      *            {@link Validator} to be used
      * @return true if registration is successful
      */
-    public boolean registerValidator(final Validator<T> validator) {
+    public <S> boolean registerValidator(final Validator<S> validator) {
 
         return registerValidator(true, validator);
     }
