@@ -72,6 +72,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
+import javafx.collections.WeakListChangeListener;
+import javafx.collections.WeakMapChangeListener;
+import javafx.collections.WeakSetChangeListener;
 import javafx.scene.control.Control;
 import javafx.util.Callback;
 
@@ -396,44 +399,57 @@ public class ValidationSupport {
                     observable.addListener((o, oldValue, newValue) -> {
                         dataChanged.set(true);
                         updateResults.accept(newValue);
+
+                        setupCollectionChangeHandler(newValue, updateResults);
                     });
 
-                    if (observable instanceof ObservableList<?>) {
+                    this.setupCollectionChangeHandler(observable.getValue(),
+                            updateResults);
 
-                        ((ObservableList<T>) observable)
-                                .addListener((
-                                        ListChangeListener.Change<? extends T> change) -> {
-
-                                    dataChanged.set(true);
-                                    updateResults.accept(observable.getValue());
-                                });
-                    }
-                    else if (observable instanceof ObservableSet<?>) {
-
-                        ((ObservableSet<T>) observable)
-                                .addListener((
-                                        SetChangeListener.Change<? extends T> change) -> {
-
-                                    dataChanged.set(true);
-                                    updateResults.accept(observable.getValue());
-                                });
-                    }
-                    else if (observable instanceof ObservableMap<?, ?>) {
-
-                        ((ObservableMap<?, ?>) observable)
-                                .addListener((
-                                        MapChangeListener.Change<? extends Object, ? extends Object> change) -> {
-
-                                    dataChanged.set(true);
-                                    updateResults.accept(observable.getValue());
-                                });
-                    }
 
                     updateResults.accept(observable.getValue());
 
                     return e;
 
                 }).isPresent();
+    }
+
+    private <T> void setupCollectionChangeHandler(T newValue,
+            Consumer<T> updateResults) {
+
+        if (newValue != null) {
+
+            if (newValue instanceof ObservableList<?>) {
+
+                ((ObservableList<?>) newValue)
+                        .addListener(new WeakListChangeListener<>(
+                                (ListChangeListener.Change<? extends Object> change) -> {
+
+                                    dataChanged.set(true);
+                                    updateResults.accept(newValue);
+                                }));
+            }
+            else if (newValue instanceof ObservableSet<?>) {
+
+                ((ObservableSet<?>) newValue)
+                        .addListener(new WeakSetChangeListener<>(
+                                (SetChangeListener.Change<? extends Object> change) -> {
+
+                                    dataChanged.set(true);
+                                    updateResults.accept(newValue);
+                                }));
+            }
+            else if (newValue instanceof ObservableMap<?, ?>) {
+
+                ((ObservableMap<?, ?>) newValue)
+                        .addListener(new WeakMapChangeListener<>(
+                                (MapChangeListener.Change<? extends Object, ? extends Object> change) -> {
+
+                                    dataChanged.set(true);
+                                    updateResults.accept(newValue);
+                                }));
+            }
+        }
     }
 
     /**
