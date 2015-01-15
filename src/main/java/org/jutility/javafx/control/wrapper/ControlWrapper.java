@@ -1142,4 +1142,12 @@ public abstract class ControlWrapper<T extends Control>
 
         return super.getChildren();
     }
+    
+
+    @Override
+    public void requestFocus() {
+    
+        super.requestFocus();
+        this.getWrappedControl().requestFocus();
+    }
 }
