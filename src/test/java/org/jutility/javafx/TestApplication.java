@@ -28,6 +28,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -79,6 +80,7 @@ public class TestApplication
         ListViewWithSearchPanel<String> tester = new ListViewWithSearchPanel<>(
                 FXCollections.observableArrayList(items), "TestList", null);
 
+        GridPane.setVgrow(tester, Priority.ALWAYS);
         root.add(tester, 0, 0);
 
         this.mainScene = new Scene(root, 1440, 900, Color.LIGHTSLATEGREY);

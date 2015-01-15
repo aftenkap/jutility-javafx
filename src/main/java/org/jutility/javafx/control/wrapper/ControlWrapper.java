@@ -43,6 +43,7 @@ import javafx.scene.control.Skin;
 import javafx.scene.control.Skinnable;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 
 import org.controlsfx.control.action.Action;
 import org.controlsfx.control.action.ActionUtils;
@@ -969,12 +970,15 @@ public abstract class ControlWrapper<T extends Control>
         this.contextMenuActions = FXCollections
                 .observableList(new LinkedList<Action>());
 
-        this.setUpEventHandlers();
+        GridPane.setHgrow(wrappedControl, Priority.SOMETIMES);
+        GridPane.setVgrow(wrappedControl, Priority.SOMETIMES);
+
+        this.setupEventHandlers();
 
         this.wrappedControlProperty.set(wrappedControl);
     }
 
-    private void setUpEventHandlers() {
+    private void setupEventHandlers() {
 
         this.setUpEventHandler(this.topCenterNodeProperty);
         this.setUpEventHandler(this.topRightNodeProperty);
@@ -1142,11 +1146,11 @@ public abstract class ControlWrapper<T extends Control>
 
         return super.getChildren();
     }
-    
+
 
     @Override
     public void requestFocus() {
-    
+
         super.requestFocus();
         this.getWrappedControl().requestFocus();
     }
