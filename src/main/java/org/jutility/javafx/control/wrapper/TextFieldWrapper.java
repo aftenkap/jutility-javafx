@@ -208,7 +208,4 @@ public class TextFieldWrapper
 
         this.getWrappedControl().setAlignment(value);
     }
-
-
-
 }
