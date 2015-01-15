@@ -187,10 +187,10 @@ public class LabeledTextField
             label.setLabelFor(this.getWrappedControl());
         }
 
-        this.setUpEventHandlers();
+        this.setupEventHandlers();
     }
 
-    private void setUpEventHandlers() {
+    private void setupEventHandlers() {
 
         this.label.addListener((observable, oldValue, newValue) -> {
 

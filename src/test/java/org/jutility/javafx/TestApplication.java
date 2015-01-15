@@ -77,7 +77,7 @@ public class TestApplication
         GridPane root = new GridPane();
 
         ListViewWithSearchPanel<String> tester = new ListViewWithSearchPanel<>(
-                FXCollections.observableArrayList(items), null, "TestList");
+                FXCollections.observableArrayList(items), "TestList", null);
 
         root.add(tester, 0, 0);
 

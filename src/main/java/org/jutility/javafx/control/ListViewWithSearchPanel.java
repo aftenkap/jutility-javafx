@@ -118,7 +118,7 @@ public class ListViewWithSearchPanel<T>
     public ListViewWithSearchPanel(final String title,
             StringConverter<T> converter) {
 
-        this(null, converter, null);
+        this(null, null, converter);
     }
 
     /**
@@ -126,16 +126,15 @@ public class ListViewWithSearchPanel<T>
      * 
      * @param items
      *            the initial item list of the {@link ListView}
-     * 
      * @param title
      *            title of this panel
      * @param converter
      *            the string converter to use.
      */
     public ListViewWithSearchPanel(final ObservableList<T> items,
-            StringConverter<T> converter, final String title) {
+            final String title, StringConverter<T> converter) {
 
-        super(null, converter, title, Pos.TOP_CENTER);
+        super(null, title, Pos.TOP_CENTER, converter);
 
 
         this.itemsProperty = new SimpleObjectProperty<>(items);
