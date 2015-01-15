@@ -118,7 +118,7 @@ public class ListViewWithSearchPanel<T>
     public ListViewWithSearchPanel(final String title,
             StringConverter<T> converter) {
 
-        this(null, null, converter);
+        this(null, title, converter);
     }
 
     /**
