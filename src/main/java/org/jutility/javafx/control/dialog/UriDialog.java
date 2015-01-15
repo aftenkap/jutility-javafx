@@ -22,7 +22,7 @@ import java.net.URI;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import org.controlsfx.validation.decoration.GraphicValidationDecoration;
-import org.jutility.javafx.control.validated.ValidationUtils;
+import org.jutility.javafx.control.validation.ValidationUtils;
 
 import javafx.scene.layout.Priority;
 import javafx.application.Platform;

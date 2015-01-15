@@ -2,7 +2,7 @@
  * @author Peter J. Radics
  * 
  */
-package org.jutility.javafx.control.validated;
+package org.jutility.javafx.control.validation;
 
 /*
  * #%L
