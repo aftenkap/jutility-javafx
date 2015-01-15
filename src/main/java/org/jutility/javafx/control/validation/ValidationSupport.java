@@ -208,6 +208,15 @@ public class ValidationSupport {
         }
     }
 
+    /**
+     * Triggers revalidation of all components.
+     */
+    public void revalidate() {
+
+        this.dataChanged.set(true);
+        this.redecorate();
+    }
+
     private BooleanProperty errorDecorationEnabledProperty = new SimpleBooleanProperty(
                                                                    true) {
 
