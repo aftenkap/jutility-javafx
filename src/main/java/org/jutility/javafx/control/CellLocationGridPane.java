@@ -31,7 +31,7 @@ import org.controlsfx.validation.Validator;
 import org.controlsfx.validation.decoration.GraphicValidationDecoration;
 import org.jutility.common.datatype.table.CellLocation;
 import org.jutility.common.datatype.table.CellRange;
-import org.jutility.javafx.control.validated.ValidationUtils;
+import org.jutility.javafx.control.validation.ValidationUtils;
 
 
 /**

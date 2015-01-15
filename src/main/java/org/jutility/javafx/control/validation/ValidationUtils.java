@@ -1,4 +1,4 @@
-package org.jutility.javafx.control.validated;
+package org.jutility.javafx.control.validation;
 
 
 // @formatter:off
