@@ -30,7 +30,6 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 import org.jutility.javafx.control.wrapper.ListViewWrapper;
@@ -94,21 +93,47 @@ public class LabeledListView<T>
 
     /**
      * Creates a new instance of the {@link LabeledListView} class with the
-     * provided labelProperty text, positioning the {@link Label} to the left of
-     * the {@link TextField}.
+     * provided items.
+     * 
+     * @param items
+     *            the initial items of the {@link ListView}.
+     */
+    public LabeledListView(final ObservableList<T> items) {
+
+        this(items, null, null);
+    }
+
+    /**
+     * Creates a new instance of the {@link LabeledListView} class with the
+     * provided label text, positioning the {@link Label} above the
+     * {@link ListView}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
      */
     public LabeledListView(final String labelText) {
 
-        this(labelText, Pos.CENTER_LEFT);
+        this(labelText, Pos.TOP_CENTER);
+    }
+
+    /**
+     * Creates a new instance of the {@link LabeledListView} class with the
+     * provided items and label text, positioning the {@link Label} above the
+     * {@link ListView}.
+     * 
+     * @param items
+     *            the initial items of the {@link ListView}.
+     * @param labelText
+     */
+    public LabeledListView(final ObservableList<T> items, final String labelText) {
+
+        this(items, labelText, null);
     }
 
     /**
      * Creates a new instance of the {@link LabeledListView} class with the
      * provided labelProperty text, positioning the {@link Label} relative to
-     * the {@link TextField} according to the provided {@link Pos Position}.
+     * the {@link ListView} according to the provided {@link Pos Position}.
      * 
      * @param labelText
      *            the text of the {@link Label}.
@@ -123,7 +148,7 @@ public class LabeledListView<T>
     /**
      * Creates a new instance of the {@link LabeledListView} class with the
      * provided labelProperty text, positioning the {@link Label} relative to
-     * the {@link TextField} according to the provided {@link Pos Position}.
+     * the {@link ListView} according to the provided {@link Pos Position}.
      * 
      * @param items
      *            the initial items of the {@link ListView}.
@@ -135,28 +160,28 @@ public class LabeledListView<T>
     public LabeledListView(final ObservableList<T> items,
             final String labelText, final Pos position) {
 
-        this(items, null, labelText, position);
+        this(items, labelText, position, null);
     }
 
 
 
     /**
      * Creates a new instance of the {@link LabeledListView} class with the
-     * provided {@link Label}, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided {@link Pos Position}.
+     * provided items and {@link Label}, positioning the {@link Label} relative
+     * to the {@link ListView} according to the provided {@link Pos Position}.
      * 
      * @param items
      *            the initial items of the {@link ListView}.
-     * @param converter
-     *            the string converter of the {@link ListView}.
      * @param labelText
      *            the text for the {@link Label}.
      * @param position
      *            the desired {@link Pos Position} of the {@link Label}.
+     * @param converter
+     *            the string converter of the {@link ListView}.
      */
     public LabeledListView(final ObservableList<T> items,
-            final StringConverter<T> converter, final String labelText,
-            final Pos position) {
+            final String labelText, final Pos position,
+            final StringConverter<T> converter) {
 
         super(items, converter);
 
