@@ -128,13 +128,25 @@ public class ValidationGroup {
     }
 
     /**
-     * Issues a request for redecoration of decorated controls.
+     * Issues a request for re-decoration of decorated controls.
      */
     public void redecorate() {
 
         for (ValidationSupport validationSupport : this.subValidators.values()) {
 
             validationSupport.redecorate();
+        }
+    }
+
+    /**
+     * Issues a request for re-validation and re-decoration of decorated
+     * controls.
+     */
+    public void revalidate() {
+
+        for (ValidationSupport validationSupport : this.subValidators.values()) {
+
+            validationSupport.revalidate();
         }
     }
 }
