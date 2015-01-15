@@ -15,7 +15,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 
 import org.controlsfx.validation.ValidationResult;
-import org.controlsfx.validation.ValidationSupport;
 
 
 /**
