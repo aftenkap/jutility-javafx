@@ -396,11 +396,12 @@ public class ValidationSupport {
 
                     controls.add(c);
 
-                    observable.addListener((o, oldValue, newValue) -> {
+                    observable.addListener((o) -> {
                         dataChanged.set(true);
-                        updateResults.accept(newValue);
+                        updateResults.accept(observable.getValue());
 
-                        setupCollectionChangeHandler(newValue, updateResults);
+                        setupCollectionChangeHandler(observable.getValue(),
+                                updateResults);
                     });
 
                     this.setupCollectionChangeHandler(observable.getValue(),
