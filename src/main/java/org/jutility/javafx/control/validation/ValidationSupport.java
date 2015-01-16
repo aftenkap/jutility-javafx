@@ -56,6 +56,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import javafx.application.Platform;
+import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -422,33 +423,48 @@ public class ValidationSupport {
 
             if (newValue instanceof ObservableList<?>) {
 
-                ((ObservableList<?>) newValue)
-                        .addListener(new WeakListChangeListener<>(
-                                (ListChangeListener.Change<? extends Object> change) -> {
+                ObservableList<?> list = (ObservableList<?>) newValue;
+                list.addListener(new WeakListChangeListener<>(
+                        (ListChangeListener.Change<? extends Object> change) -> {
 
-                                    dataChanged.set(true);
-                                    updateResults.accept(newValue);
-                                }));
+                            dataChanged.set(true);
+                            updateResults.accept(newValue);
+                        }));
+                list.addListener((Observable observable) -> {
+
+                    dataChanged.set(true);
+                    updateResults.accept(newValue);
+                });
             }
             else if (newValue instanceof ObservableSet<?>) {
 
-                ((ObservableSet<?>) newValue)
-                        .addListener(new WeakSetChangeListener<>(
-                                (SetChangeListener.Change<? extends Object> change) -> {
+                ObservableSet<?> set = (ObservableSet<?>) newValue;
+                set.addListener(new WeakSetChangeListener<>((
+                        SetChangeListener.Change<? extends Object> change) -> {
 
-                                    dataChanged.set(true);
-                                    updateResults.accept(newValue);
-                                }));
+                    dataChanged.set(true);
+                    updateResults.accept(newValue);
+                }));
+
+                set.addListener((Observable observable) -> {
+
+                    dataChanged.set(true);
+                    updateResults.accept(newValue);
+                });
             }
             else if (newValue instanceof ObservableMap<?, ?>) {
+                ObservableMap<?, ?> map = (ObservableMap<?, ?>) newValue;
+                map.addListener(new WeakMapChangeListener<>(
+                        (MapChangeListener.Change<? extends Object, ? extends Object> change) -> {
 
-                ((ObservableMap<?, ?>) newValue)
-                        .addListener(new WeakMapChangeListener<>(
-                                (MapChangeListener.Change<? extends Object, ? extends Object> change) -> {
+                            dataChanged.set(true);
+                            updateResults.accept(newValue);
+                        }));
+                map.addListener((Observable observable) -> {
 
-                                    dataChanged.set(true);
-                                    updateResults.accept(newValue);
-                                }));
+                    dataChanged.set(true);
+                    updateResults.accept(newValue);
+                });
             }
         }
     }
