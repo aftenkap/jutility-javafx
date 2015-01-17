@@ -108,19 +108,14 @@ public class ValidationGroup {
 
     private void validate() {
 
-        boolean isValid = false;
+        boolean isValid = true;
 
-        List<ValidationResult> validationResults = new ArrayList<>(
-                this.subValidators.values().size());
+        List<ValidationResult> validationResults = new ArrayList<>();
 
-        if (!isValid) {
+        for (ValidationSupport validationSupport : this.subValidators.values()) {
 
-            for (ValidationSupport validationSupport : this.subValidators
-                    .values()) {
-
-                isValid = isValid && !validationSupport.isInvalid();
-                validationResults.add(validationSupport.getValidationResult());
-            }
+            isValid = isValid && !validationSupport.isInvalid();
+            validationResults.add(validationSupport.getValidationResult());
         }
         this.invalidProperty.set(!isValid);
         this.validationResultProperty.set(ValidationResult
