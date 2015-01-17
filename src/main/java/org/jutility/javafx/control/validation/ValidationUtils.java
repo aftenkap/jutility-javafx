@@ -46,6 +46,49 @@ public class ValidationUtils {
 
     /**
      * Factory method to create a validator, which checks whether the string
+     * representation of a value represents a valid boolean.
+     * 
+     * @param message
+     *            text of a message to be created if value is invalid
+     * @param severity
+     *            severity of a message to be created if value is invalid
+     * @return new validator
+     */
+    public static <T> Validator<T> createBooleanFormatValidator(
+            final String message, final Severity severity) {
+
+        return (control, value) -> {
+
+            boolean invalidValue = value == null;
+
+            if (!invalidValue) {
+
+                invalidValue = !"true".equalsIgnoreCase(value.toString())
+                        && !"false".equalsIgnoreCase(value.toString());
+            }
+            return ValidationResult.fromMessageIf(control, message, severity,
+                    invalidValue);
+        };
+    }
+
+    /**
+     * Factory method to create a validator, which checks whether the string
+     * representation of a value represents a valid boolean.
+     * 
+     * @param message
+     *            text of a message to be created if value is invalid.
+     * @return new validator.
+     */
+    public static <T> Validator<T> createBooleanFormatValidator(
+            final String message) {
+
+        return ValidationUtils.createBooleanFormatValidator(message,
+                Severity.ERROR);
+    }
+
+
+    /**
+     * Factory method to create a validator, which checks whether the string
      * representation of a value represents a valid instance of the provided
      * number type.
      * 
@@ -256,7 +299,7 @@ public class ValidationUtils {
 
                 try {
 
-                   URI.create(value.toString());
+                    URI.create(value.toString());
                 }
                 catch (Exception e) {
 
