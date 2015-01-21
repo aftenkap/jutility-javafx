@@ -46,6 +46,7 @@ import org.controlsfx.validation.ValidationResult;
 public class ValidationGroup {
 
     private final Map<Node, ValidationSupport>            subValidators;
+    private final Map<Node, ValidationGroup>              subGroups;
 
     private final BooleanProperty                         invalidProperty;
     private final ReadOnlyObjectWrapper<ValidationResult> validationResultProperty;
@@ -99,6 +100,7 @@ public class ValidationGroup {
         this.invalidProperty = new SimpleBooleanProperty();
         this.validationResultProperty = new ReadOnlyObjectWrapper<>();
         this.subValidators = new WeakHashMap<>();
+        this.subGroups = new WeakHashMap<>();
     }
 
 
@@ -112,12 +114,36 @@ public class ValidationGroup {
      * @return {@code true}, if the support was registered successfully;
      *         {@code false} otherwise.
      */
-    public boolean registerSubValidationSupport(final Node node,
+    public boolean registerSubValidation(final Node node,
             ValidationSupport validationSupport) {
 
         this.subValidators.put(node, validationSupport);
 
         validationSupport.invalidProperty().addListener(
+                new WeakInvalidationListener(observable -> {
+
+                    this.validate();
+                }));
+
+        return true;
+    }
+
+    /**
+     * Registers the validation group of a sub node.
+     * 
+     * @param node
+     *            the sub node.
+     * @param validationGroup
+     *            the validation group.
+     * @return {@code true}, if the support was registered successfully;
+     *         {@code false} otherwise.
+     */
+    public boolean registerSubValidation(final Node node,
+            ValidationGroup validationGroup) {
+
+        this.subGroups.put(node, validationGroup);
+
+        validationGroup.invalidProperty().addListener(
                 new WeakInvalidationListener(observable -> {
 
                     this.validate();
@@ -137,6 +163,13 @@ public class ValidationGroup {
             isValid = isValid && !validationSupport.isInvalid();
             validationResults.add(validationSupport.getValidationResult());
         }
+
+        for (ValidationGroup validationGroup : this.subGroups.values()) {
+
+            isValid = isValid && !validationGroup.isInvalid();
+            validationResults.add(validationGroup.getValidationResult());
+        }
+
         this.invalidProperty.set(!isValid);
         this.validationResultProperty.set(ValidationResult
                 .fromResults(validationResults));
