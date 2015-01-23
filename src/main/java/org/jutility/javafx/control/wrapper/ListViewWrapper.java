@@ -662,6 +662,7 @@ public class ListViewWrapper<T>
      * Sets the value of the property onScrollTo.
      * 
      * @param value
+     *            the onScrollTo event handler
      */
     public void setOnScrollTo(EventHandler<ScrollToEvent<Integer>> value) {
 

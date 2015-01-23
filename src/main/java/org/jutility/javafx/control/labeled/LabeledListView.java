@@ -126,6 +126,7 @@ public class LabeledListView<T>
      * @param items
      *            the initial items of the {@link ListView}.
      * @param labelText
+     *            the text of the {@link Label}.
      */
     public LabeledListView(final ObservableList<T> items, final String labelText) {
 
