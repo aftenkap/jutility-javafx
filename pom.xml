@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -6,20 +7,28 @@
 	<packaging>jar</packaging>
 
 	<name>jutility-javafx</name>
-    <description>The jutility-javafx library provides JavaFX 8 Controls and other utilities.</description>
+	<description>The jutility-javafx library provides JavaFX 8 Controls and other utilities.</description>
 	<url>http://maven.apache.org</url>
 
-    <parent>
-        <groupId>org.jutility</groupId>
-        <artifactId>jutility</artifactId>
-        <version>0.1.2-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
+	<parent>
+		<groupId>org.jutility</groupId>
+		<artifactId>jutility</artifactId>
+		<version>0.1.2-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>manual</distribution>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <jutility-version>0.1.2-SNAPSHOT</jutility-version>
+		<jutility-version>0.1.2-SNAPSHOT</jutility-version>
 		<!-- Java Version -->
 		<java.version>1.8</java.version>
 
@@ -66,12 +75,12 @@
 
 	<dependencies>
 
-        <!-- jutility-common -->
-        <dependency>
-            <groupId>org.jutility</groupId>
-            <artifactId>jutility-common</artifactId>
-            <version>${jutility-version}</version>
-        </dependency>
+		<!-- jutility-common -->
+		<dependency>
+			<groupId>org.jutility</groupId>
+			<artifactId>jutility-common</artifactId>
+			<version>${jutility-version}</version>
+		</dependency>
 
 		<!-- ControlsFX -->
 		<dependency>
