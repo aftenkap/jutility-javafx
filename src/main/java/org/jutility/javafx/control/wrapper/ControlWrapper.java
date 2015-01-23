@@ -924,6 +924,33 @@ public abstract class ControlWrapper<T extends Control>
     }
 
 
+    /**
+     * Sets the horizontal grow priority for the wrapped control. If set, the
+     * wrapper will use the priority to allocate the child additional horizontal
+     * space if the wrapper is resized larger than it's preferred width. Setting
+     * the value to null will remove the constraint.
+     * 
+     * @param priority
+     *            the horizontal grow priority.
+     */
+    public void setControlHGrow(final Priority priority) {
+
+        GridPane.setHgrow(this.getWrappedControl(), priority);
+    }
+
+    /**
+     * Sets the vertical grow priority for the wrapped control. If set, the
+     * wrapper will use the priority to allocate the child additional vertical
+     * space if the wrapper is resized larger than it's preferred height.
+     * Setting the value to null will remove the constraint.
+     * 
+     * @param priority
+     *            the vertical grow priority.
+     */
+    public void setControlVGrow(final Priority priority) {
+
+        GridPane.setVgrow(this.getWrappedControl(), priority);
+    }
 
     /**
      * Creates a new instance of the {@link ControlWrapper} class.
