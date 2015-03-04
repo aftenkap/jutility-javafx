@@ -3,22 +3,22 @@ package org.jutility.javafx.control;
 
 // @formatter:off
 /*
- * #%L 
- * jutility-javafx 
- * %% 
- * Copyright (C) 2013 - 2014 jutility.org 
- * %% 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
- * use this file except in compliance with the License. You may obtain a copy 
- * of the License at
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  * 
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * #L%
  */
 
@@ -48,19 +48,20 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * Provides a ListView with a Title and SearchPanel for the provided type.
- * 
+ * The {@code ListViewWithSearchPanel} class provides a {@link LabeledListView}
+ * with a {@link SearchPanel}.
+ *
+ * @param <T>
+ *            the content type of the {@link LabeledListView}.
+ *
  * @author Shawn P. Neuman, Peter J. Radics
  * @version 0.1.2
- * @since 0.0.1
- * @param <T>
- *            the content type of the {@link ListView}.
- * 
+ * @since 0.1.0
  */
 public class ListViewWithSearchPanel<T>
         extends LabeledListView<T> {
 
-    private static Logger                           LOG = LoggerFactory
+    private static final Logger                     LOG = LoggerFactory
                                                                 .getLogger(ListViewWithSearchPanel.class);
 
     private final ObjectProperty<ObservableList<T>> itemsProperty;
@@ -82,13 +83,13 @@ public class ListViewWithSearchPanel<T>
     }
 
     @Override
-    public void setItems(ObservableList<T> value) {
+    public void setItems(final ObservableList<T> value) {
 
         this.itemsProperty.set(value);
     }
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with no title.
+     * Creates a new {@code ListViewWithSearchPanel} with no title.
      */
     public ListViewWithSearchPanel() {
 
@@ -96,8 +97,8 @@ public class ListViewWithSearchPanel<T>
     }
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
-     * 
+     * Creates a new {@code ListViewWithSearchPanel} with the provided title.
+     *
      * @param title
      *            title of this panel
      */
@@ -108,22 +109,22 @@ public class ListViewWithSearchPanel<T>
 
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
-     * 
+     * Creates a new {@code ListViewWithSearchPanel} with the provided title.
+     *
      * @param title
      *            title of this panel
      * @param converter
      *            the string converter to use.
      */
     public ListViewWithSearchPanel(final String title,
-            StringConverter<T> converter) {
+            final StringConverter<T> converter) {
 
         this(null, title, converter);
     }
 
     /**
-     * Creates a new {@link ListViewWithSearchPanel} with the provided title.
-     * 
+     * Creates a new {@code ListViewWithSearchPanel} with the provided title.
+     *
      * @param items
      *            the initial item list of the {@link ListView}
      * @param title
@@ -132,7 +133,7 @@ public class ListViewWithSearchPanel<T>
      *            the string converter to use.
      */
     public ListViewWithSearchPanel(final ObservableList<T> items,
-            final String title, StringConverter<T> converter) {
+            final String title, final StringConverter<T> converter) {
 
         super(null, title, Pos.TOP_CENTER, converter);
 
@@ -180,7 +181,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected item property.
-     * 
+     *
      * @return the selected item property.
      */
     public ReadOnlyObjectProperty<T> selectedItemProperty() {
@@ -190,7 +191,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected item.
-     * 
+     *
      * @return the selected item from the list view
      */
     public T getSelectedItem() {
@@ -200,7 +201,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected index property.
-     * 
+     *
      * @return the selected index property.
      */
     public ReadOnlyIntegerProperty selectedIndexProperty() {
@@ -210,7 +211,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected index.
-     * 
+     *
      * @return the selected index from the list view
      */
     public int getSelectedIndex() {
@@ -220,7 +221,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected filteredItems.
-     * 
+     *
      * @return the selected filteredItems from the list view
      */
     public ObservableList<T> getSelectedItems() {
@@ -230,7 +231,7 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Returns the selected indices.
-     * 
+     *
      * @return the selected indices from the list view
      */
     public ObservableList<Integer> getSelectedIndices() {
@@ -240,35 +241,35 @@ public class ListViewWithSearchPanel<T>
 
     /**
      * Removes the provided elements from the {@link ListView}.
-     * 
+     *
      * @param elements
      *            the elements to remove.
      */
     @SafeVarargs
-    public final void remove(T... elements) {
+    public final void remove(final T... elements) {
 
         this.getItems().removeAll(elements);
     }
 
     /**
      * Removes the element at the provided index from the {@link ListView}.
-     * 
+     *
      * @param index
      *            the index of the string value to be removed from the
      *            {@link ListView}.
      */
-    public void remove(int index) {
+    public void remove(final int index) {
 
         this.getItems().remove(index);
     }
 
     /**
      * Removes the provided item from the {@link ListView}.
-     * 
+     *
      * @param item
      *            the item to remove.
      */
-    public void removeAll(Object item) {
+    public void removeAll(final Object item) {
 
         this.getItems().remove(item);
     }
@@ -289,7 +290,7 @@ public class ListViewWithSearchPanel<T>
             final KeyCombination acceleratorKey = new KeyCodeCombination(
                     KeyCode.F, KeyCombination.SHORTCUT_DOWN);
 
-            if (acceleratorKey.match(event) && this.getItems() != null
+            if (acceleratorKey.match(event) && (this.getItems() != null)
                     && !this.getItems().isEmpty()) {
 
                 this.searchPanel.setVisible(true);
@@ -304,7 +305,8 @@ public class ListViewWithSearchPanel<T>
 
                     if (Boolean.FALSE.equals(newValue)) {
 
-                        LOG.debug("Removing search panel.");
+                        ListViewWithSearchPanel.LOG
+                                .debug("Removing search panel.");
                         this.setBottomCenterNode(null);
                         this.getChildren().remove(this.searchPanel);
                         this.requestFocus();
@@ -312,7 +314,8 @@ public class ListViewWithSearchPanel<T>
                     else if (Boolean.TRUE.equals(newValue)
                             && !this.getChildren().contains(this.searchPanel)) {
 
-                        LOG.debug("Adding search panel.");
+                        ListViewWithSearchPanel.LOG
+                                .debug("Adding search panel.");
                         this.addNode(this.searchPanel, Pos.BOTTOM_CENTER);
                     }
                 });
@@ -321,17 +324,19 @@ public class ListViewWithSearchPanel<T>
                 .getStringFilter()
                 .filterStringProperty()
                 .addListener(
-                        (Observable observable) -> {
+                        (final Observable observable) -> {
 
-                            LOG.debug("FilterString invalidated!");
-                            ObservableList<T> filteredItems = this.filteredItemsProperty
+                            ListViewWithSearchPanel.LOG
+                                    .debug("FilterString invalidated!");
+                            final ObservableList<T> filteredItems = this.filteredItemsProperty
                                     .get();
 
-                            if (filteredItems != null
-                                    && filteredItems instanceof FilteredList<?>) {
+                            if ((filteredItems != null)
+                                    && (filteredItems instanceof FilteredList<?>)) {
 
-                                FilteredList<T> filteredList = ((FilteredList<T>) filteredItems);
-                                LOG.debug("Invalidating predicate");
+                                final FilteredList<T> filteredList = ((FilteredList<T>) filteredItems);
+                                ListViewWithSearchPanel.LOG
+                                        .debug("Invalidating predicate");
                                 filteredList.setPredicate(t -> true);
                                 filteredList.setPredicate(this.searchPanel
                                         .getStringFilter());

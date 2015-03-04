@@ -1,11 +1,12 @@
 /**
- * This package contains general-purpose controls.
+ * This package provides {@link javax.xml.bind.annotation.adapters.XmlAdapter
+ * XmlAdapters} for JavaFX classes for serialization.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
  */
-package org.jutility.javafx.control;
+package org.jutility.io.xml;
 
 
 //@formatter:off

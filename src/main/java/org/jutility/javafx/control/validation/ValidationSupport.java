@@ -1,25 +1,5 @@
 package org.jutility.javafx.control.validation;
 
-/*
- * #%L
- * jutility-javafx
- * %%
- * Copyright (C) 2013 - 2015 jutility.org
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * #L%
- */
-
 
 /**
  * Copyright (c) 2014, ControlsFX All rights reserved.
@@ -67,7 +47,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ListChangeListener.Change;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -92,7 +71,7 @@ import org.controlsfx.validation.decoration.ValidationDecoration;
  * of this class the component group, usually a panel.<br>
  * Once created, {@link Validator}s can be registered for components, to provide
  * the validation:
- * 
+ *
  * <pre>
  * ValidationSupport validationSupport = new ValidationSupport();
  * validationSupport.registerValidator(textField,
@@ -103,16 +82,16 @@ import org.controlsfx.validation.decoration.ValidationDecoration;
  *         (Control c, Boolean newValue) -&gt; ValidationResult.fromErrorIf(c,
  *                 &quot;Checkbox should be checked&quot;, !newValue));
  * </pre>
- * 
+ *
  * validationResultProperty provides an ability to react on overall validation
  * result changes:
- * 
+ *
  * <pre>
  * validationSupport.validationResultProperty().addListener(
  *         (o, oldValue, newValue) -&gt; messageList.getItems().setAll(
  *                 newValue.getMessages()));
  * </pre>
- * 
+ *
  * Standard JavaFX UI controls are supported out of the box. There is also an
  * ability to add support for custom controls. To do that
  * "observable value extractor" should be added for specific controls. Such
@@ -120,14 +99,14 @@ import org.controlsfx.validation.decoration.ValidationDecoration;
  * check the applicability of the control and a {@link Callback} to extract
  * control's observable value. Here is an sample of internal registration of
  * such "extractor" for a few controls :
- * 
+ *
  * <pre>
  * ValueExtractor.addObservableValueExtractor(c -&gt; c instanceof TextInputControl,
  *         c -&gt; ((TextInputControl) c).textProperty());
  * ValueExtractor.addObservableValueExtractor(c -&gt; c instanceof ComboBox,
  *         c -&gt; ((ComboBox&lt;?&gt;) c).valueProperty());
  * </pre>
- * 
+ *
  */
 public class ValidationSupport {
 
@@ -136,57 +115,58 @@ public class ValidationSupport {
 
     /**
      * Set control's required flag
-     * 
+     *
      * @param c
      *            control
      * @param required
      *            flag
      */
-    public static void setRequired(Control c, boolean required) {
+    public static void setRequired(final Control c, final boolean required) {
 
-        c.getProperties().put(CTRL_REQUIRED_FLAG, required);
+        c.getProperties().put(ValidationSupport.CTRL_REQUIRED_FLAG, required);
     }
 
     /**
      * Check control's required flag
-     * 
+     *
      * @param c
      *            control
      * @return true if required
      */
-    public static boolean isRequired(Control c) {
+    public static boolean isRequired(final Control c) {
 
-        Object value = c.getProperties().get(CTRL_REQUIRED_FLAG);
+        final Object value = c.getProperties().get(
+                ValidationSupport.CTRL_REQUIRED_FLAG);
         return value instanceof Boolean ? (Boolean) value : false;
     }
 
-    private ObservableSet<Control>                   controls          = FXCollections
-                                                                               .observableSet();
-    private ObservableMap<Control, ValidationResult> validationResults = FXCollections
-                                                                               .observableMap(new WeakHashMap<>());
+    private final ObservableSet<Control>                   controls          = FXCollections
+                                                                                     .observableSet();
+    private final ObservableMap<Control, ValidationResult> validationResults = FXCollections
+                                                                                     .observableMap(new WeakHashMap<>());
 
 
-    private AtomicBoolean                            dataChanged       = new AtomicBoolean(
-                                                                               false);
+    private final AtomicBoolean                            dataChanged       = new AtomicBoolean(
+                                                                                     false);
 
     /**
      * Creates validation support instance
      */
     public ValidationSupport() {
 
-        validationResultProperty().addListener(
+        this.validationResultProperty().addListener(
                 (o, oldValue, validationResult) -> {
-                    invalidProperty
-                            .set(!validationResult.getErrors().isEmpty());
-                    redecorate();
+                    this.invalidProperty.set(!validationResult.getErrors()
+                            .isEmpty());
+                    this.redecorate();
                 });
 
         // notify validation result observers
-        validationResults
+        this.validationResults
                 .addListener((
-                        MapChangeListener.Change<? extends Control, ? extends ValidationResult> change) -> validationResultProperty
-                        .set(ValidationResult.fromResults(validationResults
-                                .values())));
+                        final MapChangeListener.Change<? extends Control, ? extends ValidationResult> change) -> this.validationResultProperty
+                        .set(ValidationResult
+                                .fromResults(this.validationResults.values())));
 
 
     }
@@ -198,14 +178,14 @@ public class ValidationSupport {
     // TODO needs optimization
     public void redecorate() {
 
-        Optional<ValidationDecoration> odecorator = Optional
-                .ofNullable(getValidationDecorator());
-        for (Control target : getRegisteredControls()) {
+        final Optional<ValidationDecoration> odecorator = Optional
+                .ofNullable(this.getValidationDecorator());
+        for (final Control target : this.getRegisteredControls()) {
             odecorator.ifPresent(decorator -> {
                 decorator.removeDecorations(target);
                 decorator.applyRequiredDecoration(target);
-                if (dataChanged.get() && isErrorDecorationEnabled()) {
-                    getHighestMessage(target).ifPresent(
+                if (this.dataChanged.get() && this.isErrorDecorationEnabled()) {
+                    this.getHighestMessage(target).ifPresent(
                             msg -> decorator.applyValidationDecoration(msg));
                 }
             });
@@ -221,135 +201,152 @@ public class ValidationSupport {
         this.redecorate();
     }
 
-    private BooleanProperty errorDecorationEnabledProperty = new SimpleBooleanProperty(
-                                                                   true) {
+    private final BooleanProperty errorDecorationEnabledProperty = new SimpleBooleanProperty(
+                                                                         true) {
 
-                                                               protected void invalidated() {
+                                                                     @Override
+                                                                     protected void invalidated() {
 
-                                                                   redecorate();
-                                                               };
-                                                           };
+                                                                         ValidationSupport.this
+                                                                                 .redecorate();
+                                                                     }
+                                                                 };
 
+    /**
+     * Returns the error decoration enabled property.
+     *
+     * @return the error decoration enabled property.
+     */
     public BooleanProperty errorDecorationEnabledProperty() {
 
-        return errorDecorationEnabledProperty;
+        return this.errorDecorationEnabledProperty;
     }
 
-    public void setErrorDecorationEnabled(boolean enabled) {
+    /**
+     * Sets the value of the error decoration enabled property.
+     *
+     * @param enabled
+     *            the value of the error decoration enabled property.
+     */
+    public void setErrorDecorationEnabled(final boolean enabled) {
 
-        errorDecorationEnabledProperty.set(enabled);
+        this.errorDecorationEnabledProperty.set(enabled);
     }
 
     private boolean isErrorDecorationEnabled() {
 
-        return errorDecorationEnabledProperty.get();
+        return this.errorDecorationEnabledProperty.get();
     }
 
 
 
-    private ReadOnlyObjectWrapper<ValidationResult> validationResultProperty = new ReadOnlyObjectWrapper<>();
+    private final ReadOnlyObjectWrapper<ValidationResult> validationResultProperty = new ReadOnlyObjectWrapper<>();
 
 
     /**
      * Retrieves current validation result
-     * 
+     *
      * @return validation result
      */
     public ValidationResult getValidationResult() {
 
-        return validationResultProperty.get();
+        return this.validationResultProperty.get();
     }
 
     /**
      * Can be used to track validation result changes
-     * 
+     *
      * @return The Validation result property.
      */
     public ReadOnlyObjectProperty<ValidationResult> validationResultProperty() {
 
-        return validationResultProperty.getReadOnlyProperty();
+        return this.validationResultProperty.getReadOnlyProperty();
     }
 
-    private BooleanProperty invalidProperty = new SimpleBooleanProperty();
+    private final BooleanProperty invalidProperty = new SimpleBooleanProperty();
 
     /**
      * Returns current validation state.
-     * 
+     *
      * @return true if there is at least one error
      */
     public Boolean isInvalid() {
 
-        return invalidProperty.get();
+        return this.invalidProperty.get();
     }
 
     /**
      * Validation state property
-     * 
+     *
      * @return validation state property
      */
     public ReadOnlyBooleanProperty invalidProperty() {
 
-        return invalidProperty;
+        return this.invalidProperty;
     }
 
 
-    private ObjectProperty<ValidationDecoration> validationDecoratorProperty = new SimpleObjectProperty<ValidationDecoration>(
-                                                                                     this,
-                                                                                     "validationDecorator", new GraphicValidationDecoration()) { //$NON-NLS-1$
+    private final ObjectProperty<ValidationDecoration> validationDecoratorProperty = new SimpleObjectProperty<ValidationDecoration>(
+                                                                                           this,
+                                                                                           "validationDecorator", new GraphicValidationDecoration()) { //$NON-NLS-1$
 
-                                                                                 @Override
-                                                                                 protected void invalidated() {
+                                                                                       @Override
+                                                                                       protected void invalidated() {
 
-                                                                                     // when
-                                                                                     // the
-                                                                                     // decorator
-                                                                                     // changes,
-                                                                                     // rerun
-                                                                                     // the
-                                                                                     // decoration
-                                                                                     // to
-                                                                                     // update
-                                                                                     // the
-                                                                                     // visuals
-                                                                                     // immediately.
-                                                                                     redecorate();
-                                                                                 }
-                                                                             };
+                                                                                           // when
+                                                                                           // the
+                                                                                           // decorator
+                                                                                           // changes,
+                                                                                           // rerun
+                                                                                           // the
+                                                                                           // decoration
+                                                                                           // to
+                                                                                           // update
+                                                                                           // the
+                                                                                           // visuals
+                                                                                           // immediately.
+                                                                                           ValidationSupport.this
+                                                                                                   .redecorate();
+                                                                                       }
+                                                                                   };
 
     /**
      * @return The Validation decorator property
      */
     public ObjectProperty<ValidationDecoration> validationDecoratorProperty() {
 
-        return validationDecoratorProperty;
+        return this.validationDecoratorProperty;
     }
 
     /**
      * Returns current validation decorator
-     * 
+     *
      * @return current validation decorator or null if none
      */
     public ValidationDecoration getValidationDecorator() {
 
-        return validationDecoratorProperty.get();
+        return this.validationDecoratorProperty.get();
     }
 
     /**
      * Sets new validation decorator
-     * 
+     *
      * @param decorator
      *            new validation decorator. Null value is valid - no decoration
      *            will occur
      */
-    public void setValidationDecorator(ValidationDecoration decorator) {
+    public void setValidationDecorator(final ValidationDecoration decorator) {
 
-        validationDecoratorProperty.set(decorator);
+        this.validationDecoratorProperty.set(decorator);
     }
 
 
     /**
      * Registers {@link Validator} for specified control with additional
      * possiblity to mark control as required or not.
+     *
+     * @param <T>
+     *            the type of the {@link Validator}.
      * 
      * @param c
      *            control to validate
@@ -360,49 +357,43 @@ public class ValidationSupport {
      * @return true if registration is successful
      */
     @SuppressWarnings("unchecked")
-    public <T> boolean registerValidator(final Control c, boolean required,
-            final Validator<T> validator) {
+    public <T> boolean registerValidator(final Control c,
+            final boolean required, final Validator<T> validator) {
 
         Optional.ofNullable(c).ifPresent(
                 ctrl -> {
                     ctrl.getProperties().addListener(
-                            new MapChangeListener<Object, Object>() {
+                            (MapChangeListener<Object, Object>) change -> {
 
-                                @Override
-                                public void onChanged(
-                                        javafx.collections.MapChangeListener.Change<? extends Object, ? extends Object> change) {
-
-                                    if (CTRL_REQUIRED_FLAG.equals(change
-                                            .getKey())) {
-                                        redecorate();
-                                    }
+                                if (ValidationSupport.CTRL_REQUIRED_FLAG
+                                        .equals(change.getKey())) {
+                                    ValidationSupport.this.redecorate();
                                 }
-
                             });
                 });
 
-        setRequired(c, required);
+        ValidationSupport.setRequired(c, required);
 
         return ValueExtractor
                 .getObservableValueExtractor(c)
                 .map(e -> {
 
-                    ObservableValue<T> observable = (ObservableValue<T>) e
+                    final ObservableValue<T> observable = (ObservableValue<T>) e
                             .call(c);
 
-                    Consumer<T> updateResults = value -> {
-                        Platform.runLater(() -> validationResults.put(c,
+                    final Consumer<T> updateResults = value -> {
+                        Platform.runLater(() -> this.validationResults.put(c,
                                 validator.apply(c, value)));
                     };
 
-                    controls.add(c);
+                    this.controls.add(c);
 
                     observable.addListener((o) -> {
-                        dataChanged.set(true);
+                        this.dataChanged.set(true);
                         updateResults.accept(observable.getValue());
 
-                        setupCollectionChangeHandler(observable.getValue(),
-                                updateResults);
+                        this.setupCollectionChangeHandler(
+                                observable.getValue(), updateResults);
                     });
 
                     this.setupCollectionChangeHandler(observable.getValue(),
@@ -416,53 +407,53 @@ public class ValidationSupport {
                 }).isPresent();
     }
 
-    private <T> void setupCollectionChangeHandler(T newValue,
-            Consumer<T> updateResults) {
+    private <T> void setupCollectionChangeHandler(final T newValue,
+            final Consumer<T> updateResults) {
 
         if (newValue != null) {
 
             if (newValue instanceof ObservableList<?>) {
 
-                ObservableList<?> list = (ObservableList<?>) newValue;
+                final ObservableList<?> list = (ObservableList<?>) newValue;
                 list.addListener(new WeakListChangeListener<>(
-                        (ListChangeListener.Change<? extends Object> change) -> {
+                        (final ListChangeListener.Change<? extends Object> change) -> {
 
-                            dataChanged.set(true);
+                            this.dataChanged.set(true);
                             updateResults.accept(newValue);
                         }));
-                list.addListener((Observable observable) -> {
+                list.addListener((final Observable observable) -> {
 
-                    dataChanged.set(true);
+                    this.dataChanged.set(true);
                     updateResults.accept(newValue);
                 });
             }
             else if (newValue instanceof ObservableSet<?>) {
 
-                ObservableSet<?> set = (ObservableSet<?>) newValue;
-                set.addListener(new WeakSetChangeListener<>((
-                        SetChangeListener.Change<? extends Object> change) -> {
+                final ObservableSet<?> set = (ObservableSet<?>) newValue;
+                set.addListener(new WeakSetChangeListener<>(
+                        (final SetChangeListener.Change<? extends Object> change) -> {
 
-                    dataChanged.set(true);
-                    updateResults.accept(newValue);
-                }));
+                            this.dataChanged.set(true);
+                            updateResults.accept(newValue);
+                        }));
 
-                set.addListener((Observable observable) -> {
+                set.addListener((final Observable observable) -> {
 
-                    dataChanged.set(true);
+                    this.dataChanged.set(true);
                     updateResults.accept(newValue);
                 });
             }
             else if (newValue instanceof ObservableMap<?, ?>) {
-                ObservableMap<?, ?> map = (ObservableMap<?, ?>) newValue;
+                final ObservableMap<?, ?> map = (ObservableMap<?, ?>) newValue;
                 map.addListener(new WeakMapChangeListener<>(
-                        (MapChangeListener.Change<? extends Object, ? extends Object> change) -> {
+                        (final MapChangeListener.Change<? extends Object, ? extends Object> change) -> {
 
-                            dataChanged.set(true);
+                            this.dataChanged.set(true);
                             updateResults.accept(newValue);
                         }));
-                map.addListener((Observable observable) -> {
+                map.addListener((final Observable observable) -> {
 
-                    dataChanged.set(true);
+                    this.dataChanged.set(true);
                     updateResults.accept(newValue);
                 });
             }
@@ -472,6 +463,9 @@ public class ValidationSupport {
     /**
      * Registers {@link Validator} for specified control and makes control
      * required
+     *
+     * @param <T>
+     *            the type of the {@link Validator}.
      * 
      * @param c
      *            control to validate
@@ -482,29 +476,29 @@ public class ValidationSupport {
     public <T> boolean registerValidator(final Control c,
             final Validator<T> validator) {
 
-        return registerValidator(c, true, validator);
+        return this.registerValidator(c, true, validator);
     }
 
     /**
      * Returns currently registered controls
-     * 
+     *
      * @return set of currently registered controls
      */
     public Set<Control> getRegisteredControls() {
 
-        return Collections.unmodifiableSet(controls);
+        return Collections.unmodifiableSet(this.controls);
     }
 
     /**
      * Returns optional highest severity message for a control
-     * 
+     *
      * @param target
      *            control
      * @return Optional highest severity message for a control
      */
-    public Optional<ValidationMessage> getHighestMessage(Control target) {
+    public Optional<ValidationMessage> getHighestMessage(final Control target) {
 
-        return Optional.ofNullable(validationResults.get(target)).flatMap(
+        return Optional.ofNullable(this.validationResults.get(target)).flatMap(
                 result -> result.getMessages().stream()
                         .max(ValidationMessage.COMPARATOR));
     }

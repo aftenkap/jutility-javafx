@@ -3,22 +3,22 @@ package org.jutility.javafx.control.labeled;
 
 // @formatter:off
 /*
- * #%L 
- * jutility-javafx 
- * %% 
- * Copyright (C) 2013 - 2014 jutility.org 
- * %% 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
- * use this file except in compliance with the License. You may obtain a copy 
- * of the License at
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  * 
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License. 
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * #L%
  */
 
@@ -38,13 +38,15 @@ import org.jutility.javafx.control.wrapper.ComboBoxWrapper;
 
 
 /**
- * The {@link LabeledComboBox} class provides a {@link ComboBox} with a freely
+ * The {@code LabeledComboBox} class provides a {@link ComboBox} with a freely
  * positionable {@link Label}.
- * 
- * @author Shawn P. Neuman, Peter J. Radics
+ *
  * @param <T>
  *            the content type of the {@link ComboBox}.
- * 
+ *
+ * @author Shawn P. Neuman, Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class LabeledComboBox<T>
         extends ComboBoxWrapper<T>
@@ -92,10 +94,10 @@ public class LabeledComboBox<T>
     }
 
     /**
-     * Creates a new instance of the {@link LabeledComboBox} class with the
+     * Creates a new instance of the {@code LabeledComboBox} class with the
      * provided label text, positioning the {@link Label} to the left of the
      * {@link TextField}.
-     * 
+     *
      * @param labelText
      *            the text of the {@link Label}.
      */
@@ -105,10 +107,10 @@ public class LabeledComboBox<T>
     }
 
     /**
-     * Creates a new instance of the {@link LabeledComboBox} class with the
+     * Creates a new instance of the {@code LabeledComboBox} class with the
      * provided label text, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided {@link Pos Position}.
-     * 
+     *
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
@@ -120,9 +122,10 @@ public class LabeledComboBox<T>
     }
 
     /**
-     * Creates a new instance of the {@link LabeledComboBox} class with the
+     * Creates a new instance of the {@code LabeledComboBox} class with the
      * provided label text, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided {@link Pos Position}.
+     *
      * @param items
      *            the initial items of the {@link ComboBox}.
      * @param labelText
@@ -130,17 +133,17 @@ public class LabeledComboBox<T>
      * @param position
      *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledComboBox(final ObservableList<T> items, final String labelText,
-            final Pos position) {
+    public LabeledComboBox(final ObservableList<T> items,
+            final String labelText, final Pos position) {
 
         this(items, new Label(labelText), position);
     }
 
     /**
-     * Creates a new instance of the {@link LabeledComboBox} class with the
+     * Creates a new instance of the {@code LabeledComboBox} class with the
      * provided {@link Label}, positioning the {@link Label} to the left of the
      * {@link TextField}.
-     * 
+     *
      * @param label
      *            the {@link Label}.
      */
@@ -150,10 +153,10 @@ public class LabeledComboBox<T>
     }
 
     /**
-     * Creates a new instance of the {@link LabeledComboBox} class with the
+     * Creates a new instance of the {@code LabeledComboBox} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided {@link Pos Position}.
-     * 
+     *
      * @param label
      *            the {@link Label}.
      * @param position
@@ -165,17 +168,16 @@ public class LabeledComboBox<T>
     }
 
     /**
-     * Creates a new instance of the {@link LabeledComboBox} class with the
+     * Creates a new instance of the {@code LabeledComboBox} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
-     * {@link TextField} according to the provided
-     * {@link Pos Position}.
+     * {@link TextField} according to the provided {@link Pos Position}.
+     *
      * @param items
      *            the initial items of the {@link ComboBox}.
      * @param label
      *            the {@link Label}.
      * @param position
-     *            the desired
-     *            {@link Pos Position} of the {@link Label}.
+     *            the desired {@link Pos Position} of the {@link Label}.
      */
     public LabeledComboBox(final ObservableList<T> items, final Label label,
             final Pos position) {

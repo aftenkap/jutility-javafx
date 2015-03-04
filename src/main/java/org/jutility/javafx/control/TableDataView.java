@@ -1,25 +1,28 @@
 package org.jutility.javafx.control;
 
 
+
+//@formatter:off
 /*
- * #%L 
- * jutility-javafx 
- * %% 
- * Copyright (C) 2013 - 2014 jutility.org 
- * %% 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not 
- * use this file except in compliance with the License. You may obtain a copy of 
- * the License at
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  * 
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * #L%
  */
+//@formatter:on
 
 
 import java.util.List;
@@ -40,79 +43,90 @@ import org.jutility.common.datatype.table.ITable;
 
 
 /**
- * @author Peter J. Radics
- * 
+ * The {@code TableDataView} class provides a control to display a
+ * {@link ITable Table}.
+ *
  * @param <T>
- *            the content type.
+ *            the content type of the {@link ITable Table}.
+ *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class TableDataView<T>
         extends TableView<List<T>> {
 
 
-    private final ObjectProperty<ITable<T>>          table;
+    private final ObjectProperty<ITable<T>>          tableProperty;
     private final TableCellFactory<T>                tableCellFactory;
-    private final ObjectProperty<StringConverter<T>> stringConverter;
+    private final ObjectProperty<StringConverter<T>> converterProperty;
 
     /**
-     * Returns the table property.
-     * 
-     * @return the table property.
+     * Returns the {@link ITable Table} property.
+     *
+     * @see TableDataView#getTable()
+     * @see TableDataView#setTable(ITable)
+     *
+     * @return the {@link ITable Table} property.
      */
     public ObjectProperty<ITable<T>> tableProperty() {
 
-        return this.table;
+        return this.tableProperty;
     }
 
     /**
-     * Returns the {@link ITable Table}.
-     * 
-     * @return the {@link ITable Table}.
+     * Returns the value of the {@link ITable Table} property.
+     *
+     * @return the value of the {@link ITable Table} property.
      */
     public ITable<T> getTable() {
 
-        return this.table.get();
+        return this.tableProperty.get();
     }
 
     /**
-     * Sets the {@link ITable Table}.
-     * 
-     * @param table
-     *            the {@link ITable Table}.
+     * Sets the value of the {@link ITable Table} property.
+     *
+     * @param value
+     *            the value of the {@link ITable Table} property.
      */
-    public void setTable(ITable<T> table) {
+    public void setTable(final ITable<T> value) {
 
-        this.table.set(table);
+        this.tableProperty.set(value);
     }
 
     /**
      * Returns the {@link StringConverter} property.
-     * 
+     *
+     * @see TableDataView#getConverter()
+     * @see TableDataView#setConverter(StringConverter)
+     *
      * @return the {@link StringConverter} property.
      */
-    public ObjectProperty<StringConverter<T>> stringConverter() {
+    public ObjectProperty<StringConverter<T>> converterProperty() {
 
-        return this.stringConverter;
+        return this.converterProperty;
     }
 
     /**
-     * Returns the {@link StringConverter}.
-     * 
-     * @return the {@link StringConverter}.
+     * Returns the value of the {@link StringConverter Converter} property.
+     *
+     * @return the value of the {@link StringConverter Converter} property.
      */
-    public StringConverter<T> getStringConverter() {
+    public StringConverter<T> getConverter() {
 
-        return this.stringConverter.get();
+        return this.converterProperty.get();
     }
 
     /**
-     * Sets the {@link StringConverter}.
-     * 
-     * @param stringConverter
-     *            the {@link StringConverter}.
+     * Sets the value of the {@link StringConverter Converter} property.
+     *
+     * @param value
+     *            the value of the {@link StringConverter Converter} property.
      */
-    public void setStringConverter(StringConverter<T> stringConverter) {
+    public void setConverter(final StringConverter<T> value) {
 
-        this.stringConverter.set(stringConverter);
+        this.converterProperty.set(value);
     }
 
     /**
@@ -124,46 +138,43 @@ public class TableDataView<T>
     }
 
     /**
-     * Creates a new instance of the TableDataView class with the provide
+     * Creates a new instance of the TableDataView class with the provided
      * {@link ITable Table} as data source.
-     * 
+     *
      * @param table
      *            the {@link ITable Table} data source.
      */
-    public TableDataView(ITable<T> table) {
+    public TableDataView(final ITable<T> table) {
 
         this(table, null);
     }
 
     /**
      * Creates a new instance of the {@link TableDataView} class with the
-     * provide {@link ITable Table} as data source and the provided
+     * provided {@link ITable Table} as data source and the provided
      * {@link StringConverter}.
-     * 
+     *
      * @param table
      *            the {@link ITable Table} data source.
-     * @param stringConverter
-     *            the {@link StringConverter}.
+     * @param converter
+     *            the initial {@link StringConverter}.
      */
-    public TableDataView(ITable<T> table, StringConverter<T> stringConverter) {
+    public TableDataView(final ITable<T> table,
+            final StringConverter<T> converter) {
 
         super();
 
-        this.table = new SimpleObjectProperty<>();
-        this.stringConverter = new SimpleObjectProperty<>(stringConverter);
+        this.tableProperty = new SimpleObjectProperty<>(table);
+        this.converterProperty = new SimpleObjectProperty<>(converter);
 
 
-        this.tableCellFactory = new TableCellFactory<>();
+        this.tableCellFactory = new TableCellFactory<>(converter);
 
-        if (stringConverter != null) {
-
-            this.tableCellFactory.setStringConverter(stringConverter);
-        }
-        this.stringConverter.bindBidirectional(this.tableCellFactory
-                .stringConverter());
+        this.converterProperty.bindBidirectional(this.tableCellFactory
+                .converterProperty());
 
 
-        this.table
+        this.tableProperty
                 .addListener((observable, oldValue, newValue) -> {
 
                     this.getItems().clear();
@@ -177,7 +188,7 @@ public class TableDataView<T>
 
                         for (int i = 0; i < newValue.columns(); i++) {
 
-                            TableColumn<List<T>, T> column = new TableColumn<>(
+                            final TableColumn<List<T>, T> column = new TableColumn<>(
                                     "" + i);
                             column.setCellValueFactory(new TableCellValueFactory<T>(
                                     i));
@@ -192,16 +203,31 @@ public class TableDataView<T>
 
             this.setTable(table);
         }
-
-
     }
 
-    private static class TableCellValueFactory<T>
+    /**
+     * The {@code TableCellValueFactory} class provides a CellValueFactory for
+     * cells of a {@link ITable Table}.
+     *
+     * @param <T>
+     *            the content type of the {@link ITable Table}.
+     *
+     * @author Peter J. Radics
+     * @version 0.1.2
+     * @since 0.1.0
+     */
+    public static class TableCellValueFactory<T>
             implements
             Callback<CellDataFeatures<List<T>, T>, ObservableValue<T>> {
 
         private final int columnIndex;
 
+        /**
+         * Creates a new instance of the {@code TableCellValueFactory} class.
+         *
+         * @param columnIndex
+         *            the column index of the cell.
+         */
         public TableCellValueFactory(final int columnIndex) {
 
             this.columnIndex = columnIndex;
@@ -209,81 +235,97 @@ public class TableDataView<T>
 
         @Override
         public ObservableValue<T> call(
-                CellDataFeatures<List<T>, T> cellDataFeatures) {
+                final CellDataFeatures<List<T>, T> cellDataFeatures) {
 
-            List<T> row = cellDataFeatures.getValue();
+            final List<T> row = cellDataFeatures.getValue();
 
-            T cellValue = row.get(columnIndex);
+            final T cellValue = row.get(this.columnIndex);
 
             return new ReadOnlyObjectWrapper<>(cellValue);
         }
     }
 
     /**
-     * @author Peter J. Radics
-     * @version 0.1
-     * 
+     * The {@code TableCellFactory} class provides a CellFactory for cells of a
+     * {@link ITable Table}.
+     *
      * @param <T>
-     *            the content type.
+     *            the content type of the {@link ITable Table}.
+     *
+     * @author Peter J. Radics
+     * @version 0.1.2
+     * @since 0.1.0
      */
-    private static class TableCellFactory<T>
+    public static class TableCellFactory<T>
             implements Callback<TableColumn<List<T>, T>, TableCell<List<T>, T>> {
 
 
-        private final ObjectProperty<StringConverter<T>> stringConverter;
+        private final ObjectProperty<StringConverter<T>> converterProperty;
 
 
         /**
          * Returns the {@link StringConverter} property.
-         * 
+         *
          * @return the {@link StringConverter} property.
          */
-        public ObjectProperty<StringConverter<T>> stringConverter() {
+        public ObjectProperty<StringConverter<T>> converterProperty() {
 
-            return this.stringConverter;
+            return this.converterProperty;
         }
 
         /**
          * Returns the {@link StringConverter}.
-         * 
+         *
          * @return the {@link StringConverter}.
          */
-        public StringConverter<T> getStringConverter() {
+        public StringConverter<T> getConverter() {
 
-            return this.stringConverter.get();
+            return this.converterProperty.get();
         }
 
         /**
-         * Sets the {@link StringConverter}.
-         * 
-         * @param stringConverter
-         *            the {@link StringConverter}.
+         * Sets the value of the {@link StringConverter Converter} property.
+         *
+         * @param value
+         *            the value of the {@link StringConverter Converter}
+         *            property.
          */
-        public void setStringConverter(final StringConverter<T> stringConverter) {
+        public void setConverter(final StringConverter<T> value) {
 
-            this.stringConverter.set(stringConverter);
+            this.converterProperty.set(value);
         }
 
 
         /**
-         * Creates a new instance of the {@link TableCellFactory} class.
+         * Creates a new instance of the {@code TableCellFactory} class.
          */
         public TableCellFactory() {
 
-            this.stringConverter = new SimpleObjectProperty<>();
+            this(null);
+        }
+
+        /**
+         * Creates a new instance of the {@code TableCellFactory} class.
+         *
+         * @param converter
+         *            the initial {@link StringConverter}.
+         */
+        public TableCellFactory(final StringConverter<T> converter) {
+
+            this.converterProperty = new SimpleObjectProperty<>(converter);
         }
 
         @Override
-        public TableCell<List<T>, T> call(TableColumn<List<T>, T> column) {
+        public TableCell<List<T>, T> call(final TableColumn<List<T>, T> column) {
 
-            TableCell<List<T>, T> cell = new TableCell<List<T>, T>() {
+            final TableCell<List<T>, T> cell = new TableCell<List<T>, T>() {
 
                 @Override
-                public void updateItem(T item, boolean empty) {
+                public void updateItem(final T item, final boolean empty) {
 
 
                     super.updateItem(item, empty);
-                    if (TableCellFactory.this.getStringConverter() == null) {
+                    if (TableCellFactory.this.getConverter() == null) {
 
                         if (item != null) {
 
@@ -296,7 +338,7 @@ public class TableDataView<T>
                     }
                     else {
 
-                        this.setText(TableCellFactory.this.getStringConverter()
+                        this.setText(TableCellFactory.this.getConverter()
                                 .toString(item));
                     }
                 }

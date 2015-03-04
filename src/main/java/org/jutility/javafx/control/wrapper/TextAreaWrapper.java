@@ -1,39 +1,39 @@
 package org.jutility.javafx.control.wrapper;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-javafx
  * %%
- * Copyright (C) 2013 - 2015 jutility.org
+ * Copyright (C) 2013 - 2014 jutility.org
  * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  * #L%
  */
-
+//@formatter:on
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
 
 
 /**
- * The {@link TextAreaWrapper} class wraps a {@link TextArea} in a
- * {@link GridPane} with six surrounding {@link Node Nodes}.
- * 
+ * The {@code TextAreaWrapper} class provides a {@link ControlWrapper} for a
+ * {@link TextArea}.
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
@@ -44,7 +44,7 @@ public class TextAreaWrapper
 
     /**
      * The preferred number of text columns.
-     * 
+     *
      * @return the preferred number of text columns.
      */
     public IntegerProperty prefColumnCountProperty() {
@@ -54,7 +54,7 @@ public class TextAreaWrapper
 
     /**
      * The preferred number of text rows.
-     * 
+     *
      * @return the preferred number of text rows.
      */
     public IntegerProperty prefRowCountProperty() {
@@ -64,7 +64,7 @@ public class TextAreaWrapper
 
     /**
      * The number of pixels by which the content is horizontally scrolled.
-     * 
+     *
      * @return the number of pixels by which the content is horizontally
      *         scrolled.
      */
@@ -75,7 +75,7 @@ public class TextAreaWrapper
 
     /**
      * The number of pixels by which the content is vertically scrolled.
-     * 
+     *
      * @return the number of pixels by which the content is vertically scrolled.
      */
     public DoubleProperty scrollTopProperty() {
@@ -86,7 +86,7 @@ public class TextAreaWrapper
     /**
      * If a run of text exceeds the width of the TextArea, then this variable
      * indicates whether the text should wrap onto another line.
-     * 
+     *
      * @return if a run of text exceeds the width of the TextArea, then this
      *         variable indicates whether the text should wrap onto another
      *         line.
@@ -98,7 +98,7 @@ public class TextAreaWrapper
 
 
     /**
-     * Creates a new instance of the {@link TextAreaWrapper} class.
+     * Creates a new instance of the {@code TextAreaWrapper} class.
      */
     public TextAreaWrapper() {
 
@@ -106,12 +106,12 @@ public class TextAreaWrapper
     }
 
     /**
-     * Creates a new instance of the {@link TextAreaWrapper} class.
-     * 
+     * Creates a new instance of the {@code TextAreaWrapper} class.
+     *
      * @param text
      *            the initial text of the {@link TextArea}.
      */
-    public TextAreaWrapper(String text) {
+    public TextAreaWrapper(final String text) {
 
         super(text == null ? new TextArea() : new TextArea(text));
     }
@@ -120,7 +120,7 @@ public class TextAreaWrapper
     /**
      * Returns an unmodifiable list of the character sequences that back the
      * text area's content.
-     * 
+     *
      * @return an unmodifiable list of the character sequences that back the
      *         text area's content.
      */
@@ -131,7 +131,7 @@ public class TextAreaWrapper
 
     /**
      * Gets the value of the property prefColumnCount.
-     * 
+     *
      * @return the value of the property prefColumnCount.
      */
     public int getPrefColumnCount() {
@@ -141,7 +141,7 @@ public class TextAreaWrapper
 
     /**
      * Gets the value of the property prefRowCount.
-     * 
+     *
      * @return the value of the property prefRowCount.
      */
     public int getPrefRowCount() {
@@ -151,7 +151,7 @@ public class TextAreaWrapper
 
     /**
      * Gets the value of the property scrollLeft.
-     * 
+     *
      * @return the value of the property scrollLeft.
      */
     public double getScrollLeft() {
@@ -161,7 +161,7 @@ public class TextAreaWrapper
 
     /**
      * Gets the value of the property scrollTop.
-     * 
+     *
      * @return the value of the property scrollTop.
      */
     public double getScrollTop() {
@@ -171,7 +171,7 @@ public class TextAreaWrapper
 
     /**
      * Gets the value of the property wrapText.
-     * 
+     *
      * @return the value of the property wrapText.
      */
     boolean isWrapText() {
@@ -181,55 +181,55 @@ public class TextAreaWrapper
 
     /**
      * Sets the value of the property prefColumnCount.
-     * 
+     *
      * @param value
      *            the value of the property prefColumnCount.
      */
-    public void setPrefColumnCount(int value) {
+    public void setPrefColumnCount(final int value) {
 
         this.getWrappedControl().setPrefColumnCount(value);
     }
 
     /**
      * Sets the value of the property prefRowCount.
-     * 
+     *
      * @param value
      *            the value of the property prefRowCount.
      */
-    public void setPrefRowCount(int value) {
+    public void setPrefRowCount(final int value) {
 
         this.getWrappedControl().setPrefRowCount(value);
     }
 
     /**
      * Sets the value of the property scrollLeft.
-     * 
+     *
      * @param value
      *            the value of the property scrollLeft.
      */
-    public void setScrollLeft(double value) {
+    public void setScrollLeft(final double value) {
 
         this.getWrappedControl().setScrollLeft(value);
     }
 
     /**
      * Sets the value of the property scrollTop.
-     * 
+     *
      * @param value
      *            the value of the property scrollTop.
      */
-    public void setScrollTop(double value) {
+    public void setScrollTop(final double value) {
 
         this.getWrappedControl().setScrollTop(value);
     }
 
     /**
      * Sets the value of the property wrapText.
-     * 
+     *
      * @param value
      *            the value of the property wrapText.
      */
-    public void setWrapText(boolean value) {
+    public void setWrapText(final boolean value) {
 
         this.getWrappedControl().setWrapText(value);
     }

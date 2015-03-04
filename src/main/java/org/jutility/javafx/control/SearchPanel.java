@@ -39,15 +39,15 @@ import org.jutility.javafx.filter.StringFilter;
 
 
 /**
- * Panel for searching through other panel. Works off CTRL+F and filters through
- * list views to show only items that match search filter
- * 
+ * The {@code SearchPanel} class provides a control for filtering the content of
+ * other controls.
+ *
+ * @param <T>
+ *            the type of the objects to be searched for.
+ *
  * @author Shawn P. Neuman, Peter J. Radics
  * @version 0.1.2
  * @since 0.1.1
- * 
- * @param <T>
- *            the type of the objects to be searched for.
  */
 public class SearchPanel<T>
         extends LabeledTextField {
@@ -58,7 +58,7 @@ public class SearchPanel<T>
 
     /**
      * Returns the string filter of this {@code SearchPanel}.
-     * 
+     *
      * @return the string filter of this {@code SearchPanel}.
      */
     public StringFilter<T> getStringFilter() {

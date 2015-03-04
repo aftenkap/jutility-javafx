@@ -1,8 +1,10 @@
 package org.jutility.io.xml;
 
+
+// @formatter:off
 /*
  * #%L
- * jutility-io
+ * jutility-javafx
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
  * %%
@@ -19,7 +21,7 @@ package org.jutility.io.xml;
  * limitations under the License.
  * #L%
  */
-
+// @formatter:on
 
 import javafx.scene.paint.Color;
 
@@ -31,8 +33,8 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  * serialization of {@link Color Colors}.
  * 
  * @author Peter J. Radics
- * @version 1.0
- * 
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class XmlColorTypeAdapter
         extends XmlAdapter<String, Color> {
@@ -57,5 +59,4 @@ public class XmlColorTypeAdapter
         }
         return null;
     }
-
 }
