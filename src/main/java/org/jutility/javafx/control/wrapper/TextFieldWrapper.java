@@ -3,11 +3,7 @@ package org.jutility.javafx.control.wrapper;
 
 //@formatter:off
 /*
-<<<<<<< HEAD
-* #%L
-=======
  * #%L
->>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
  * * jutility-javafx
  * *
  * %%
@@ -26,11 +22,7 @@ package org.jutility.javafx.control.wrapper;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
-<<<<<<< HEAD
-*/
-=======
  */
->>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
 //@formatter:on
 
 
