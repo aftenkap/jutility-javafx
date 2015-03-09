@@ -1,5 +1,7 @@
 package org.jutility.javafx.control;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-javafx
@@ -19,6 +21,7 @@ package org.jutility.javafx.control;
  * limitations under the License.
  * #L%
  */
+//@formatter:on
 
 
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -35,15 +38,15 @@ import org.jutility.javafx.control.validation.ValidationUtils;
 
 
 /**
- * The {@link CellLocationGridPane} provides an input Control for
+ * The {@code CellLocationGridPane} provides an input Control for
  * {@link CellLocation CellLocations}.
- * 
+ *
  * @author Peter J. Radics
- * @version 1.0
- * @since 1.0
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CellLocationGridPane
-        extends GridPane {
+extends GridPane {
 
 
     private final TextField         rowTF;
@@ -55,7 +58,7 @@ public class CellLocationGridPane
 
     /**
      * Returns the valid {@link CellRange Range}.
-     * 
+     *
      * @return the valid {@link CellRange Range}.
      */
     public CellRange getValidRange() {
@@ -65,7 +68,7 @@ public class CellLocationGridPane
 
     /**
      * Returns whether or not the state of this control is invalid.
-     * 
+     *
      * @return {@code true}, if the state of this control is invalid;
      *         {@code false} otherwise.
      */
@@ -76,7 +79,7 @@ public class CellLocationGridPane
 
     /**
      * Returns the invalid Property of this Control.
-     * 
+     *
      * @return the invalid Property of this Control.
      */
     public ReadOnlyBooleanProperty invalidProperty() {
@@ -86,7 +89,7 @@ public class CellLocationGridPane
 
     /**
      * Returns the {@link CellLocation} defined by this Control.
-     * 
+     *
      * @return the {@link CellLocation} defined by this Control or {@code null},
      *         if the contents are invalid.
      */
@@ -97,15 +100,15 @@ public class CellLocationGridPane
             return null;
         }
 
-        int row = Integer.parseInt(this.rowTF.getText());
-        int column = Integer.parseInt(this.columnTF.getText());
+        final int row = Integer.parseInt(this.rowTF.getText());
+        final int column = Integer.parseInt(this.columnTF.getText());
 
         return new CellLocation(row, column);
     }
 
     /**
      * Sets the {@link CellLocation} defined by this Control.
-     * 
+     *
      * @param cellLocation
      *            the {@link CellLocation} defined by this Control (a value of
      *            {@code null} clears the control).
@@ -122,7 +125,7 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class without
+     * Creates a new instance of the {@code CellLocationGridPane} class without
      * any restriction on the valid range.
      */
     public CellLocationGridPane() {
@@ -131,9 +134,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class without
+     * Creates a new instance of the {@code CellLocationGridPane} class without
      * any restriction on the valid range with the provided initial value.
-     * 
+     *
      * @param initialValue
      *            the initial value.
      */
@@ -143,9 +146,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param minRow
      *            the minimum row index.
      * @param minColumn
@@ -163,9 +166,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param minRow
      *            the minimum row index.
      * @param minColumn
@@ -186,9 +189,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param validRange
      *            the range restriction.
      */
@@ -198,9 +201,9 @@ public class CellLocationGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellLocationGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param validRange
      *            the range restriction.
      * @param initialValue
@@ -260,7 +263,7 @@ public class CellLocationGridPane
         }
 
         this.validationSupport
-                .setValidationDecorator(new GraphicValidationDecoration());
+        .setValidationDecorator(new GraphicValidationDecoration());
 
 
         this.add(this.rowTF, 0, 0);

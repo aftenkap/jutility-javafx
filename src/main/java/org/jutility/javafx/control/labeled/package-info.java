@@ -1,15 +1,21 @@
 /**
+ * This package provides labeled controls.
+ * 
  * @author Peter J. Radics
- * @version 0.1
- * @since 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 package org.jutility.javafx.control.labeled;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-javafx
+* #%L
+ * * jutility-javafx
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,4 +29,6 @@ package org.jutility.javafx.control.labeled;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+
+//@formatter:on

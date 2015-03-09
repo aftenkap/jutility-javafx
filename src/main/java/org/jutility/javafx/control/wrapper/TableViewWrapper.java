@@ -3,7 +3,11 @@ package org.jutility.javafx.control.wrapper;
 
 //@formatter:off
 /*
+<<<<<<< HEAD
 * #%L
+=======
+ * #%L
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
  * * jutility-javafx
  * *
  * %%
@@ -22,45 +26,83 @@ package org.jutility.javafx.control.wrapper;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
+<<<<<<< HEAD
 */
+=======
+ */
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
 //@formatter:on
 
-
-import java.util.Collection;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.collections.FXCollections;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewFocusModel;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 
 
 /**
- * 
- * @author Peter J. Radics
- * @version 0.1.1
- * @since 0.1.1
+ * The {@code TableViewWrapper} class provides a {@link ControlWrapper Wrapper}
+ * around a {@link TableView}.
  *
  * @param <T>
  *            the content type of the {@link TableView}.
+ *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.1
  */
 public class TableViewWrapper<T>
         extends ControlWrapper<TableView<T>> {
 
+
+    private final ObjectProperty<StringConverter<T>> converterProperty;
+
+    /**
+     * Returns the converter property.
+     * 
+     * @return the converter property.
+     */
+    public ObjectProperty<StringConverter<T>> converterProperty() {
+
+        return this.converterProperty;
+    }
+
+    /**
+     * Returns the value of the converter property.
+     * 
+     * @return the value of the converter property.
+     */
+    public StringConverter<T> getConverter() {
+
+        return this.converterProperty.get();
+    }
+
+    /**
+     * Sets the value of the converter property.
+     * 
+     * @param value
+     *            the value of the converter property.
+     */
+    public void setConverter(final StringConverter<T> value) {
+
+        this.converterProperty.set(value);
+    }
+
     /**
      * The underlying data model for the TableView. Note that it has a generic
      * type that must match the type of the TableView itself.
-     * 
-     * @see #getItems()
-     * @see #setItems(ObservableList)
-     * 
+     *
+     * @see TableViewWrapper#getItems()
+     * @see TableViewWrapper#setItems(ObservableList)
+     *
      * @return the items property.
      */
     public final ObjectProperty<ObservableList<T>> itemsProperty() {
@@ -70,18 +112,18 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the items property.
-     * 
+     *
      * @param value
      *            the value of the items property.
      */
-    public final void setItems(ObservableList<T> value) {
+    public final void setItems(final ObservableList<T> value) {
 
         this.getWrappedControl().setItems(value);
     }
 
     /**
      * Gets the value of the items property.
-     * 
+     *
      * @return the value of the items property.
      */
     public final ObservableList<T> getItems() {
@@ -96,10 +138,10 @@ public class TableViewWrapper<T>
      * a designated space within the TableView, within which is a radio menu
      * item for each TableColumn in this table. This menu allows for the user to
      * show and hide all TableColumns easily.
-     * 
-     * @see #isTableMenuButtonVisible()
-     * @see #setTableMenuButtonVisible(boolean)
-     * 
+     *
+     * @see TableViewWrapper#isTableMenuButtonVisible()
+     * @see TableViewWrapper#setTableMenuButtonVisible(boolean)
+     *
      * @return the table menu button visible property.
      */
     public final BooleanProperty tableMenuButtonVisibleProperty() {
@@ -109,18 +151,18 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the table menu button visible property.
-     * 
+     *
      * @param value
      *            the value of the table menu button visible property.
      */
-    public final void setTableMenuButtonVisible(boolean value) {
+    public final void setTableMenuButtonVisible(final boolean value) {
 
         this.getWrappedControl().setTableMenuButtonVisible(value);
     }
 
     /**
      * Gets the value of the table menu button visible property.
-     * 
+     *
      * @return the value of the table menu button visible property.
      */
     public final boolean isTableMenuButtonVisible() {
@@ -135,10 +177,10 @@ public class TableViewWrapper<T>
      * in the TableView class: {@link TableView#UNCONSTRAINED_RESIZE_POLICY
      * UNCONSTRAINED_RESIZE_POLICY} and
      * {@link TableView#CONSTRAINED_RESIZE_POLICY CONSTRAINED_RESIZE_POLICY}.
-     * 
-     * @see #getColumnResizePolicy()
-     * @see #setColumnResizePolicy(Callback)
-     * 
+     *
+     * @see TableViewWrapper#getColumnResizePolicy()
+     * @see TableViewWrapper#setColumnResizePolicy(Callback)
+     *
      * @return the column resize policy property.
      */
     @SuppressWarnings("rawtypes")
@@ -149,19 +191,19 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the column resize policy property.
-     * 
+     *
      * @param callback
      *            the value of the column resize policy property.
      */
     public final void setColumnResizePolicy(
-            @SuppressWarnings("rawtypes") Callback<TableView.ResizeFeatures, java.lang.Boolean> callback) {
+            @SuppressWarnings("rawtypes") final Callback<TableView.ResizeFeatures, java.lang.Boolean> callback) {
 
         this.getWrappedControl().setColumnResizePolicy(callback);
     }
 
     /**
      * Gets the value of the column resize policy property.
-     * 
+     *
      * @return the value of the column resize policy property.
      */
     @SuppressWarnings("rawtypes")
@@ -179,14 +221,16 @@ public class TableViewWrapper<T>
      * in most circumstances it is more likely that you'll want to create custom
      * TableCells, rather than TableRows. The primary use case for creating
      * custom TableRow instances would most probably be to introduce some form
-     * of column spanning support. <br>
+     * of column spanning support.
+     * <p>
      * You can create custom TableCell instances per column by assigning the
      * appropriate function to the cellFactory property in the TableColumn
      * class.
+     * </p>
      * 
-     * @see #getRowFactory()
-     * @see #setRowFactory(Callback)
-     * 
+     * @see TableViewWrapper#getRowFactory()
+     * @see TableViewWrapper#setRowFactory(Callback)
+     *
      * @return the row factory property
      */
     public final ObjectProperty<Callback<TableView<T>, TableRow<T>>> rowFactoryProperty() {
@@ -196,18 +240,19 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the row factory property.
-     * 
+     *
      * @param value
      *            the value of the row factory property.
      */
-    public final void setRowFactory(Callback<TableView<T>, TableRow<T>> value) {
+    public final void setRowFactory(
+            final Callback<TableView<T>, TableRow<T>> value) {
 
         this.getWrappedControl().setRowFactory(value);
     }
 
     /**
      * Gets the value of the row factory property.
-     * 
+     *
      * @return the value of the row factory property.
      */
     public final Callback<TableView<T>, TableRow<T>> getRowFactory() {
@@ -222,9 +267,9 @@ public class TableViewWrapper<T>
      * place, that a filter has been applied to the table model, resulting in
      * there being nothing to show the user, or that there are no currently
      * visible columns.
-     * 
-     * @see #getPlaceholder()
-     * @see #setPlaceholder(Node)
+     *
+     * @see TableViewWrapper#getPlaceholder()
+     * @see TableViewWrapper#setPlaceholder(Node)
      * @return the placeholder property.
      */
     public final ObjectProperty<Node> placeholderProperty() {
@@ -234,18 +279,18 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the placeholder property.
-     * 
+     *
      * @param value
      *            the value of the placeholder property.
      */
-    public final void setPlaceholder(Node value) {
+    public final void setPlaceholder(final Node value) {
 
         this.getWrappedControl().setPlaceholder(value);
     }
 
     /**
      * Gets the value of the placeholder property.
-     * 
+     *
      * @return the value of the placeholder property.
      */
     public final Node getPlaceholder() {
@@ -259,9 +304,8 @@ public class TableViewWrapper<T>
      * select single or multiple items within a TableView, as well as inspect
      * which items have been selected by the user. Note that it has a generic
      * type that must match the type of the TableView itself.
-     * 
-     * @see #getSelectionModel()
-     * @see #setSelectionModel(TableView.TableViewSelectionModel)
+     *
+     * @see TableViewWrapper#getSelectionModel()
      * @return the selection model property.
      */
     public final ObjectProperty<TableView.TableViewSelectionModel<T>> selectionModelProperty() {
@@ -271,19 +315,19 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the selection model property.
-     * 
+     *
      * @param value
      *            the value of the selection model property.
      */
     public final void setSelectionModel(
-            TableView.TableViewSelectionModel<T> value) {
+            final TableView.TableViewSelectionModel<T> value) {
 
         this.getWrappedControl().setSelectionModel(value);
     }
 
     /**
      * Gets the value of the selection model property.
-     * 
+     *
      * @return the value of the selection model property.
      */
     public final TableView.TableViewSelectionModel<T> getSelectionModel() {
@@ -296,30 +340,29 @@ public class TableViewWrapper<T>
      * Represents the currently-installed TableView.TableViewFocusModel for this
      * TableView. Under almost all circumstances leaving this as the default
      * focus model will suffice.
-     * 
-     * @see #getFocusModel()
-     * @see #setFocusModel(TableViewFocusModel)
+     *
+     * @see TableViewWrapper#getFocusModel()
      * @return the focus model property.
      */
-    public final ObjectProperty<TableViewFocusModel<T>> focusModelProperty() {
+    public final ObjectProperty<TableView.TableViewFocusModel<T>> focusModelProperty() {
 
         return this.getWrappedControl().focusModelProperty();
     }
 
     /**
      * Sets the value of the focus model property.
-     * 
+     *
      * @param value
      *            the value of the focus model property.
      */
-    public final void setFocusModel(TableView.TableViewFocusModel<T> value) {
+    public final void setFocusModel(final TableView.TableViewFocusModel<T> value) {
 
         this.getWrappedControl().setFocusModel(value);
     }
 
     /**
      * Gets the value of the focus model property.
-     * 
+     *
      * @return the value of the focus model property.
      */
     public final TableView.TableViewFocusModel<T> getFocusModel() {
@@ -332,9 +375,9 @@ public class TableViewWrapper<T>
      * Specifies whether this TableView is editable - only if the TableView, the
      * TableColumn (if applicable) and the TableCells within it are both
      * editable will a TableCell be able to go into their editing state.
-     * 
-     * @see #isEditable()
-     * @see #setEditable(boolean)
+     *
+     * @see TableViewWrapper#isEditable()
+     * @see TableViewWrapper#setEditable(boolean)
      * @return the editable property.
      */
     public final BooleanProperty editableProperty() {
@@ -344,18 +387,18 @@ public class TableViewWrapper<T>
 
     /**
      * Sets the value of the editable property.
-     * 
+     *
      * @param value
      *            the value of the editable property.
      */
-    public final void setEditable(boolean value) {
+    public final void setEditable(final boolean value) {
 
         this.getWrappedControl().setEditable(value);
     }
 
     /**
      * Gets the value of the editable property.
-     * 
+     *
      * @return the value of the editable property.
      */
     public final boolean isEditable() {
@@ -367,11 +410,11 @@ public class TableViewWrapper<T>
     /**
      * Represents the current cell being edited, or {@code null} if there is no
      * cell being edited.
-     * 
-     * @see #getEditingCell()
+     *
+     * @see TableViewWrapper#getEditingCell()
      * @return the current cell being edited, or {@code null} if there is no
      *         cell being edited.
-     * 
+     *
      */
     public final ReadOnlyObjectProperty<TablePosition<T, ?>> editingCellProperty() {
 
@@ -380,7 +423,7 @@ public class TableViewWrapper<T>
 
     /**
      * Gets the value of the property editingCell.
-     * 
+     *
      * @return the value of the property editingCell.
      */
     public final TablePosition<T, ?> getEditingCell() {
@@ -392,9 +435,11 @@ public class TableViewWrapper<T>
     /**
      * The TableColumns that are part of this TableView. As the user reorders
      * the TableView columns, this list will be updated to reflect the current
-     * visual ordering. <br>
+     * visual ordering.
+     * <p>
      * Note: to display any data in a TableView, there must be at least one
      * TableColumn in this ObservableList.
+     * </p>
      * 
      * @return the TableColumns that are part of this TableView
      */
@@ -418,7 +463,7 @@ public class TableViewWrapper<T>
      * equal, then the second TableColumn in the list is used to determine
      * ordering. This repeats until the results from all TableColumn comparators
      * are considered, if necessary.
-     * 
+     *
      * @return An ObservableList containing zero or more TableColumn instances.
      */
     public final ObservableList<TableColumn<T, ?>> getSortOrder() {
@@ -430,11 +475,11 @@ public class TableViewWrapper<T>
      * Scrolls the TableView so that the given index is visible within the
      * viewport. Parameters: index - The index of an item that should be visible
      * to the user.
-     * 
+     *
      * @param index
      *            the index.
      */
-    public void scrollTo(int index) {
+    public void scrollTo(final int index) {
 
         this.getWrappedControl().scrollTo(index);
     }
@@ -442,7 +487,7 @@ public class TableViewWrapper<T>
     /**
      * Applies the currently installed resize policy against the given column,
      * resizing it based on the delta value provided.
-     * 
+     *
      * @param column
      *            the column.
      * @param delta
@@ -450,7 +495,8 @@ public class TableViewWrapper<T>
      * @return {@code true}, if the column has been resized; {@code false}
      *         otherwise.
      */
-    public boolean resizeColumn(TableColumn<T, ?> column, double delta) {
+    public boolean resizeColumn(final TableColumn<T, ?> column,
+            final double delta) {
 
         return this.getWrappedControl().resizeColumn(column, delta);
     }
@@ -459,13 +505,13 @@ public class TableViewWrapper<T>
      * Causes the cell at the given row/column view indexes to switch into its
      * editing state, if it is not already in it, and assuming that the
      * TableView and column are also editable.
-     * 
+     *
      * @param row
      *            the row index.
      * @param column
      *            the column index.
      */
-    public void edit(int row, TableColumn<T, ?> column) {
+    public void edit(final int row, final TableColumn<T, ?> column) {
 
         this.getWrappedControl().edit(row, column);
     }
@@ -473,7 +519,7 @@ public class TableViewWrapper<T>
     /**
      * Returns an unmodifiable list containing the currently visible leaf
      * columns.
-     * 
+     *
      * @return an unmodifiable list containing the currently visible leaf
      *         columns.
      */
@@ -485,13 +531,13 @@ public class TableViewWrapper<T>
     /**
      * Returns the position of the given column, relative to all other visible
      * leaf columns.
-     * 
+     *
      * @param column
      *            the column.
      * @return the position of the given column, relative to all other visible
      *         leaf columns.
      */
-    public int getVisibleLeafIndex(TableColumn<T, ?> column) {
+    public int getVisibleLeafIndex(final TableColumn<T, ?> column) {
 
         return this.getWrappedControl().getVisibleLeafIndex(column);
     }
@@ -499,13 +545,13 @@ public class TableViewWrapper<T>
     /**
      * Returns the TableColumn in the given column index, relative to all other
      * visible leaf columns.
-     * 
+     *
      * @param column
      *            the column index.
      * @return the TableColumn in the given column index, relative to all other
      *         visible leaf columns.
      */
-    public TableColumn<T, ?> getVisibleLeafColumn(int column) {
+    public TableColumn<T, ?> getVisibleLeafColumn(final int column) {
 
         return this.getWrappedControl().getVisibleLeafColumn(column);
     }
@@ -516,35 +562,51 @@ public class TableViewWrapper<T>
      */
     public TableViewWrapper() {
 
-        this((Collection<T>) null);
+        this(null);
     }
 
     /**
      * Creates a new instance of the {@link TableViewWrapper} class with the
      * provided items.
-     * 
+     *
      * @param items
      *            the items.
      */
-    public TableViewWrapper(final Collection<T> items) {
+    public TableViewWrapper(final ObservableList<T> items) {
 
-        this(new TableView<T>());
-
-        if (items != null) {
-
-            this.setItems(FXCollections.observableArrayList(items));
-        }
+        this(items, null);
     }
 
     /**
      * Creates a new instance of the {@link TableViewWrapper} class with the
-     * provided table view.
+     * provided items.
+     *
+     * @param items
+     *            the items.
+     * @param converter
+     *            the initial string converter.
+     */
+    public TableViewWrapper(final ObservableList<T> items,
+            final StringConverter<T> converter) {
+
+        this(items == null ? new TableView<>() : new TableView<>(items),
+                converter);
+    }
+
+
+    /**
+     * Creates a new instance of the {@code TableViewWrapper} class.
      * 
      * @param tableView
-     *            the provided table view.
+     *            the {@link TableView} to wrap.
+     * @param converter
+     *            the initial string converter.
      */
-    public TableViewWrapper(TableView<T> tableView) {
+    protected TableViewWrapper(final TableView<T> tableView,
+            final StringConverter<T> converter) {
 
-        super(tableView);
+        super(tableView == null ? new TableView<>() : tableView);
+
+        this.converterProperty = new SimpleObjectProperty<>(converter);
     }
 }

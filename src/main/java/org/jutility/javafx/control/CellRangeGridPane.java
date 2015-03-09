@@ -1,5 +1,7 @@
 package org.jutility.javafx.control;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-javafx
@@ -19,9 +21,10 @@ package org.jutility.javafx.control;
  * limitations under the License.
  * #L%
  */
+//@formatter:on
 
 
-import javafx.beans.binding.BooleanBinding;
+import javafx.beans.binding.BooleanExpression;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -34,12 +37,12 @@ import org.jutility.common.datatype.table.CellRange;
 
 
 /**
- * The {@link CellRangeGridPane} provides an input Control for {@link CellRange
+ * The {@code CellRangeGridPane} provides an input Control for {@link CellRange
  * CellRanges}.
- * 
+ *
  * @author Peter J. Radics
- * @version 1.0
- * @since 1.0
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CellRangeGridPane
         extends GridPane {
@@ -52,7 +55,7 @@ public class CellRangeGridPane
 
     /**
      * Returns the invalid Property of this control.
-     * 
+     *
      * @return the invalid Property of this control.
      */
     public ReadOnlyBooleanProperty invalidProperty() {
@@ -62,7 +65,7 @@ public class CellRangeGridPane
 
     /**
      * Returns whether or not the state of the control is invalid.
-     * 
+     *
      * @return {@code true}, if the state of the control is invalid;
      *         {@code false} otherwise.
      */
@@ -74,7 +77,7 @@ public class CellRangeGridPane
     /**
      * Returns an optional containing the {@link CellRange} defined by this
      * control.
-     * 
+     *
      * @return an optional containing the {@link CellRange} defined by this
      *         control.
      */
@@ -91,7 +94,7 @@ public class CellRangeGridPane
 
     /**
      * Sets the {@link CellRange} defined by this Control.
-     * 
+     *
      * @param cellRange
      *            the {@link CellRange} defined by this Control (a value of
      *            {@code null} clears the control).
@@ -108,7 +111,7 @@ public class CellRangeGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellRangeGridPane} class.
+     * Creates a new instance of the {@code CellRangeGridPane} class.
      */
     public CellRangeGridPane() {
 
@@ -116,9 +119,9 @@ public class CellRangeGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellRangeGridPane} class with the
+     * Creates a new instance of the {@code CellRangeGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param minRow
      *            the minimum row index.
      * @param minColumn
@@ -136,9 +139,9 @@ public class CellRangeGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellRangeGridPane} class with the
      * provided range restriction.
-     * 
+     *
      * @param validRange
      *            the range restriction.
      */
@@ -148,9 +151,9 @@ public class CellRangeGridPane
     }
 
     /**
-     * Creates a new instance of the {@link CellLocationGridPane} class with the
+     * Creates a new instance of the {@code CellRangeGridPane} class with the
      * provided range restriction and initial value.
-     * 
+     *
      * @param validRange
      *            the range restriction.
      * @param initialValue
@@ -180,33 +183,35 @@ public class CellRangeGridPane
             this.from = new CellLocationGridPane(validRange);
             this.to = new CellLocationGridPane(validRange);
         }
-        this.invalid.bind(BooleanBinding.booleanExpression(
-                this.from.invalidProperty()).or(
-                BooleanBinding.booleanExpression(this.to.invalidProperty())));
+        this.invalid
+                .bind(BooleanExpression.booleanExpression(
+                        this.from.invalidProperty()).or(
+                        BooleanExpression.booleanExpression(this.to
+                                .invalidProperty())));
 
 
-        GridPane rangeBox = new GridPane();
+        final GridPane rangeBox = new GridPane();
         rangeBox.setHgap(10);
 
-        Label fromLabel = new Label("From:");
+        final Label fromLabel = new Label("From:");
         GridPane.setMargin(fromLabel, new Insets(10));
         fromLabel
                 .setStyle("-fx-font-family: sans-serif; -fx-font-style: italic;");
-        Label toLabel = new Label("To:");
+        final Label toLabel = new Label("To:");
         toLabel.setStyle("-fx-font-family: sans-serif; -fx-font-style: italic;");
         GridPane.setMargin(toLabel, new Insets(10));
 
 
-        fromLabel.setLabelFor(from);
-        toLabel.setLabelFor(to);
+        fromLabel.setLabelFor(this.from);
+        toLabel.setLabelFor(this.to);
 
 
         rangeBox.add(fromLabel, 0, 0);
-        rangeBox.add(from, 1, 0, 1, 2);
+        rangeBox.add(this.from, 1, 0, 1, 2);
 
 
         rangeBox.add(toLabel, 0, 3);
-        rangeBox.add(to, 1, 3, 1, 2);
+        rangeBox.add(this.to, 1, 3, 1, 2);
 
         String rangeLabelText = "Range";
 
@@ -216,7 +221,7 @@ public class CellRangeGridPane
         }
         rangeLabelText += ":";
 
-        Label rangeLabel = new Label(rangeLabelText);
+        final Label rangeLabel = new Label(rangeLabelText);
         rangeLabel
                 .setStyle("-fx-font-family: sans-serif; -fx-font-weight: bold;");
         rangeLabel.setLabelFor(rangeBox);

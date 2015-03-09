@@ -33,11 +33,11 @@ import org.jutility.javafx.control.wrapper.TextFieldWrapper;
 
 
 /**
- * The {@link LabeledTextField} class provides a {@TextField} with a
+ * The {@code LabeledTextField} class provides a {@link TextField} with a
  * freely positionable {@link Label}.
- * 
+ *
  * @author Peter J. Radics
- * 
+ *
  * @version 0.1.2
  * @since 0.1.0
  */
@@ -87,10 +87,10 @@ public class LabeledTextField
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided label text, positioning the {@link Label} to the left of the
      * {@link TextField}.
-     * 
+     *
      * @param labelText
      *            the text of the {@link Label}.
      */
@@ -100,10 +100,10 @@ public class LabeledTextField
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided label text, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided {@link Pos Position}.
-     * 
+     *
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
@@ -115,10 +115,10 @@ public class LabeledTextField
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided label text, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided {@link Pos Position}.
-     * 
+     *
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
@@ -133,10 +133,10 @@ public class LabeledTextField
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} to the left of the
      * {@link TextField}.
-     * 
+     *
      * @param label
      *            the {@link Label}.
      */
@@ -146,10 +146,10 @@ public class LabeledTextField
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided {@link Pos Position}.
-     * 
+     *
      * @param label
      *            the {@link Label}.
      * @param position
@@ -161,10 +161,10 @@ public class LabeledTextField
     }
 
     /**
-     * Creates a new instance of the {@link LabeledTextField} class with the
+     * Creates a new instance of the {@code LabeledTextField} class with the
      * provided {@link Label}, positioning the {@link Label} relative to the
      * {@link TextField} according to the provided {@link Pos Position}.
-     * 
+     *
      * @param label
      *            the {@link Label}.
      * @param position
@@ -220,7 +220,7 @@ public class LabeledTextField
         this.wrappedControlProperty().addListener(
                 (observable, oldValue, newValue) -> {
 
-                    if (this.getLabel() != null && newValue != null) {
+                    if ((this.getLabel() != null) && (newValue != null)) {
 
                         this.getLabel().setLabelFor(newValue);
                     }

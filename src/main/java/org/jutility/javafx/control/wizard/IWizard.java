@@ -1,5 +1,7 @@
 package org.jutility.javafx.control.wizard;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-javafx
@@ -19,6 +21,7 @@ package org.jutility.javafx.control.wizard;
  * limitations under the License.
  * #L%
  */
+// @formatter:on
 
 
 
@@ -26,115 +29,128 @@ import javafx.stage.Stage;
 
 
 /**
- * @author spn2460
+ * The {@code IWizard} interface provides the shared contract for Wizards.
  * 
+ * @author Shawn P. Neuman
+ * @version 0.1.2
+ * @since 0.1.0
+ * @deprecated since 0.1.2 in favor of {@link org.controlsfx.dialog.Wizard}.
  */
+@Deprecated
 public interface IWizard {
 
 
     /**
      * Sets the owner of the wizard.
-     * 
+     *
      * @param owner
      *            the owner.
      */
-    public void setOwner(Stage owner);
+    public abstract void setOwner(final Stage owner);
 
     /**
-     * gets the page at a given index
-     * 
+     * Gets the page at a given index.
+     *
      * @param index
-     *            the integer value of a page
-     * @return the Wizard page at the given index
+     *            the integer value of a page.
+     * @return the Wizard page at the given index.
      */
-    public WizardPage getPage(int index);
+    public abstract WizardPage getPage(final int index);
 
     /**
-     * removes a page form the stack
-     * 
+     * Removes a page form the stack.
+     *
      * @param index
-     *            the index of the page to be removed
+     *            the index of the page to be removed.
      */
-    public void removePage(int index);
+    public abstract void removePage(final int index);
 
     /**
-     * adds a page to the stack. used for dynamic adding
-     * 
+     * adds a page to the stack. used for dynamic adding.
+     *
      * @param page
-     *            the page to be added
+     *            the page to be added.
      */
-    public void addPage(WizardPage page);
+    public abstract void addPage(final WizardPage page);
 
     /**
-     * adds a page at a specific index
-     * 
+     * Adds a page at a specific index.
+     *
      * @param index
-     *            the index of the page to be added
+     *            the index of the page to be added.
      * @param page
-     *            the page to be added
+     *            the page to be added.
      */
-    public void addPage(int index, WizardPage page);
+    public abstract void addPage(int index, WizardPage page);
 
     /**
-     * navigate to next page if it exists
+     * Navigate to next page if it exists.
      */
-    public void nextPage();
+    public abstract void nextPage();
 
     /**
-     * navigate to previous page if it exists
+     * Navigate to previous page if it exists.
      */
-    public void priorPage();
+    public abstract void priorPage();
 
     /**
-     * @return true if next page exists
+     * Returns whether or not the {@code IWizard} contains a page after the
+     * current page.
+     *
+     * @return {@code true}, if a page after the current page exists;
+     *         {@code false} otherwise.
      */
-    public boolean hasNextPage();
+    public abstract boolean hasNextPage();
 
     /**
-     * @return true if previous page exists
+     * Returns whether or not the {@code IWizard} contains a page before the
+     * current page.
+     *
+     * @return {@code true}, if a page before the current page exists;
+     *         {@code false} otherwise.
      */
-    public boolean hasPriorPage();
+    public abstract boolean hasPriorPage();
 
     /**
-     * navigate to page and push page on stack
-     * 
+     * Navigate to page and push page on stack.
+     *
      * @param nextPageIdx
-     *            index of next page
+     *            index of next page.
      * @param pushHistory
-     *            add page to stack
+     *            add page to stack.
      */
-    void navTo(int nextPageIdx, boolean pushHistory);
+    public abstract void navTo(final int nextPageIdx, final boolean pushHistory);
 
     /**
-     * navigate to next page with this index
-     * 
+     * Navigate to next page with this index.
+     *
      * @param nextPageIdx
-     *            index to navigate to
+     *            index to navigate to.
      */
-    public void navTo(int nextPageIdx);
+    public abstract void navTo(final int nextPageIdx);
 
     /**
-     * navigate to a page with a specific string id
-     * 
+     * Navigate to a page with a specific string id.
+     *
      * @param id
-     *            string value of page
+     *            string value of page.
      */
-    public void navTo(String id);
+    public abstract void navTo(final String id);
 
     /**
-     * gets the index value of a given page
-     * 
-     * @return index of this page
+     * Gets the index value of a given page.
+     *
+     * @return index of this page.
      */
-    public int getCurrentPageIndex();
+    public abstract int getCurrentPageIndex();
 
     /**
-     * close the wizard
+     * Close the wizard.
      */
-    public void finish();
+    public abstract void finish();
 
     /**
-     * cancel the wizard
+     * Cancel the wizard.
      */
-    public void cancel();
+    public abstract void cancel();
 }

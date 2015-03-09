@@ -1,13 +1,14 @@
-/**
- * 
- */
 package org.jutility.javafx.stringconverter;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-javafx
+* #%L
+ * * jutility-javafx
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,16 +22,21 @@ package org.jutility.javafx.stringconverter;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on
+
 
 
 /**
- * @author peter
- * @version
- * @since
- *
+ * The {@code IStringConverterConfiguration} is a tagging interface for
+ * configurations of {@link IConfigurableStringConverter Configurable
+ * StringConverters}.
+ * 
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public interface IStringConverterConfiguration {
 
-    // TODOCUMENT
+    // tagging interface.
 }

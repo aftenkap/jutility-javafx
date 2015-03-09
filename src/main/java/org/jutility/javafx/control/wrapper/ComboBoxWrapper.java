@@ -41,16 +41,15 @@ import javafx.util.StringConverter;
 
 
 /**
- * The {@link ComboBoxWrapper} class wraps a {@link ComboBox} in a
+ * The {@code ComboBoxWrapper} class wraps a {@link ComboBox} in a
  * {@link GridPane} with six surrounding {@link Node Nodes}.
+ * 
+ * @param <T>
+ *            the content type of the {@link ComboBox}.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
- * 
- * @param <T>
- *            the content type of the {@link ComboBox}.
- *
  */
 public class ComboBoxWrapper<T>
         extends ComboBoxBaseWrapper<T, ComboBox<T>> {
@@ -144,9 +143,11 @@ public class ComboBoxWrapper<T>
 
 
     /**
-     * Creates a new instance of the {@link ComboBoxWrapper} class. <br/>
+     * Creates a new instance of the {@code ComboBoxWrapper} class.
+     * <p>
      * Internally, creates a default ComboBox instance with an empty items list
      * and default selection model.
+     * </p>
      */
     public ComboBoxWrapper() {
 
@@ -154,9 +155,11 @@ public class ComboBoxWrapper<T>
     }
 
     /**
-     * Creates a new instance of the {@link ComboBoxWrapper} class. <br/>
+     * Creates a new instance of the {@code ComboBoxWrapper} class.
+     * <p>
      * Internally, creates a default ComboBox instance with the provided items
      * list and a default selection model.
+     * </p>
      * 
      * @param items
      *            the data model.
@@ -336,7 +339,4 @@ public class ComboBoxWrapper<T>
 
         this.getWrappedControl().setVisibleRowCount(value);
     }
-
-
-
 }

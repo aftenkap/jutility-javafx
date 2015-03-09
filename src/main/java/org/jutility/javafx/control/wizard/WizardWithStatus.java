@@ -1,5 +1,7 @@
 package org.jutility.javafx.control.wizard;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-javafx
@@ -19,8 +21,7 @@ package org.jutility.javafx.control.wizard;
  * limitations under the License.
  * #L%
  */
-
-
+//@formatter:on
 
 
 
@@ -36,57 +37,64 @@ import javafx.stage.Stage;
 
 
 /**
- * creates a pane with a permanent status pane and a wizard for creating user
- * defined visual properties
- * 
- * @author spn2460
- * 
+ * The {@code WizardWithStatus} class provides a customizable {@link IWizard
+ * Wizard} with a status pane.
+ *
+ * @author Shawn P. Neuman
+ * @version 0.1.2
+ * @since 0.1.0
+ * @deprecated since 0.1.2 in favor of {@link org.controlsfx.dialog.Wizard}.
  */
+@Deprecated
 public abstract class WizardWithStatus
         extends GridPane
         implements IWizard {
 
-    private Stage                      owner;
+    private Stage                            owner;
 
-    private Pane                       statusPane;
-    private StackPane                  stackPane;
+    private final Pane                       statusPane;
+    private final StackPane                  stackPane;
 
-    private static final int           UNDEFINED  = -1;
-    private ObservableList<WizardPage> pages      = FXCollections
-                                                          .observableArrayList();
-    private Stack<Integer>             history    = new Stack<>();
-    private int                        curPageIdx = UNDEFINED;
+    private static final int                 UNDEFINED  = -1;
+    private final ObservableList<WizardPage> pages      = FXCollections
+                                                                .observableArrayList();
+    private final Stack<Integer>             history    = new Stack<>();
+    private int                              curPageIdx = WizardWithStatus.UNDEFINED;
 
 
 
     /**
      * Returns the status pane.
-     * 
+     *
      * @return the status pane.
      */
     protected Pane getStatusPane() {
 
         return this.statusPane;
     }
-    
+
 
     @Override
-    public void setOwner(Stage owner) {
+    public void setOwner(final Stage owner) {
 
         this.owner = owner;
     }
 
     /**
-     * constructor
-     * 
-     * @param primary
+     * Creates a new instance of the {@code WizardWithStatus} class.
+     *
+     * @param owner
+     *            the owner of this {@code WizardWithStatus}.
      * @param statusPane
-     * @param nodes
+     *            the status {@link Pane}.
+     * @param pages
+     *            the {@link WizardPage Pages}.
      */
-    public WizardWithStatus(Stage primary, Pane statusPane, WizardPage... nodes) {
+    public WizardWithStatus(final Stage owner, final Pane statusPane,
+            final WizardPage... pages) {
 
         super();
-        this.owner = primary;
+        this.owner = owner;
 
         this.statusPane = statusPane;
         this.stackPane = new StackPane();
@@ -95,133 +103,100 @@ public abstract class WizardWithStatus
         this.setVgap(10);
         this.setPadding(new Insets(10, 25, 25, 25));
 
-        
+
         this.add(this.stackPane, 0, 0);
         this.add(this.statusPane, 1, 0);
 
-        this.pages.addAll(nodes);
+        this.pages.addAll(pages);
         this.navTo(0);
         this.setStyle("-fx-padding: 10; -fx-background-color: cornsilk;");
     }
 
-    /**
-     * gets the page at a given index
-     * 
-     * @param index
-     *            the integer value of a page
-     * @return the Wizard page at the given index
-     */
-    @Override
-    public WizardPage getPage(int index) {
 
-        if (index < pages.size()) {
-            return pages.get(index);
+    @Override
+    public WizardPage getPage(final int index) {
+
+        if (index < this.pages.size()) {
+            return this.pages.get(index);
         }
         return null;
     }
 
-    /**
-     * removes a page form the stack
-     * 
-     * @param index
-     *            the index of the page to be removed
-     */
-    @Override
-    public void removePage(int index) {
 
-        if (index < pages.size()) {
-            pages.remove(index);
+    @Override
+    public void removePage(final int index) {
+
+        if (index < this.pages.size()) {
+            this.pages.remove(index);
         }
     }
 
-    /**
-     * adds a page to the stack. used for dynamic adding
-     * 
-     * @param page
-     *            the page to be added
-     */
-    @Override
-    public void addPage(WizardPage page) {
 
-        pages.add(page);
+    @Override
+    public void addPage(final WizardPage page) {
+
+        this.pages.add(page);
     }
 
-    /**
-     * adds a page at a specific index
-     * 
-     * @param index
-     *            the index of the page to be added
-     * @param page
-     *            the page to be added
-     */
-    @Override
-    public void addPage(int index, WizardPage page) {
 
-        pages.add(index, page);
+    @Override
+    public void addPage(final int index, final WizardPage page) {
+
+        this.pages.add(index, page);
     }
 
-    /**
-     * navigate to next page if it exists
-     */
+
+
     @Override
     public void nextPage() {
 
-        if (hasNextPage()) {
-            navTo(curPageIdx + 1);
+        if (this.hasNextPage()) {
+            this.navTo(this.curPageIdx + 1);
         }
     }
 
-    /**
-     * navigate to previous page if it exists
-     */
+
+
     @Override
     public void priorPage() {
 
-        if (hasPriorPage()) {
-            navTo(history.pop(), false);
+        if (this.hasPriorPage()) {
+            this.navTo(this.history.pop(), false);
         }
     }
 
-    /**
-     * @return true if next page exists
-     */
+
+
     @Override
     public boolean hasNextPage() {
 
-        return (curPageIdx < pages.size() - 1);
+        return (this.curPageIdx < (this.pages.size() - 1));
     }
 
-    /**
-     * @return true if previous page exists
-     */
+
+
     @Override
     public boolean hasPriorPage() {
 
-        return !history.isEmpty();
+        return !this.history.isEmpty();
     }
 
-    /**
-     * navigate to page and push page on stack
-     * 
-     * @param nextPageIdx
-     *            index of next page
-     * @param pushHistory
-     *            add page to stack
-     */
-    @Override
-    public void navTo(int nextPageIdx, boolean pushHistory) {
 
-        if (nextPageIdx < 0 || nextPageIdx >= pages.size()) {
+
+    @Override
+    public void navTo(final int nextPageIdx, final boolean pushHistory) {
+
+        if ((nextPageIdx < 0) || (nextPageIdx >= this.pages.size())) {
             return;
         }
-        if (curPageIdx != UNDEFINED) {
+        if (this.curPageIdx != WizardWithStatus.UNDEFINED) {
             if (pushHistory) {
-                history.push(curPageIdx);
+                this.history.push(this.curPageIdx);
             }
         }
 
-        WizardPage nextPage = pages.get(nextPageIdx);
-        curPageIdx = nextPageIdx;
+        final WizardPage nextPage = this.pages.get(nextPageIdx);
+        this.curPageIdx = nextPageIdx;
 
         this.stackPane.getChildren().clear();
         this.stackPane.getChildren().add(nextPage);
@@ -229,61 +204,48 @@ public abstract class WizardWithStatus
         nextPage.manageButtons();
     }
 
-    /**
-     * navigate to next page with this index
-     * 
-     * @param nextPageIdx
-     *            index to navigate to
-     */
+
+
     @Override
-    public void navTo(int nextPageIdx) {
+    public void navTo(final int nextPageIdx) {
 
         this.navTo(nextPageIdx, true);
     }
 
-    /**
-     * navigate to a page with a specific string id
-     * 
-     * @param id
-     *            string value of page
-     */
-    @Override
-    public void navTo(String id) {
 
-        for (WizardPage page : pages) {
+
+    @Override
+    public void navTo(final String id) {
+
+        for (final WizardPage page : this.pages) {
             if (page.getByID().equals(id)) {
-                navTo(pages.indexOf(page));
+                this.navTo(this.pages.indexOf(page));
             }
         }
 
     }
 
-    /**
-     * gets the index value of a given page
-     * 
-     * @return index of this page
-     */
+
+
     @Override
     public int getCurrentPageIndex() {
 
-        return curPageIdx;
+        return this.curPageIdx;
     }
 
-    /**
-     * close the wizard
-     */
+
+
     @Override
     public void finish() {
 
-        owner.close();
+        this.owner.close();
     }
 
-    /**
-     * cancel the wizard
-     */
+
+
     @Override
     public void cancel() {
 
-        owner.close();
+        this.owner.close();
     }
 }

@@ -1,5 +1,7 @@
 package org.jutility.javafx.control.wizard;
 
+
+//@formatter:off
 /*
  * #%L
  * jutility-javafx
@@ -19,11 +21,10 @@ package org.jutility.javafx.control.wizard;
  * limitations under the License.
  * #L%
  */
+//@formatter:on
 
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -35,159 +36,170 @@ import javafx.scene.layout.VBox;
 
 
 /**
- * Wizard page abstract class
- * 
- * @author spn2460
- * 
+ * The abstract {@code WizardPage} class provides the basis for pages of a
+ * {@link IWizard Wizard}.
+ *
+ * @author Shawn P. Neuman
+ * @version 0.1.2
+ * @since 0.1.0
+ * @deprecated since 0.1.2 in favor of {@link org.controlsfx.dialog.Wizard}.
  */
+@Deprecated
 public abstract class WizardPage
         extends VBox {
 
-    Button           priorButton  = new Button("_Previous");
     /**
-     * next button, to have access within all Wizard Pages
+     * The button for navigating to the previous page.
+     */
+    protected Button priorButton  = new Button("_Previous");
+
+    /**
+     * The button for navigating to the next page.
      */
     protected Button nextButton   = new Button("N_ext");
-    Button           cancelButton = new Button("Cancel");
-    Button           finishButton = new Button("_Finish");
 
     /**
-     * Wizard page constructor
-     * 
-     * @param title
-     *            the title of the page
+     * The button for canceling the {@link IWizard Wizard}.
      */
-    WizardPage(String title) {
+    protected Button cancelButton = new Button("Cancel");
 
-        Label label = new Label(title);
+    /**
+     * The button for completing the {@link IWizard Wizard}.
+     */
+    protected Button finishButton = new Button("_Finish");
+
+
+    /**
+     * Creates a new instance of the {@code WizardPage} class with the provided
+     * title.
+     *
+     * @param title
+     *            the title.
+     */
+    WizardPage(final String title) {
+
+        final Label label = new Label(title);
         label.setStyle("-fx-font-weight: bold; -fx-padding: 0 0 5 0;");
-        getChildren().add(label);
-        setId(title);
-        setSpacing(5);
-        setStyle("-fx-padding:10; -fx-background-color: honeydew; -fx-border-color: derive(honeydew, -30%); -fx-border-width: 3;");
+        this.getChildren().add(label);
+        this.setId(title);
+        this.setSpacing(5);
+        this.setStyle("-fx-padding:10; -fx-background-color: honeydew; "
+                + "-fx-border-color: derive(honeydew, -30%); "
+                + "-fx-border-width: 3;");
 
-        Region spring = new Region();
+        final Region spring = new Region();
         VBox.setVgrow(spring, Priority.ALWAYS);
-        getChildren().addAll(getContent(), spring, getButtons());
+        this.getChildren().addAll(this.getContent(), spring, this.getButtons());
 
 
-        priorButton.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                priorPage();
-            }
-        });
-        nextButton.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-
-                nextPage();
-            }
-        });
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                getWizard().cancel();
-            }
-        });
-        finishButton.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-                finish();
-            }
-        });
+        this.priorButton
+                .setOnAction(actionEvent -> WizardPage.this.priorPage());
+        this.nextButton.setOnAction(actionEvent -> WizardPage.this.nextPage());
+        this.cancelButton.setOnAction(actionEvent -> WizardPage.this
+                .getWizard().cancel());
+        this.finishButton.setOnAction(actionEvent -> WizardPage.this.finish());
     }
 
+
     /**
-     * @return horizontal bar of buttons
+     * Returns the button bar.
+     * 
+     * @return the button bar.
      */
     HBox getButtons() {
 
-        Region spring = new Region();
+        final Region spring = new Region();
         HBox.setHgrow(spring, Priority.ALWAYS);
-        HBox buttonBar = new HBox(5);
-        cancelButton.setCancelButton(true);
-        finishButton.setDefaultButton(true);
-        buttonBar.getChildren().addAll(spring, priorButton, nextButton,
-                cancelButton, finishButton);
+        final HBox buttonBar = new HBox(5);
+        this.cancelButton.setCancelButton(true);
+        this.finishButton.setDefaultButton(true);
+        buttonBar.getChildren().addAll(spring, this.priorButton,
+                this.nextButton, this.cancelButton, this.finishButton);
         return buttonBar;
     }
 
     /**
-     * @return the content of the parent
+     * Returns the content of the page
+     * 
+     * @return the content of the page
      */
     abstract Parent getContent();
 
 
     /**
-     * @return true if next page exists
+     * Returns whether or not the {@code IWizard} contains a page after the
+     * current page.
+     *
+     * @return {@code true}, if a page after the current page exists;
+     *         {@code false} otherwise.
      */
     boolean hasNextPage() {
 
-        return getWizard().hasNextPage();
+        return this.getWizard().hasNextPage();
     }
 
     /**
-     * @return true if previous page exists
+     * Returns whether or not the {@code IWizard} contains a page before the
+     * current page.
+     *
+     * @return {@code true}, if a page before the current page exists;
+     *         {@code false} otherwise.
      */
     boolean hasPriorPage() {
 
-        return getWizard().hasPriorPage();
+        return this.getWizard().hasPriorPage();
     }
 
     /**
-     * get the next page
+     * Navigate to next page if it exists.
      */
     void nextPage() {
 
-        getWizard().nextPage();
+        this.getWizard().nextPage();
     }
 
     /**
-     * get the previous page
+     * Navigate to previous page if it exists.
      */
     void priorPage() {
 
-        getWizard().priorPage();
+        this.getWizard().priorPage();
     }
 
+    /**
+     * Close the wizard.
+     */
     void finish() {
 
-        getWizard().finish();
+        this.getWizard().finish();
     }
 
     /**
-     * go to a page with this string id
-     * 
+     * Navigate to a page with a specific string id.
+     *
      * @param id
-     *            sting value of page
+     *            string value of page.
      */
-    void navTo(String id) {
+    void navTo(final String id) {
 
-        getWizard().navTo(id);
+        this.getWizard().navTo(id);
     }
 
     /**
-     * go to page with this integer id
-     * 
+     * Navigate to a page with a specific string id.
+     *
      * @param id
-     *            integer index of page
+     *            string value of page.
      */
-    void navTo(int id) {
+    void navTo(final int id) {
 
-        getWizard().navTo(id);
+        this.getWizard().navTo(id);
     }
 
     /**
-     * @return this wizard
+     * Returns the {@link IWizard Wizard}.
+     * 
+     * @return the {@link IWizard Wizard}.
      */
     IWizard getWizard() {
 
@@ -208,26 +220,28 @@ public abstract class WizardPage
     }
 
     /**
-     * manages button visibility
+     * Manages button visibility
      */
     public void manageButtons() {
 
-        if (!hasPriorPage()) {
-            priorButton.setDisable(true);
+        if (!this.hasPriorPage()) {
+
+            this.priorButton.setDisable(true);
         }
 
-        if (!hasNextPage()) {
-            nextButton.setDisable(true);
+        if (!this.hasNextPage()) {
+
+            this.nextButton.setDisable(true);
         }
     }
 
     /**
-     * @return the string value of a page
+     * Returns the id of the page.
+     * 
+     * @return the id of the page.
      */
     String getByID() {
 
         return this.getId();
     }
-
-
 }

@@ -1,4 +1,6 @@
 /**
+ * This package provides various filters.
+ * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
@@ -6,11 +8,23 @@
  */
 package org.jutility.javafx.filter;
 
+<<<<<<< HEAD
 /*
  * #%L
  * jutility-javafx
  * %%
  * Copyright (C) 2013 - 2015 jutility.org
+=======
+
+//@formatter:off
+/*
+* #%L
+ * * jutility-javafx
+ * *
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * *
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,4 +38,9 @@ package org.jutility.javafx.filter;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
+<<<<<<< HEAD
  */
+=======
+*/
+//@formatter:on
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff

@@ -21,6 +21,29 @@ package org.jutility.javafx.control.wrapper;
  */
 
 
+//@formatter:off
+/*
+ * #%L
+ * jutility-javafx
+ * %%
+ * Copyright (C) 2013 - 2014 jutility.org
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+//@formatter:on
+
+
 import java.util.List;
 
 import javafx.beans.DefaultProperty;
@@ -32,33 +55,32 @@ import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.css.CssMetaData;
 import javafx.css.Styleable;
-import javafx.scene.Node;
 import javafx.scene.control.IndexRange;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
 
 /**
- * The {@link TextInputControlWrapper} class wraps a {@link TextInputControl} in
- * a {@link GridPane} with six surrounding {@link Node Nodes}.
- * 
+ * The abstract {@code TextInputControlWrapper} class provides a base class for
+ * {@link ControlWrapper Wrappers} of {@link TextInputControl TextInputControls}
+ * .
+ *
+ * @param <T>
+ *            the type of the {@link TextInputControl}.
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
- * 
- * @param <T>
- *            the content type of the {@link TextInputControl}.
  *
  */
 @DefaultProperty(value = "text")
-public class TextInputControlWrapper<T extends TextInputControl>
+public abstract class TextInputControlWrapper<T extends TextInputControl>
         extends ControlWrapper<T> {
 
     /**
      * The anchor of the text selection.
-     * 
+     *
      * @return the anchor of the text selection.
      */
     public ReadOnlyIntegerProperty anchorProperty() {
@@ -68,10 +90,10 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property anchor.
-     * 
+     *
      * @return The anchor of the text selection. The anchor and caretPosition
      *         make up the selection range. Selection must always be specified
-     *         in terms of begin <= end, but anchor may be less than, equal to,
+     *         in terms of begin &le; end, but anchor may be less than, equal to,
      *         or greater than the caretPosition. Depending on how the user
      *         selects text, the anchor might represent the lower or upper bound
      *         of the selection.
@@ -83,7 +105,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * The current position of the caret within the text.
-     * 
+     *
      * @return the current position of the caret within the text.
      */
     public ReadOnlyIntegerProperty caretPositionProperty() {
@@ -94,10 +116,10 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property caretPosition.
-     * 
+     *
      * @return The current position of the caret within the text. The anchor and
      *         caretPosition make up the selection range. Selection must always
-     *         be specified in terms of begin <= end, but anchor may be less
+     *         be specified in terms of begin &le; end, but anchor may be less
      *         than, equal to, or greater than the caretPosition. Depending on
      *         how the user selects text, the caretPosition might represent the
      *         lower or upper bound of the selection.
@@ -110,7 +132,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Indicates whether this TextInputControl can be edited by the user.
-     * 
+     *
      * @return {@code true}, if this TextInputControl can be edited by the user;
      *         {@code false} otherwise.
      */
@@ -121,7 +143,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property editable.
-     * 
+     *
      * @return {@code true}, if the {@link TextField} is editable; {@code false}
      *         otherwise.
      */
@@ -132,18 +154,18 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Sets the value of the property editable.
-     * 
+     *
      * @param value
      *            the new value.
      */
-    public void setEditable(boolean value) {
+    public void setEditable(final boolean value) {
 
         this.getWrappedControl().setEditable(value);
     }
 
     /**
      * The default font to use for text in the TextInputControl.
-     * 
+     *
      * @return the default font to use for text in the TextInputControl.
      */
     public ObjectProperty<Font> fontProperty() {
@@ -153,7 +175,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Returns the default font to use for text in the TextInputControl.
-     * 
+     *
      * @return the default font to use for text in the TextInputControl.
      */
     public Font getFont() {
@@ -163,7 +185,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Sets the default font to use for text in the TextInputControl.
-     * 
+     *
      * @param value
      *            the default font to use for text in the TextInputControl.
      */
@@ -174,7 +196,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * The number of characters in the text input.
-     * 
+     *
      * @return the number of characters in the text input.
      */
     public ReadOnlyIntegerProperty lengthProperty() {
@@ -185,7 +207,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property length.
-     * 
+     *
      * @return the value of the property length.
      */
     public int getLength() {
@@ -196,7 +218,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
     /**
      * The prompt text to display in the TextField, or {@code null} if no prompt
      * text is displayed.
-     * 
+     *
      * @return the prompt text to display.
      */
     public StringProperty promptTextProperty() {
@@ -207,7 +229,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property promptText.
-     * 
+     *
      * @return the value of the property promptText.
      */
     public String getPromptText() {
@@ -218,18 +240,18 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Sets the value of the property promptText.
-     * 
+     *
      * @param value
      *            the new prompt text.
      */
-    public void setPromptText(String value) {
+    public void setPromptText(final String value) {
 
         this.getWrappedControl().setPromptText(value);
     }
 
     /**
      * Defines the characters in the TextInputControl which are selected.
-     * 
+     *
      * @return the characters in the TextInputControl which are selected
      */
     public ReadOnlyStringProperty selectedTextProperty() {
@@ -239,7 +261,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property selectedText.
-     * 
+     *
      * @return the value of the property selectedText.
      */
     public String getSelectedText() {
@@ -249,7 +271,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * The current selection.
-     * 
+     *
      * @return the current selection.
      */
     public final ReadOnlyObjectProperty<IndexRange> selectionProperty() {
@@ -259,7 +281,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property selection.
-     * 
+     *
      * @return the value of the property selection.
      */
     public IndexRange getSelection() {
@@ -269,7 +291,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * The textual content of this TextInputControl.
-     * 
+     *
      * @return the textual content of this TextInputControl.
      */
     public final StringProperty textProperty() {
@@ -280,7 +302,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Gets the value of the property text.
-     * 
+     *
      * @return the value of the property text.
      */
     public String getText() {
@@ -291,11 +313,11 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Sets the value of the property text.
-     * 
+     *
      * @param value
      *            the new text value.
      */
-    public void setText(String value) {
+    public void setText(final String value) {
 
         this.getWrappedControl().setText(value);
     }
@@ -303,12 +325,12 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
 
     /**
-     * Creates a new instance of the {@link TextInputControlWrapper} class.
-     * 
+     * Creates a new instance of the {@code TextInputControlWrapper} class.
+     *
      * @param wrappedControl
      *            the control to wrap.
      */
-    public TextInputControlWrapper(T wrappedControl) {
+    public TextInputControlWrapper(final T wrappedControl) {
 
         super(wrappedControl);
     }
@@ -317,11 +339,11 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Appends a sequence of characters to the content.
-     * 
+     *
      * @param text
      *            the text to append.
      */
-    public void appendText(String text) {
+    public void appendText(final String text) {
 
         this.getWrappedControl().appendText(text);
     }
@@ -367,7 +389,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
     /**
      * Deletes the character that follows the current caret position from the
      * text if there is no selection, or deletes the selection if there is one.
-     * 
+     *
      * @return Deletes the character that follows the current caret position
      *         from the text if there is no selection, or deletes the selection
      *         if there is one. This function returns true if the deletion
@@ -381,7 +403,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
     /**
      * Deletes the character that precedes the current caret position from the
      * text if there is no selection, or deletes the selection if there is one.
-     * 
+     *
      * @return Deletes the character that precedes the current caret position
      *         from the text if there is no selection, or deletes the selection
      *         if there is one. This function returns true if the deletion
@@ -394,24 +416,24 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Removes a range of characters from the content.
-     * 
+     *
      * @param range
      *            the range to delete.
      */
-    public void deleteText(IndexRange range) {
+    public void deleteText(final IndexRange range) {
 
         this.getWrappedControl().deleteText(range);
     }
 
     /**
      * Removes a range of characters from the content.
-     * 
+     *
      * @param start
      *            the start index.
      * @param end
      *            the end index.
      */
-    public void deleteText(int start, int end) {
+    public void deleteText(final int start, final int end) {
 
         this.getWrappedControl().deleteText(start, end);
     }
@@ -445,11 +467,11 @@ public class TextInputControlWrapper<T extends TextInputControl>
     /**
      * This function will extend the selection to include the specified
      * position.
-     * 
+     *
      * @param pos
      *            the position
      */
-    public void extendSelection(int pos) {
+    public void extendSelection(final int pos) {
 
         this.getWrappedControl().extendSelection(pos);
     }
@@ -465,7 +487,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Returns the control's CSS metadata.
-     * 
+     *
      * @return the control's CSS metadata.
      */
     public List<CssMetaData<? extends Styleable, ?>> getControlCssMetaData() {
@@ -475,14 +497,14 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Returns a subset of the text input's content.
-     * 
+     *
      * @param start
      *            the start index.
      * @param end
      *            the end index.
      * @return a subset of the text input's content.
      */
-    public String getText(int start, int end) {
+    public String getText(final int start, final int end) {
 
         return this.getWrappedControl().getText(start, end);
     }
@@ -499,13 +521,13 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Inserts a sequence of characters into the content.
-     * 
+     *
      * @param index
      *            the insertion index.
      * @param text
      *            the text to insert.
      */
-    public void insertText(int index, String text) {
+    public void insertText(final int index, final String text) {
 
         this.getWrappedControl().insertText(index, text);
     }
@@ -531,11 +553,11 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Positions the caret to the position indicated by pos.
-     * 
+     *
      * @param pos
      *            the new caret position.
      */
-    public void positionCaret(int pos) {
+    public void positionCaret(final int pos) {
 
         this.getWrappedControl().positionCaret(pos);
     }
@@ -551,31 +573,31 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Replaces the selection with the given replacement String.
-     * 
+     *
      * @param replacement
      *            the replacement String.
      */
-    public void replaceSelection(String replacement) {
+    public void replaceSelection(final String replacement) {
 
         this.getWrappedControl().replaceSelection(replacement);
     }
 
     /**
      * Replaces a range of characters with the given text.
-     * 
+     *
      * @param range
      *            the range.
      * @param text
      *            the replacement text.
      */
-    public void replaceText(IndexRange range, String text) {
+    public void replaceText(final IndexRange range, final String text) {
 
         this.getWrappedControl().replaceText(range, text);
     }
 
     /**
      * Replaces a range of characters with the given text.
-     * 
+     *
      * @param start
      *            the start index of the range.
      * @param end
@@ -583,7 +605,7 @@ public class TextInputControlWrapper<T extends TextInputControl>
      * @param text
      *            the replacement text.
      */
-    public void replaceText(int start, int end, String text) {
+    public void replaceText(final int start, final int end, final String text) {
 
         this.getWrappedControl().replaceText(start, end, text);
     }
@@ -647,11 +669,11 @@ public class TextInputControlWrapper<T extends TextInputControl>
     /**
      * Positions the caret to the position indicated by pos and extends the
      * selection, if there is one.
-     * 
+     *
      * @param pos
      *            the position.
      */
-    public void selectPositionCaret(int pos) {
+    public void selectPositionCaret(final int pos) {
 
         this.getWrappedControl().selectPositionCaret(pos);
     }
@@ -666,13 +688,13 @@ public class TextInputControlWrapper<T extends TextInputControl>
 
     /**
      * Positions the anchor and caretPosition explicitly.
-     * 
+     *
      * @param anchor
      *            the anchor.
      * @param caretPosition
      *            the caret position.
      */
-    public void selectRange(int anchor, int caretPosition) {
+    public void selectRange(final int anchor, final int caretPosition) {
 
         this.getWrappedControl().selectRange(anchor, caretPosition);
     }

@@ -44,21 +44,20 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.ScrollToEvent;
 import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
 
 /**
- * The {@link ListViewWrapper} class wraps a {@link ListView} in a
- * {@link GridPane} with six surrounding {@link Node Nodes}.
+ * The {@code ListViewWrapper} class provides a {@link ControlWrapper Wrapper}
+ * around a {@link ListView}.
+ * 
+ * @param <T>
+ *            the content type of the {@link ListView}.
  * 
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
- * 
- * @param <T>
- *            the content type of the {@link ListView}.
  */
 public class ListViewWrapper<T>
         extends ControlWrapper<ListView<T>> {
@@ -278,14 +277,16 @@ public class ListViewWrapper<T>
 
 
     /**
-     * Creates a new instance of the {@link ListViewWrapper} class. <br>
-     * </br> Internally, creates a default ListView which will display contents
+     * Creates a new instance of the {@code ListViewWrapper} class.
+     * <p>
+     * Internally, creates a default ListView which will display contents
      * stacked vertically. As no ObservableList is provided in this constructor,
      * an empty ObservableList is created, meaning that it is legal to directly
      * call getItems() if so desired. However, as noted elsewhere, this is not
      * the recommended approach (instead call
      * setItems(javafx.collections.ObservableList)). Refer to the ListView class
      * documentation for details on the default state of other properties.
+     * </p>
      */
     public ListViewWrapper() {
 
@@ -293,7 +294,7 @@ public class ListViewWrapper<T>
     }
 
     /**
-     * Creates a new instance of the {@link ListViewWrapper} class.
+     * Creates a new instance of the {@code ListViewWrapper} class.
      * 
      * Internally, creates a default ListView which will stack the contents
      * retrieved from the provided ObservableList vertically. Attempts to add a
@@ -308,14 +309,12 @@ public class ListViewWrapper<T>
      */
     public ListViewWrapper(final ObservableList<T> items) {
 
-        super(new ListView<>(items));
-
-        this.converterProperty = new SimpleObjectProperty<>();
+        this(items, null);
     }
 
 
     /**
-     * Creates a new instance of the {@link ListViewWrapper} class.
+     * Creates a new instance of the {@code ListViewWrapper} class.
      * 
      * Internally, creates a default ListView which will stack the contents
      * retrieved from the provided ObservableList vertically. Attempts to add a

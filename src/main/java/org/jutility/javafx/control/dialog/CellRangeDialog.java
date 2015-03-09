@@ -1,5 +1,7 @@
 package org.jutility.javafx.control.dialog;
 
+
+// @formatter:off
 /*
  * #%L
  * jutility-javafx
@@ -19,7 +21,7 @@ package org.jutility.javafx.control.dialog;
  * limitations under the License.
  * #L%
  */
-
+// @formatter:on
 
 import javafx.application.Platform;
 import javafx.scene.control.ButtonType;
@@ -33,21 +35,24 @@ import org.jutility.javafx.control.CellRangeGridPane;
 
 
 /**
+ * The {@code CellRangeDialog} provides a {@link Dialog} for the entry of
+ * {@link CellRange CellRanges}.
+ *
  * @author Peter J. Radics
- * @version 0.1
- * @since 0.1
+ * @version 0.1.2
+ * @since 0.1.0
  */
 public class CellRangeDialog
         extends Dialog<CellRange> {
 
-    private GridPane                content;
+    private final GridPane          content;
 
     private final CellRangeGridPane cellRange;
 
 
     /**
-     * Creates a new instance of the {@link CellRangeDialog} class.
-     * 
+     * Creates a new instance of the {@code CellRangeDialog} class.
+     *
      * @param title
      *            the title.
      * @param owner
@@ -57,8 +62,8 @@ public class CellRangeDialog
      * @param initialValue
      *            the initial value.
      */
-    public CellRangeDialog(String title, Window owner, CellRange validRange,
-            CellRange initialValue) {
+    public CellRangeDialog(final String title, final Window owner,
+            final CellRange validRange, final CellRange initialValue) {
 
         super();
         this.initOwner(owner);
@@ -68,7 +73,7 @@ public class CellRangeDialog
         this.content.setHgap(10);
         this.content.setVgap(10);
 
-        this.getDialogPane().setContent(content);
+        this.getDialogPane().setContent(this.content);
 
         this.cellRange = new CellRangeGridPane(validRange, initialValue);
 
@@ -84,7 +89,8 @@ public class CellRangeDialog
             return null;
         });
 
-        this.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        this.getDialogPane().getButtonTypes()
+                .addAll(ButtonType.OK, ButtonType.CANCEL);
 
 
         this.getDialogPane().lookupButton(ButtonType.OK).disableProperty()

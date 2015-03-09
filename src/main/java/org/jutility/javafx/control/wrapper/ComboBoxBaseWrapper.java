@@ -3,7 +3,11 @@ package org.jutility.javafx.control.wrapper;
 
 //@formatter:off
 /*
+<<<<<<< HEAD
 * #%L
+=======
+ * #%L
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
  * * jutility-javafx
  * *
  * %%
@@ -22,7 +26,11 @@ package org.jutility.javafx.control.wrapper;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
+<<<<<<< HEAD
 */
+=======
+ */
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
 //@formatter:on
 
 import javafx.beans.property.BooleanProperty;
@@ -37,19 +45,18 @@ import javafx.scene.layout.GridPane;
 
 
 /**
- * The abstract {@link ComboBoxBaseWrapper} provides base functionality for
+ * The abstract {@code ComboBoxBaseWrapper} provides base functionality for
  * wrapping a {@link ComboBoxBase ComboBox} within a 3x3 {@link GridPane}.
- * 
- * @author Peter J. Radics
- * @version 0.1.2
- * @since 0.1.2
- * 
+ *
  * @param <T>
  *            The type of the value that has been selected or otherwise entered
  *            in to this ComboBox.
  * @param <S>
  *            The concrete type of the ComboBox.
  *
+ * @author Peter J. Radics
+ * @version 0.1.2
+ * @since 0.1.2
  */
 public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
         extends ControlWrapper<S> {
@@ -57,12 +64,12 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
 
     /**
-     * Creates a new instance of the {@link ComboBoxBaseWrapper} class.
-     * 
+     * Creates a new instance of the {@code ComboBoxBaseWrapper} class.
+     *
      * @param wrappedControl
      *            the control to wrap.
      */
-    public ComboBoxBaseWrapper(S wrappedControl) {
+    public ComboBoxBaseWrapper(final S wrappedControl) {
 
         super(wrappedControl);
     }
@@ -72,7 +79,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      * The value of this ComboBox is defined as the selected item if the input
      * is not editable, or if it is editable, the most recent user action:
      * either the value input by the user, or the last selected item.
-     * 
+     *
      * @return the value property.
      */
     public ObjectProperty<T> valueProperty() {
@@ -82,18 +89,18 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property value.
-     * 
+     *
      * @param value
      *            the value of the property value.
      */
-    public final void setValue(T value) {
+    public final void setValue(final T value) {
 
         this.getWrappedControl().setValue(value);
     }
 
     /**
      * Gets the value of the property value.
-     * 
+     *
      * @return the value of the property value.
      */
     public final T getValue() {
@@ -107,7 +114,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      * input is then available via the value property. Note that when the
      * editable property changes, the value property is reset, along with any
      * other relevant state.
-     * 
+     *
      * @return the editable property.
      */
     public BooleanProperty editableProperty() {
@@ -118,18 +125,18 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property editable.
-     * 
+     *
      * @param value
      *            the value of the property editable.
      */
-    public final void setEditable(boolean value) {
+    public final void setEditable(final boolean value) {
 
         this.getWrappedControl().setEditable(value);
     }
 
     /**
      * Gets the value of the property editable.
-     * 
+     *
      * @return the value of the property editable.
      */
     public final boolean isEditable() {
@@ -141,7 +148,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      * Represents the current state of the ComboBox popup, and whether it is
      * currently visible on screen (although it may be hidden behind other
      * windows).
-     * 
+     *
      * @return the showing property.
      */
     public ReadOnlyBooleanProperty showingProperty() {
@@ -151,7 +158,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Gets the value of the property showing.
-     * 
+     *
      * @return the value of the property showing.
      */
     public final boolean isShowing() {
@@ -166,7 +173,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      * will be shown. For example, in most cases prompt text will never be shown
      * when a combo box is non-editable (that is, prompt text is only shown when
      * user input is allowed via text input).
-     * 
+     *
      * @return the promptText property.
      */
     public final StringProperty promptTextProperty() {
@@ -176,7 +183,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Gets the value of the property promptText.
-     * 
+     *
      * @return the value of the property promptText.
      */
     public final String getPromptText() {
@@ -186,11 +193,11 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property promptText.
-     * 
+     *
      * @param value
      *            the value of the property promptText.
      */
-    public final void setPromptText(String value) {
+    public final void setPromptText(final String value) {
 
         this.getWrappedControl().setPromptText(value);
     }
@@ -201,7 +208,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      * different from pressed. Pressed indicates that the mouse has been pressed
      * on a Node and has not yet been released. arm however also takes into
      * account whether the mouse is actually over the ComboBox and pressed.
-     * 
+     *
      * @return the armed property.
      */
     public BooleanProperty armedProperty() {
@@ -211,7 +218,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Gets the value of the property armed.
-     * 
+     *
      * @return the value of the property armed.
      */
     public final boolean isArmed() {
@@ -226,7 +233,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
      * or dialog, or, in the case of editable ComboBoxes, it may be when the
      * user provides their own input (be that via a TextField or some other
      * input mechanism.
-     * 
+     *
      * @return the property onAction.
      */
     public final ObjectProperty<EventHandler<ActionEvent>> onActionProperty() {
@@ -236,18 +243,18 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property onAction.
-     * 
+     *
      * @param value
      *            the value of the property onAction.
      */
-    public final void setOnAction(EventHandler<ActionEvent> value) {
+    public final void setOnAction(final EventHandler<ActionEvent> value) {
 
         this.getWrappedControl().setOnAction(value);
     }
 
     /**
      * Gets the value of the property onAction.
-     * 
+     *
      * @return the value of the property onAction.
      */
     public final EventHandler<ActionEvent> getOnAction() {
@@ -257,7 +264,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Called just prior to the ComboBoxBase popup/display being shown.
-     * 
+     *
      * @return the onShowing property.
      */
     public final ObjectProperty<EventHandler<Event>> onShowingProperty() {
@@ -267,18 +274,18 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property onShowing.
-     * 
+     *
      * @param value
      *            the value of the property onShowing.
      */
-    public final void setOnShowing(EventHandler<Event> value) {
+    public final void setOnShowing(final EventHandler<Event> value) {
 
         this.getWrappedControl().setOnShowing(value);
     }
 
     /**
      * Gets the value of the property onShowing.
-     * 
+     *
      * @return the value of the property onShowing.
      */
     public final EventHandler<Event> getOnShowing() {
@@ -288,7 +295,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Called just after the ComboBoxBase popup/display is shown.
-     * 
+     *
      * @return the onShown property.
      */
     public final ObjectProperty<EventHandler<Event>> onShownProperty() {
@@ -298,18 +305,18 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property onShown.
-     * 
+     *
      * @param value
      *            the value of the property onShown.
      */
-    public final void setOnShown(EventHandler<Event> value) {
+    public final void setOnShown(final EventHandler<Event> value) {
 
         this.getWrappedControl().setOnShown(value);
     }
 
     /**
      * Gets the value of the property onShown.
-     * 
+     *
      * @return the value of the property onShown.
      */
     public final EventHandler<Event> getOnShown() {
@@ -319,7 +326,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Called just prior to the ComboBox popup/display being hidden.
-     * 
+     *
      * @return the onHiding property.
      */
     public final ObjectProperty<EventHandler<Event>> onHidingProperty() {
@@ -329,18 +336,18 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property onHiding.
-     * 
+     *
      * @param value
      *            the value of the property onHiding.
      */
-    public final void setOnHiding(EventHandler<Event> value) {
+    public final void setOnHiding(final EventHandler<Event> value) {
 
         this.getWrappedControl().setOnHiding(value);
     }
 
     /**
      * Gets the value of the property onHiding.
-     * 
+     *
      * @return the value of the property onHiding.
      */
     public final EventHandler<Event> getOnHiding() {
@@ -350,7 +357,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Called just after the ComboBoxBase popup/display has been hidden.
-     * 
+     *
      * @return the onHidden property.
      */
     public final ObjectProperty<EventHandler<Event>> onHiddenProperty() {
@@ -360,18 +367,18 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Sets the value of the property onHidden.
-     * 
+     *
      * @param value
      *            the value of the property onHidden.
      */
-    public final void setOnHidden(EventHandler<Event> value) {
+    public final void setOnHidden(final EventHandler<Event> value) {
 
         this.getWrappedControl().setOnHidden(value);
     }
 
     /**
      * Gets the value of the property onHidden.
-     * 
+     *
      * @return the value of the property onHidden.
      */
     public final EventHandler<Event> getOnHidden() {
@@ -409,7 +416,7 @@ public abstract class ComboBoxBaseWrapper<T, S extends ComboBoxBase<T>>
 
     /**
      * Disarms the ComboBox.
-     * 
+     *
      * @see #arm
      */
     public void disarm() {

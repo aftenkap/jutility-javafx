@@ -1,15 +1,22 @@
 /**
+ * This package provides custom wizards.
+ * 
  * @author Peter J. Radics
- * @version 0.1
- * @since 0.1
+ * @version 0.1.2
+ * @since 0.1.0
+ * @deprecated since 0.1.2 in favor of {@link org.controlsfx.dialog.Wizard}.
  */
 package org.jutility.javafx.control.wizard;
 
+
+//@formatter:off
 /*
- * #%L
- * jutility-javafx
+* #%L
+ * * jutility-javafx
+ * *
  * %%
  * Copyright (C) 2013 - 2014 jutility.org
+ * *
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,4 +30,5 @@ package org.jutility.javafx.control.wizard;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
- */
+*/
+//@formatter:on

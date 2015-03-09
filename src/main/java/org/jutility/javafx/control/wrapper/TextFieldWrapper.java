@@ -3,7 +3,11 @@ package org.jutility.javafx.control.wrapper;
 
 //@formatter:off
 /*
+<<<<<<< HEAD
 * #%L
+=======
+ * #%L
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
  * * jutility-javafx
  * *
  * %%
@@ -22,7 +26,11 @@ package org.jutility.javafx.control.wrapper;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * #L%
+<<<<<<< HEAD
 */
+=======
+ */
+>>>>>>> 928a61bab212b1149b91f977a88fc188d2e980ff
 //@formatter:on
 
 
@@ -32,7 +40,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -40,12 +47,12 @@ import javafx.scene.layout.Priority;
 
 
 /**
- * The {@link TextFieldWrapper} class wraps a {@link TextField} in a
- * {@link GridPane} with six surrounding {@link Node Nodes}.
- * 
+ * The {@code TextFieldWrapper} provides a {@link ControlWrapper Wrapper} around
+ * a {@link TextField}.
+ *
  * @author Peter J. Radics
  * @version 0.1.2
- * @since 0.0.1
+ * @since 0.1.0
  */
 @DefaultProperty(value = "text")
 public class TextFieldWrapper
@@ -56,7 +63,7 @@ public class TextFieldWrapper
     /**
      * Specifies how the text should be aligned when there is empty space within
      * the {@link TextField}.
-     * 
+     *
      * @see TextField#getAlignment()
      * @see TextField#setAlignment(Pos)
      * @return the text alignment property.
@@ -69,13 +76,13 @@ public class TextFieldWrapper
     /**
      * The action handler associated with this text field, or null if no action
      * handler is assigned.
-     * 
+     *
      * The action handler associated with this text field, or null if no action
      * handler is assigned. The action handler is normally called when the user
      * types the ENTER key.
-     * 
+     *
      * @see TextField#getOnAction() @see TextField#setOnAction(EventHandler)
-     * 
+     *
      * @return the on action property.
      */
     public final ObjectProperty<EventHandler<ActionEvent>> onActionProperty() {
@@ -85,7 +92,7 @@ public class TextFieldWrapper
 
     /**
      * The preferred number of text columns.
-     * 
+     *
      * @return the preferred column count property.
      * @see TextField#getPrefColumnCount()
      * @see TextField#setPrefColumnCount(int)
@@ -99,7 +106,7 @@ public class TextFieldWrapper
 
 
     /**
-     * Creates a new instance of the {@link TextFieldWrapper} class.
+     * Creates a new instance of the {@code TextFieldWrapper} class.
      */
     public TextFieldWrapper() {
 
@@ -108,8 +115,8 @@ public class TextFieldWrapper
     }
 
     /**
-     * Creates a new instance of the {@link TextFieldWrapper} class.
-     * 
+     * Creates a new instance of the {@code TextFieldWrapper} class.
+     *
      * @param text
      *            the initial text content of the {@link TextField}.
      */
@@ -125,7 +132,7 @@ public class TextFieldWrapper
     /**
      * Returns the character sequence backing the text field's content.
      * prefColumnCountProperty
-     * 
+     *
      * @return the character sequence backing the text field's content.
      *         prefColumnCountProperty
      */
@@ -137,7 +144,7 @@ public class TextFieldWrapper
 
     /**
      * Gets the value of the property prefColumnCount.
-     * 
+     *
      * @return The preferred number of text columns. This is used for
      *         calculating the TextField's preferred width.
      */
@@ -149,12 +156,12 @@ public class TextFieldWrapper
 
     /**
      * Sets the value of the property prefColumnCount.
-     * 
+     *
      * @param value
      *            The preferred number of text columns. This is used for
      *            calculating the TextField's preferred width.
      */
-    public final void setPrefColumnCount(int value) {
+    public final void setPrefColumnCount(final int value) {
 
         this.getWrappedControl().setPrefColumnCount(value);
     }
@@ -163,7 +170,7 @@ public class TextFieldWrapper
 
     /**
      * Gets the value of the property onAction.
-     * 
+     *
      * @return The action handler associated with this text field, or null if no
      *         action handler is assigned. The action handler is normally called
      *         when the user types the ENTER key.
@@ -175,20 +182,20 @@ public class TextFieldWrapper
 
     /**
      * Sets the value of the property onAction.
-     * 
+     *
      * @param value
      *            The action handler associated with this text field, or null if
      *            no action handler is assigned. The action handler is normally
      *            called when the user types the ENTER key.
      */
-    public final void setOnAction(EventHandler<ActionEvent> value) {
+    public final void setOnAction(final EventHandler<ActionEvent> value) {
 
         this.getWrappedControl().setOnAction(value);
     }
 
     /**
      * Gets the value of the property alignment.
-     * 
+     *
      * @return Specifies how the text should be aligned when there is empty
      *         space within the TextField.
      */
@@ -199,12 +206,12 @@ public class TextFieldWrapper
 
     /**
      * Sets the value of the property alignment.
-     * 
+     *
      * @param value
      *            Specifies how the text should be aligned when there is empty
      *            space within the TextField.
      */
-    public final void setTextAlignment(Pos value) {
+    public final void setTextAlignment(final Pos value) {
 
         this.getWrappedControl().setAlignment(value);
     }

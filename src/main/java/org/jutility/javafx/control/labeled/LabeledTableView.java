@@ -31,25 +31,25 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 import javafx.util.StringConverter;
 
-import org.jutility.javafx.control.wrapper.ListViewWrapper;
+import org.jutility.javafx.control.wrapper.TableViewWrapper;
 
 
 /**
- * The {@code LabeledListView} class provides a {@link ListView} with a freely
+ * The {@code LabeledTableView} class provides a {@link TableView} with a freely
  * positionable {@link Label}.
  *
  * @param <T>
- *            the content type of the {@link ListView}.
+ *            the content type of the {@link TableView}.
  *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.2
  */
-public class LabeledListView<T>
-        extends ListViewWrapper<T>
+public class LabeledTableView<T>
+        extends TableViewWrapper<T>
         implements ILabeledControl {
 
     private final ObjectProperty<Label> labelProperty;
@@ -94,73 +94,73 @@ public class LabeledListView<T>
     }
 
     /**
-     * Creates a new instance of the {@code LabeledListView} class with the
+     * Creates a new instance of the {@code LabeledTableView} class with the
      * provided items.
      *
      * @param items
-     *            the initial items of the {@link ListView}.
+     *            the initial items of the {@link TableView}.
      */
-    public LabeledListView(final ObservableList<T> items) {
+    public LabeledTableView(final ObservableList<T> items) {
 
         this(items, null, null);
     }
 
     /**
-     * Creates a new instance of the {@code LabeledListView} class with the
+     * Creates a new instance of the {@code LabeledTableView} class with the
      * provided label text, positioning the {@link Label} above the
-     * {@link ListView}.
+     * {@link TableView}.
      *
      * @param labelText
      *            the text of the {@link Label}.
      */
-    public LabeledListView(final String labelText) {
+    public LabeledTableView(final String labelText) {
 
         this(labelText, Pos.TOP_CENTER);
     }
 
     /**
-     * Creates a new instance of the {@code LabeledListView} class with the
+     * Creates a new instance of the {@code LabeledTableView} class with the
      * provided items and label text, positioning the {@link Label} above the
-     * {@link ListView}.
+     * {@link TableView}.
      *
      * @param items
-     *            the initial items of the {@link ListView}.
+     *            the initial items of the {@link TableView}.
      * @param labelText
      *            the text of the {@link Label}.
      */
-    public LabeledListView(final ObservableList<T> items, final String labelText) {
+    public LabeledTableView(final ObservableList<T> items, final String labelText) {
 
         this(items, labelText, null);
     }
 
     /**
-     * Creates a new instance of the {@code LabeledListView} class with the
+     * Creates a new instance of the {@code LabeledTableView} class with the
      * provided labelProperty text, positioning the {@link Label} relative to
-     * the {@link ListView} according to the provided {@link Pos Position}.
+     * the {@link TableView} according to the provided {@link Pos Position}.
      *
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
      *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledListView(final String labelText, final Pos position) {
+    public LabeledTableView(final String labelText, final Pos position) {
 
         this(null, labelText, position);
     }
 
     /**
-     * Creates a new instance of the {@code LabeledListView} class with the
+     * Creates a new instance of the {@code LabeledTableView} class with the
      * provided labelProperty text, positioning the {@link Label} relative to
-     * the {@link ListView} according to the provided {@link Pos Position}.
+     * the {@link TableView} according to the provided {@link Pos Position}.
      *
      * @param items
-     *            the initial items of the {@link ListView}.
+     *            the initial items of the {@link TableView}.
      * @param labelText
      *            the text of the {@link Label}.
      * @param position
      *            the desired {@link Pos Position} of the {@link Label}.
      */
-    public LabeledListView(final ObservableList<T> items,
+    public LabeledTableView(final ObservableList<T> items,
             final String labelText, final Pos position) {
 
         this(items, labelText, position, null);
@@ -169,20 +169,20 @@ public class LabeledListView<T>
 
 
     /**
-     * Creates a new instance of the {@code LabeledListView} class with the
+     * Creates a new instance of the {@code LabeledTableView} class with the
      * provided items and {@link Label}, positioning the {@link Label} relative
-     * to the {@link ListView} according to the provided {@link Pos Position}.
+     * to the {@link TableView} according to the provided {@link Pos Position}.
      *
      * @param items
-     *            the initial items of the {@link ListView}.
+     *            the initial items of the {@link TableView}.
      * @param labelText
      *            the text for the {@link Label}.
      * @param position
      *            the desired {@link Pos Position} of the {@link Label}.
      * @param converter
-     *            the string converter of the {@link ListView}.
+     *            the string converter of the {@link TableView}.
      */
-    public LabeledListView(final ObservableList<T> items,
+    public LabeledTableView(final ObservableList<T> items,
             final String labelText, final Pos position,
             final StringConverter<T> converter) {
 
