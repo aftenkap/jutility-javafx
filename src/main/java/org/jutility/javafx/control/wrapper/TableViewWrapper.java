@@ -297,7 +297,8 @@ public class TableViewWrapper<T>
      * which items have been selected by the user. Note that it has a generic
      * type that must match the type of the TableView itself.
      *
-     * @see TableViewWrapper#getSelectionModel()
+     * @see TableViewWrapper#getTableSelectionModel()
+     * @see TableViewWrapper#setTableSelectionModel(javafx.scene.control.TableView.TableViewSelectionModel)
      * @return the selection model property.
      */
     public final ObjectProperty<TableView.TableViewSelectionModel<T>> selectionModelProperty() {
@@ -311,7 +312,7 @@ public class TableViewWrapper<T>
      * @param value
      *            the value of the selection model property.
      */
-    public final void setSelectionModel(
+    public final void setTableSelectionModel(
             final TableView.TableViewSelectionModel<T> value) {
 
         this.getWrappedControl().setSelectionModel(value);
@@ -322,7 +323,7 @@ public class TableViewWrapper<T>
      *
      * @return the value of the selection model property.
      */
-    public final TableView.TableViewSelectionModel<T> getSelectionModel() {
+    public final TableView.TableViewSelectionModel<T> getTableSelectionModel() {
 
         return this.getWrappedControl().getSelectionModel();
     }
@@ -333,7 +334,8 @@ public class TableViewWrapper<T>
      * TableView. Under almost all circumstances leaving this as the default
      * focus model will suffice.
      *
-     * @see TableViewWrapper#getFocusModel()
+     * @see TableViewWrapper#getTableFocusModel()
+     * @see TableViewWrapper#setTableFocusModel(javafx.scene.control.TableView.TableViewFocusModel)
      * @return the focus model property.
      */
     public final ObjectProperty<TableView.TableViewFocusModel<T>> focusModelProperty() {
@@ -347,7 +349,8 @@ public class TableViewWrapper<T>
      * @param value
      *            the value of the focus model property.
      */
-    public final void setFocusModel(final TableView.TableViewFocusModel<T> value) {
+    public final void setTableFocusModel(
+            final TableView.TableViewFocusModel<T> value) {
 
         this.getWrappedControl().setFocusModel(value);
     }
@@ -357,7 +360,7 @@ public class TableViewWrapper<T>
      *
      * @return the value of the focus model property.
      */
-    public final TableView.TableViewFocusModel<T> getFocusModel() {
+    public final TableView.TableViewFocusModel<T> getTableFocusModel() {
 
         return this.getWrappedControl().getFocusModel();
     }
