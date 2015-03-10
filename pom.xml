@@ -40,12 +40,12 @@
 
   <distributionManagement>
     <repository>
-      <id>archiva</id>
+      <id>archiva-releases</id>
       <name>Internal Releases</name>
       <url>https://vtcgit.com:8443/archiva/repository/internal/</url>
     </repository>
     <snapshotRepository>
-      <id>archiva</id>
+      <id>archiva-snapshots</id>
       <name>Internal Snapshots</name>
       <url>https://vtcgit.com:8443/archiva/repository/snapshots/</url>
     </snapshotRepository>
