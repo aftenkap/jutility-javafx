@@ -23,6 +23,33 @@
 			<distribution>manual</distribution>
 		</license>
 	</licenses>
+	
+  <scm>
+		<url>scm:git:git@github.com:aftenkap/jutility-javafx.git</url>
+		<connection>scm:git:git@github.com:aftenkap/jutility-javafx.git</connection>
+		<developerConnection>scm:git:git@github.com:aftenkap/jutility-javafx.git
+		</developerConnection>
+	  <tag>master</tag>
+  </scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/aftenkap/jutility-javafx/issues</url>
+	</issueManagement>
+
+
+  <distributionManagement>
+    <repository>
+      <id>archiva</id>
+      <name>Internal Releases</name>
+      <url>https://vtcgit.com:8443/archiva/repository/internal/</url>
+    </repository>
+    <snapshotRepository>
+      <id>archiva</id>
+      <name>Internal Snapshots</name>
+      <url>https://vtcgit.com:8443/archiva/repository/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
