@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.jutility</groupId>
 		<artifactId>jutility</artifactId>
-		<version>0.1.3</version>
+		<version>0.2.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
@@ -29,7 +29,7 @@
 		<connection>scm:git:git@github.com:aftenkap/jutility-javafx.git</connection>
 		<developerConnection>scm:git:git@github.com:aftenkap/jutility-javafx.git
 		</developerConnection>
-	  <tag>jutility-0.1.3</tag>
+	  <tag>master</tag>
   </scm>
 
 	<issueManagement>
@@ -54,7 +54,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<jutility-version>0.1.3</jutility-version>
+		<jutility-version>0.2.0-SNAPSHOT</jutility-version>
 		<!-- Java Version -->
 		<java.version>1.8</java.version>
 
