@@ -1,6 +1,5 @@
 package org.jutility.javafx.control.dialog;
 
-
 //@formatter:off
 /*
  * #%L
@@ -23,7 +22,6 @@ package org.jutility.javafx.control.dialog;
  */
 //@formatter:on
 
-
 import java.net.URI;
 
 import javafx.application.Platform;
@@ -36,11 +34,8 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Window;
 
 import org.controlsfx.validation.Validator;
-import org.controlsfx.validation.decoration.GraphicValidationDecoration;
 import org.jutility.javafx.control.validation.ValidationSupport;
 import org.jutility.javafx.control.validation.ValidationUtils;
-
-
 
 /**
  * The {@code UriDialog} provides a validated {@link Dialog} for the entry of
@@ -50,93 +45,87 @@ import org.jutility.javafx.control.validation.ValidationUtils;
  * @version 0.1.2
  * @since 0.1.0
  */
-public class UriDialog
-        extends Dialog<URI> {
+public class UriDialog extends Dialog<URI> {
 
-    private final GridPane          content;
+	private final GridPane content;
 
-    private final TextField         uriTF;
+	private final TextField uriTF;
 
-    private final ValidationSupport validationSupport;
+	private final ValidationSupport validationSupport;
 
-    /**
-     * Creates a new instance of the {@link UriDialog} class.
-     *
-     * @param owner
-     *            the owner of the dialog.
-     */
-    public UriDialog(final Window owner) {
+	/**
+	 * Creates a new instance of the {@link UriDialog} class.
+	 *
+	 * @param owner
+	 *            the owner of the dialog.
+	 */
+	public UriDialog(final Window owner) {
 
-        this(owner, "Enter URI");
-    }
+		this(owner, "Enter URI");
+	}
 
-    /**
-     * Creates a new instance of the {@link UriDialog} class.
-     *
-     * @param owner
-     *            the owner of the dialog.
-     * @param title
-     *            the title of the dialog.
-     */
-    public UriDialog(final Window owner, final String title) {
+	/**
+	 * Creates a new instance of the {@link UriDialog} class.
+	 *
+	 * @param owner
+	 *            the owner of the dialog.
+	 * @param title
+	 *            the title of the dialog.
+	 */
+	public UriDialog(final Window owner, final String title) {
 
-        super();
-        this.initOwner(owner);
-        this.setTitle(title);
+		super();
+		this.initOwner(owner);
+		this.setTitle(title);
 
-        this.content = new GridPane();
+		this.content = new GridPane();
 
-        this.content.setHgap(10);
-        this.content.setVgap(10);
+		this.content.setHgap(10);
+		this.content.setVgap(10);
 
-        this.getDialogPane().setContent(this.content);
+		this.getDialogPane().setContent(this.content);
 
+		this.validationSupport = new ValidationSupport();
 
-        this.validationSupport = new ValidationSupport();
+		this.uriTF = new TextField();
+		this.uriTF.setPromptText("Enter URI");
+		GridPane.setHgrow(this.uriTF, Priority.ALWAYS);
 
-        this.uriTF = new TextField();
-        this.uriTF.setPromptText("Enter URI");
-        GridPane.setHgrow(this.uriTF, Priority.ALWAYS);
+		final Label uriLabel = new Label("URI");
+		uriLabel.setLabelFor(this.uriTF);
 
-        final Label uriLabel = new Label("URI");
-        uriLabel.setLabelFor(this.uriTF);
+		this.content.add(uriLabel, 0, 0);
+		this.content.add(this.uriTF, 1, 0);
 
-        this.content.add(uriLabel, 0, 0);
-        this.content.add(this.uriTF, 1, 0);
+		ValidationSupport.setRequired(this.uriTF, true);
 
-        ValidationSupport.setRequired(this.uriTF, true);
+		this.validationSupport.registerValidator(this.uriTF,
+				Validator.createEmptyValidator("URI cannot be empty!"));
 
-        this.validationSupport.registerValidator(this.uriTF,
-                Validator.createEmptyValidator("URI cannot be empty!"));
+		this.validationSupport.registerValidator(this.uriTF,
+				ValidationUtils.createURIFormatValidator("Invalid URI!"));
 
-        this.validationSupport.registerValidator(this.uriTF,
-                ValidationUtils.createURIFormatValidator("Invalid URI!"));
+		this.validationSupport.setErrorDecorationEnabled(true);
 
+		this.setResultConverter(param -> {
 
-        this.validationSupport
-                .setValidationDecorator(new GraphicValidationDecoration());
+			if (param == ButtonType.OK) {
 
-        this.setResultConverter(param -> {
+				return URI.create(this.uriTF.getText());
+			}
 
-            if (param == ButtonType.OK) {
+			return null;
+		});
 
-                return URI.create(this.uriTF.getText());
-            }
+		this.getDialogPane().getButtonTypes()
+				.addAll(ButtonType.OK, ButtonType.CANCEL);
 
-            return null;
-        });
+		this.getDialogPane().lookupButton(ButtonType.OK).disableProperty()
+				.bind(this.validationSupport.invalidProperty());
 
-        this.getDialogPane().getButtonTypes()
-                .addAll(ButtonType.OK, ButtonType.CANCEL);
+		Platform.runLater(() -> {
 
-        this.getDialogPane().lookupButton(ButtonType.OK).disableProperty()
-                .bind(this.validationSupport.invalidProperty());
-
-        this.validationSupport.revalidate();
-
-        Platform.runLater(() -> {
-
-            this.uriTF.requestFocus();
-        });
-    }
+			this.uriTF.requestFocus();
+		});
+	}
 }
