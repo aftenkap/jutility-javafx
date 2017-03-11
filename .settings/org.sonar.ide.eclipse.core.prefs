@@ -1,5 +1,0 @@
-eclipse.preferences.version=1
-extraProperties=sonar.jdbc.username\=sonarqube\r\nsonar.host.url\=http\://localhost\:9000\r\nsonar.jdbc.password\=$0n4rqub3$\r\nsonar.jdbc.url\=jdbc\:mysql\://raziel.cs.vt.edu\:3306/sonarqube?useUnicode\=true&characterEncoding\=utf8
-projectKey=org.jutility\:jutility-javafx
-serverUrl=http\://localhost\:9000
-version=2
