@@ -1,120 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>jutility-javafx</artifactId>
-	<packaging>jar</packaging>
+    <artifactId>jutility-javafx</artifactId>
+    <packaging>jar</packaging>
 
-	<name>jutility-javafx</name>
-	<description>The jutility-javafx library provides JavaFX 8 Controls and other utilities.</description>
-	<url>http://maven.apache.org</url>
+    <name>jutility-javafx</name>
+    <description>The jutility-javafx library provides JavaFX 8 Controls and
+        other utilities.
+    </description>
 
-	<parent>
-		<groupId>org.jutility</groupId>
-		<artifactId>jutility</artifactId>
-		<version>0.2.0-SNAPSHOT</version>
-		<relativePath>../</relativePath>
-	</parent>
+    <parent>
+        <groupId>org.jutility</groupId>
+        <artifactId>jutility</artifactId>
+        <version>0.2.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
 
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>manual</distribution>
-		</license>
-	</licenses>
-	
-  <scm>
-		<url>scm:git:git@github.com:aftenkap/jutility-javafx.git</url>
-		<connection>scm:git:git@github.com:aftenkap/jutility-javafx.git</connection>
-		<developerConnection>scm:git:git@github.com:aftenkap/jutility-javafx.git
-		</developerConnection>
-	  <tag>master</tag>
-  </scm>
+    <scm>
+        <url>scm:git:git@github.com:aftenkap/jutility-javafx.git</url>
+        <connection>scm:git:git@github.com:aftenkap/jutility-javafx.git
+        </connection>
+        <developerConnection>scm:git:git@github.com:aftenkap/jutility-javafx.git
+        </developerConnection>
+        <tag>master</tag>
+    </scm>
 
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/aftenkap/jutility-javafx/issues</url>
-	</issueManagement>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/aftenkap/jutility-javafx/issues</url>
+    </issueManagement>
 
-
-  <distributionManagement>
-    <repository>
-      <id>archiva-releases</id>
-      <name>Internal Releases</name>
-      <url>https://vtcgit.com:8443/archiva/repository/internal/</url>
-    </repository>
-    <snapshotRepository>
-      <id>archiva-snapshots</id>
-      <name>Internal Snapshots</name>
-      <url>https://vtcgit.com:8443/archiva/repository/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<jutility-version>0.2.0-SNAPSHOT</jutility-version>
-		<!-- Java Version -->
-		<java.version>1.8</java.version>
-
-		<!-- ControlsFX -->
-		<org.controlsfx.version>8.20.8</org.controlsfx.version>
-	</properties>
+    <properties>
+        <!-- ControlsFX -->
+        <org.controlsfx.version>8.40.12</org.controlsfx.version>
+    </properties>
 
 
-	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<testSourceDirectory>src/test/java</testSourceDirectory>
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
 
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.1</version>
-			</plugin>
-		</plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <outputDirectory>doc/</outputDirectory>
+                    <show>protected</show>
+                    <detectLinks>true</detectLinks>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
-	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.1</version>
-				<configuration>
-					<outputDirectory>doc/</outputDirectory>
-					<show>protected</show>
-					<detectLinks>true</detectLinks>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
+    <dependencies>
 
-	<dependencies>
+        <!-- jutility-common -->
+        <dependency>
+            <groupId>org.jutility</groupId>
+            <artifactId>jutility-common</artifactId>
+            <version>${org.jutility.version}</version>
+        </dependency>
 
-		<!-- jutility-common -->
-		<dependency>
-			<groupId>org.jutility</groupId>
-			<artifactId>jutility-common</artifactId>
-			<version>${jutility-version}</version>
-		</dependency>
+        <!-- ControlsFX -->
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>${org.controlsfx.version}</version>
+        </dependency>
 
-		<!-- ControlsFX -->
-		<dependency>
-			<groupId>org.controlsfx</groupId>
-			<artifactId>controlsfx</artifactId>
-			<version>${org.controlsfx.version}</version>
-		</dependency>
-
-	</dependencies>
+    </dependencies>
 
 </project>
