@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 /**
  * The {@code XmlColorTypeAdapter} class provides an adapter for XML
  * serialization of {@link Color Colors}.
- * 
+ *
  * @author Peter J. Radics
  * @version 0.1.2
  * @since 0.1.0
@@ -43,20 +43,13 @@ public class XmlColorTypeAdapter
     public String marshal(Color color)
             throws Exception {
 
-        if (color != null) {
-            return color.toString();
-        }
-        return null;
+        return color != null ? color.toString() : null;
     }
 
     @Override
     public Color unmarshal(String serializedColor)
             throws Exception {
 
-        if (serializedColor != null) {
-            Color color = Color.web(serializedColor);
-            return color;
-        }
-        return null;
+        return serializedColor != null ? Color.web(serializedColor) : null;
     }
 }

@@ -46,14 +46,14 @@ public interface ILabeledControl {
      * 
      * @return the label property.
      */
-    public abstract ObjectProperty<Label> labelProperty();
+    ObjectProperty<Label> labelProperty();
 
     /**
      * Returns the {@link Label}.
      * 
      * @return the {@link Label}.
      */
-    public abstract Label getLabel();
+    Label getLabel();
 
     /**
      * Sets the {@link Label}.
@@ -61,21 +61,21 @@ public interface ILabeledControl {
      * @param label
      *            the {@link Label}.
      */
-    public abstract void setLabel(final Label label);
+    void setLabel(final Label label);
 
     /**
      * Returns the label {@link Pos Position} property.
      * 
      * @return the label {@link Pos Position} property.
      */
-    public abstract ObjectProperty<Pos> labelPositionProperty();
+    ObjectProperty<Pos> labelPositionProperty();
 
     /**
      * Returns the {@link Pos Position} of the {@link Label}.
      * 
      * @return the {@link Pos Position} of the {@link Label}.
      */
-    public abstract Pos getLabelPosition();
+    Pos getLabelPosition();
 
     /**
      * Sets the {@link Pos Position} of the {@link Label}.
@@ -83,5 +83,5 @@ public interface ILabeledControl {
      * @param labelPosition
      *            the {@link Pos Position} of the {@link Label}.
      */
-    public abstract void setLabelPosition(final Pos labelPosition);
+    void setLabelPosition(final Pos labelPosition);
 }

@@ -120,10 +120,7 @@ public class ValidationGroup {
         this.subValidators.put(node, validationSupport);
 
         validationSupport.invalidProperty().addListener(
-                new WeakInvalidationListener(observable -> {
-
-                    this.validate();
-                }));
+                new WeakInvalidationListener(observable -> this.validate()));
 
         return true;
     }
@@ -144,10 +141,7 @@ public class ValidationGroup {
         this.subGroups.put(node, validationGroup);
 
         validationGroup.invalidProperty().addListener(
-                new WeakInvalidationListener(observable -> {
-
-                    this.validate();
-                }));
+                new WeakInvalidationListener(observable -> this.validate()));
 
         return true;
     }

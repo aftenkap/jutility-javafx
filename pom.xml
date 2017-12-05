@@ -35,7 +35,7 @@
 
     <properties>
         <!-- ControlsFX -->
-        <org.controlsfx.version>8.40.12</org.controlsfx.version>
+        <org.controlsfx.version>8.40.14</org.controlsfx.version>
     </properties>
 
 

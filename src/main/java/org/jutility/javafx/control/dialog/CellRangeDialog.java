@@ -96,10 +96,7 @@ public class CellRangeDialog
         this.getDialogPane().lookupButton(ButtonType.OK).disableProperty()
                 .bind(this.cellRange.invalidProperty());
 
-        Platform.runLater(() -> {
-
-            this.cellRange.requestFocus();
-        });
+        Platform.runLater(this.cellRange::requestFocus);
 
     }
 }

@@ -48,7 +48,7 @@ public interface IConfigurableStringConverter<T> {
      *
      * @return the configuration property.
      */
-    public abstract ObjectProperty<? extends IStringConverterConfiguration> configuration();
+    ObjectProperty<? extends IStringConverterConfiguration> configuration();
 
     /**
      * Sets the configuration of the string converter.
@@ -56,12 +56,12 @@ public interface IConfigurableStringConverter<T> {
      * @param configuration
      *            the configuration.
      */
-    public abstract void configure(final IStringConverterConfiguration configuration);
+    void configure(final IStringConverterConfiguration configuration);
 
     /**
      * Returns the configuration of the string converter.
      *
      * @return the configuration.
      */
-    public abstract IStringConverterConfiguration getConfiguration();
+    IStringConverterConfiguration getConfiguration();
 }

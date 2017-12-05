@@ -281,10 +281,9 @@ public class ErrorIcon
         stops.add(new Stop(0.5f, Color.web("#181818")));
         // #3a3a3a 100%);
         stops.add(new Stop(1.0f, Color.web("#3a3a3a")));
-        final LinearGradient blackIconBackground = new LinearGradient(0.271,
-                0.065, 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
 
-        return blackIconBackground;
+        return new LinearGradient(0.271,
+                0.065, 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
     }
 
     private LinearGradient whiteBackground() {
@@ -296,10 +295,9 @@ public class ErrorIcon
         stops.add(new Stop(0.5f, Color.web("#ebebeb")));
         // #ffffff 100%);
         stops.add(new Stop(1.0f, Color.web("#ffffff")));
-        final LinearGradient blackIconBackground = new LinearGradient(0.271,
-                0.065, 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
 
-        return blackIconBackground;
+        return new LinearGradient(0.271,
+                0.065, 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
     }
 
 
@@ -312,10 +310,9 @@ public class ErrorIcon
         stops.add(new Stop(0.5f, Color.web("#b70b0b")));
         // #d96868 100%)
         stops.add(new Stop(1.0f, Color.web("#d96868")));
-        final LinearGradient redIconBackground = new LinearGradient(0.271,
-                0.065, 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
 
-        return redIconBackground;
+        return new LinearGradient(0.271,
+                0.065, 0.7735, 0.91, true, CycleMethod.NO_CYCLE, stops);
     }
 
 

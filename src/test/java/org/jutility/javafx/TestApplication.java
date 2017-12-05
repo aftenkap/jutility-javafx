@@ -54,7 +54,7 @@ import org.jutility.javafx.control.ListViewWithSearchPanel;
 public class TestApplication
         extends Application {
 
-    private String title = "Test Application";
+    private final String title = "Test Application";
 
     private Stage  stage;
     private Scene  mainScene;

@@ -47,7 +47,7 @@ import org.jutility.common.datatype.table.ITable;
  * {@link ITable Table}.
  *
  * @param <T>
- *            the content type of the {@link ITable Table}.
+ *         the content type of the {@link ITable Table}.
  *
  * @author Peter J. Radics
  * @version 0.1.2
@@ -64,10 +64,10 @@ public class TableDataView<T>
     /**
      * Returns the {@link ITable Table} property.
      *
+     * @return the {@link ITable Table} property.
+     *
      * @see TableDataView#getTable()
      * @see TableDataView#setTable(ITable)
-     *
-     * @return the {@link ITable Table} property.
      */
     public ObjectProperty<ITable<T>> tableProperty() {
 
@@ -88,7 +88,7 @@ public class TableDataView<T>
      * Sets the value of the {@link ITable Table} property.
      *
      * @param value
-     *            the value of the {@link ITable Table} property.
+     *         the value of the {@link ITable Table} property.
      */
     public void setTable(final ITable<T> value) {
 
@@ -98,10 +98,10 @@ public class TableDataView<T>
     /**
      * Returns the {@link StringConverter} property.
      *
+     * @return the {@link StringConverter} property.
+     *
      * @see TableDataView#getConverter()
      * @see TableDataView#setConverter(StringConverter)
-     *
-     * @return the {@link StringConverter} property.
      */
     public ObjectProperty<StringConverter<T>> converterProperty() {
 
@@ -122,7 +122,7 @@ public class TableDataView<T>
      * Sets the value of the {@link StringConverter Converter} property.
      *
      * @param value
-     *            the value of the {@link StringConverter Converter} property.
+     *         the value of the {@link StringConverter Converter} property.
      */
     public void setConverter(final StringConverter<T> value) {
 
@@ -142,7 +142,7 @@ public class TableDataView<T>
      * {@link ITable Table} as data source.
      *
      * @param table
-     *            the {@link ITable Table} data source.
+     *         the {@link ITable Table} data source.
      */
     public TableDataView(final ITable<T> table) {
 
@@ -155,9 +155,9 @@ public class TableDataView<T>
      * {@link StringConverter}.
      *
      * @param table
-     *            the {@link ITable Table} data source.
+     *         the {@link ITable Table} data source.
      * @param converter
-     *            the initial {@link StringConverter}.
+     *         the initial {@link StringConverter}.
      */
     public TableDataView(final ITable<T> table,
             final StringConverter<T> converter) {
@@ -170,34 +170,35 @@ public class TableDataView<T>
 
         this.tableCellFactory = new TableCellFactory<>(converter);
 
-        this.converterProperty.bindBidirectional(this.tableCellFactory
-                .converterProperty());
+        this.converterProperty.bindBidirectional(
+                this.tableCellFactory.converterProperty());
 
 
-        this.tableProperty
-                .addListener((observable, oldValue, newValue) -> {
+        this.tableProperty.addListener((observable, oldValue, newValue) -> {
 
-                    this.getItems().clear();
-                    this.getColumns().clear();
+            this.getItems()
+                    .clear();
+            this.getColumns()
+                    .clear();
 
-                    if (newValue != null) {
+            if (newValue != null) {
 
-                        this.setItems(FXCollections
-                                .observableArrayList(newValue.getRows()));
+                this.setItems(
+                        FXCollections.observableArrayList(newValue.getRows()));
 
 
-                        for (int i = 0; i < newValue.columns(); i++) {
+                for (int i = 0; i < newValue.columns(); i++) {
 
-                            final TableColumn<List<T>, T> column = new TableColumn<>(
-                                    "" + i);
-                            column.setCellValueFactory(new TableCellValueFactory<T>(
-                                    i));
-                            column.setCellFactory(this.tableCellFactory);
-                            this.getColumns().add(column);
-                        }
-                    }
+                    final TableColumn<List<T>, T> column = new TableColumn<>(
+                            "" + i);
+                    column.setCellValueFactory(new TableCellValueFactory<>(i));
+                    column.setCellFactory(this.tableCellFactory);
+                    this.getColumns()
+                            .add(column);
+                }
+            }
 
-                });
+        });
 
         if (table != null) {
 
@@ -210,7 +211,7 @@ public class TableDataView<T>
      * cells of a {@link ITable Table}.
      *
      * @param <T>
-     *            the content type of the {@link ITable Table}.
+     *         the content type of the {@link ITable Table}.
      *
      * @author Peter J. Radics
      * @version 0.1.2
@@ -226,7 +227,7 @@ public class TableDataView<T>
          * Creates a new instance of the {@code TableCellValueFactory} class.
          *
          * @param columnIndex
-         *            the column index of the cell.
+         *         the column index of the cell.
          */
         public TableCellValueFactory(final int columnIndex) {
 
@@ -245,19 +246,22 @@ public class TableDataView<T>
         }
     }
 
+
+
     /**
      * The {@code TableCellFactory} class provides a CellFactory for cells of a
      * {@link ITable Table}.
      *
      * @param <T>
-     *            the content type of the {@link ITable Table}.
+     *         the content type of the {@link ITable Table}.
      *
      * @author Peter J. Radics
      * @version 0.1.2
      * @since 0.1.0
      */
     public static class TableCellFactory<T>
-            implements Callback<TableColumn<List<T>, T>, TableCell<List<T>, T>> {
+            implements
+            Callback<TableColumn<List<T>, T>, TableCell<List<T>, T>> {
 
 
         private final ObjectProperty<StringConverter<T>> converterProperty;
@@ -287,8 +291,7 @@ public class TableDataView<T>
          * Sets the value of the {@link StringConverter Converter} property.
          *
          * @param value
-         *            the value of the {@link StringConverter Converter}
-         *            property.
+         *         the value of the {@link StringConverter Converter} property.
          */
         public void setConverter(final StringConverter<T> value) {
 
@@ -308,7 +311,7 @@ public class TableDataView<T>
          * Creates a new instance of the {@code TableCellFactory} class.
          *
          * @param converter
-         *            the initial {@link StringConverter}.
+         *         the initial {@link StringConverter}.
          */
         public TableCellFactory(final StringConverter<T> converter) {
 
@@ -316,9 +319,11 @@ public class TableDataView<T>
         }
 
         @Override
-        public TableCell<List<T>, T> call(final TableColumn<List<T>, T> column) {
+        public TableCell<List<T>, T> call(
+                final TableColumn<List<T>, T> column) {
 
-            final TableCell<List<T>, T> cell = new TableCell<List<T>, T>() {
+
+            return new TableCell<List<T>, T>() {
 
                 @Override
                 public void updateItem(final T item, final boolean empty) {
@@ -343,8 +348,6 @@ public class TableDataView<T>
                     }
                 }
             };
-
-            return cell;
         }
     }
 }

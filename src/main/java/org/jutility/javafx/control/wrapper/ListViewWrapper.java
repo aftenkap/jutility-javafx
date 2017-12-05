@@ -702,17 +702,11 @@ public class ListViewWrapper<T>
     private void setupEventHandlers() {
 
         this.converterProperty().addListener(
-                (observable, oldValue, newValue) -> {
-
-                    this.updateCellFactory();
-                });
+                (observable, oldValue, newValue) -> this.updateCellFactory());
     }
 
     private void updateCellFactory() {
 
-        this.setCellFactory((param) -> {
-
-            return new TextFieldListCell<>(this.getConverter());
-        });
+        this.setCellFactory((param) -> new TextFieldListCell<>(this.getConverter()));
     }
 }

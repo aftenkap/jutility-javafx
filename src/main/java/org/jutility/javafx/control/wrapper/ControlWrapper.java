@@ -59,7 +59,7 @@ import org.jutility.javafx.control.validation.ValidationSupport;
  * wrapping a {@link Control} within a 3x3 {@link GridPane}.
  *
  * @param <T>
- *            the type of the {@link Control} to be wrapped.
+ *         the type of the {@link Control} to be wrapped.
  *
  * @author Peter J. Radics
  * @version 0.1.2
@@ -68,18 +68,18 @@ import org.jutility.javafx.control.validation.ValidationSupport;
 public abstract class ControlWrapper<T extends Control>
         extends GridPane {
 
-    private final ValidationSupport      validationSupport;
+    private final ValidationSupport validationSupport;
 
-    private final ObjectProperty<Node>   topLeftNodeProperty;
-    private final ObjectProperty<Node>   topCenterNodeProperty;
-    private final ObjectProperty<Node>   topRightNodeProperty;
-    private final ObjectProperty<Node>   centerLeftNodeProperty;
-    private final ObjectProperty<Node>   centerRightNodeProperty;
-    private final ObjectProperty<Node>   bottomLeftNodeProperty;
-    private final ObjectProperty<Node>   bottomCenterNodeProperty;
-    private final ObjectProperty<Node>   bottomRightNodeProperty;
+    private final ObjectProperty<Node> topLeftNodeProperty;
+    private final ObjectProperty<Node> topCenterNodeProperty;
+    private final ObjectProperty<Node> topRightNodeProperty;
+    private final ObjectProperty<Node> centerLeftNodeProperty;
+    private final ObjectProperty<Node> centerRightNodeProperty;
+    private final ObjectProperty<Node> bottomLeftNodeProperty;
+    private final ObjectProperty<Node> bottomCenterNodeProperty;
+    private final ObjectProperty<Node> bottomRightNodeProperty;
 
-    private final ObjectProperty<T>      wrappedControlProperty;
+    private final ObjectProperty<T> wrappedControlProperty;
 
     private final ObservableList<Action> contextMenuActions;
 
@@ -97,7 +97,7 @@ public abstract class ControlWrapper<T extends Control>
      * Returns whether or not the state of the Control is valid.
      *
      * @return {@code true}, if the state of the Control is valid; {@code false}
-     *         otherwise.
+     * otherwise.
      */
     public boolean isInvalid() {
 
@@ -138,14 +138,14 @@ public abstract class ControlWrapper<T extends Control>
     /**
      * Registers {@link Validator} for specified control with additional
      * possibility to mark control as required or not.
-     * 
+     *
      * @param <S>
-     *            the type of the {@link Validator}.
-     * 
+     *         the type of the {@link Validator}.
      * @param required
-     *            true if controls should be required
+     *         true if controls should be required
      * @param validator
-     *            {@link Validator} to be used
+     *         {@link Validator} to be used
+     *
      * @return true if registration is successful
      */
     public <S> boolean registerValidator(final boolean required,
@@ -159,10 +159,10 @@ public abstract class ControlWrapper<T extends Control>
      * Registers {@link Validator} for the control and makes control required
      *
      * @param <S>
-     *            the type of the {@link Validator}.
-     *
+     *         the type of the {@link Validator}.
      * @param validator
-     *            {@link Validator} to be used
+     *         {@link Validator} to be used
+     *
      * @return true if registration is successful
      */
     public <S> boolean registerValidator(final Validator<S> validator) {
@@ -188,8 +188,8 @@ public abstract class ControlWrapper<T extends Control>
      */
     public Optional<ValidationMessage> getHighestMessage() {
 
-        return this.validationSupport.getHighestMessage(this
-                .getWrappedControl());
+        return this.validationSupport.getHighestMessage(
+                this.getWrappedControl());
     }
 
     /**
@@ -225,7 +225,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the value of the property errorDecorationEnabled.
      *
      * @param enabled
-     *            the value of the property errorDecorationEnabled.
+     *         the value of the property errorDecorationEnabled.
      */
     public void setErrorDecorationEnabled(final boolean enabled) {
 
@@ -236,7 +236,7 @@ public abstract class ControlWrapper<T extends Control>
      * Set control's required flag.
      *
      * @param required
-     *            whether or not this control is required.
+     *         whether or not this control is required.
      */
     public void setRequired(final boolean required) {
 
@@ -247,7 +247,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets a new validation decorator
      *
      * @param decorator
-     *            the new validation decorator
+     *         the new validation decorator
      */
     public void setValidationDecorator(final ValidationDecoration decorator) {
 
@@ -291,7 +291,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the top left {@link Node}.
      *
      * @param value
-     *            the top left {@link Node}.
+     *         the top left {@link Node}.
      */
     protected void setTopLeftNode(final Node value) {
 
@@ -322,7 +322,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the top center {@link Node}.
      *
      * @param value
-     *            the the top center {@link Node}.
+     *         the the top center {@link Node}.
      */
     protected void setTopCenterNode(final Node value) {
 
@@ -354,7 +354,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the top right {@link Node}.
      *
      * @param value
-     *            the top right {@link Node}.
+     *         the top right {@link Node}.
      */
     protected void setTopRightNode(final Node value) {
 
@@ -388,7 +388,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the center left {@link Node}.
      *
      * @param value
-     *            the center left {@link Node}.
+     *         the center left {@link Node}.
      */
     protected void setCenterLeftNode(final Node value) {
 
@@ -421,7 +421,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the center right {@link Node}.
      *
      * @param value
-     *            the center right {@link Node}.
+     *         the center right {@link Node}.
      */
     protected void setCenterRightNode(final Node value) {
 
@@ -454,7 +454,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the bottom left {@link Node}.
      *
      * @param value
-     *            the bottom left {@link Node}.
+     *         the bottom left {@link Node}.
      */
     protected void setBottomLeftNode(final Node value) {
 
@@ -487,7 +487,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the bottom center {@link Node}.
      *
      * @param value
-     *            the bottom center {@link Node}.
+     *         the bottom center {@link Node}.
      */
     protected void setBottomCenterNode(final Node value) {
 
@@ -519,14 +519,12 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the bottom right {@link Node}.
      *
      * @param value
-     *            the bottom right {@link Node}.
+     *         the bottom right {@link Node}.
      */
     protected void setBottomRightNode(final Node value) {
 
         this.bottomRightNodeProperty.set(value);
     }
-
-
 
     /**
      * Returns the property containing the wrapped {@link Node}.
@@ -553,7 +551,7 @@ public abstract class ControlWrapper<T extends Control>
      * Sets the wrapped {@link Control}.
      *
      * @param value
-     *            the wrapped {@link Control}.
+     *         the wrapped {@link Control}.
      */
     protected void setWrappedControl(final T value) {
 
@@ -565,9 +563,9 @@ public abstract class ControlWrapper<T extends Control>
      * Adds the provided {@link Node} at the desired {@link Pos Position}.
      *
      * @param node
-     *            the {@link Node} to add.
+     *         the {@link Node} to add.
      * @param position
-     *            the desired {@link Pos Position}.
+     *         the desired {@link Pos Position}.
      */
     protected void addNode(final Node node, final Pos position) {
 
@@ -607,7 +605,8 @@ public abstract class ControlWrapper<T extends Control>
      * Returns the {@link Node} at the provided {@link Pos Position}.
      *
      * @param position
-     *            the desired {@link Pos Position}.
+     *         the desired {@link Pos Position}.
+     *
      * @return the {@link Node} at the provided {@link Pos Position}.
      */
     protected Node getNode(final Pos position) {
@@ -642,13 +641,15 @@ public abstract class ControlWrapper<T extends Control>
      * Removes the provided {@link Node}.
      *
      * @param node
-     *            the {@link Node} to remove.
+     *         the {@link Node} to remove.
+     *
      * @return the removed {@link Node} or {@code null}, if no element was
-     *         found.
+     * found.
      */
     protected Node removeNode(final Node node) {
 
-        if (!this.getChildren().contains(node) || (node == null)) {
+        if (node == null || !this.getChildren()
+                .contains(node)) {
 
             return null;
         }
@@ -697,46 +698,18 @@ public abstract class ControlWrapper<T extends Control>
      * Removes the {@link Node} from the provided {@link Pos Position}.
      *
      * @param position
-     *            the {@link Pos Position} of the {@link Node} to remove.
+     *         the {@link Pos Position} of the {@link Node} to remove.
+     *
      * @return the removed {@link Node} or {@code null}, if no element was found
-     *         at the provided {@link Pos Position}.
+     * at the provided {@link Pos Position}.
      */
     protected Node removeNode(final Pos position) {
 
-        Node node = null;
+        Node node = this.getNode(position);
 
-        switch (position) {
-
-            case TOP_LEFT:
-                node = this.getTopLeftNode();
-                break;
-            case TOP_CENTER:
-                node = this.getTopCenterNode();
-                break;
-            case TOP_RIGHT:
-                node = this.getTopRightNode();
-                break;
-            case CENTER_LEFT:
-                node = this.getCenterLeftNode();
-                break;
-            case CENTER_RIGHT:
-                node = this.getCenterRightNode();
-                break;
-            case BOTTOM_LEFT:
-                node = this.getBottomLeftNode();
-                break;
-            case BOTTOM_CENTER:
-                node = this.getBottomCenterNode();
-                break;
-            case BOTTOM_RIGHT:
-                node = this.getBottomRightNode();
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Cannot remove node from position " + position);
-        }
         this.addNode(null, position);
-        super.getChildren().remove(node);
+        super.getChildren()
+                .remove(node);
 
         return node;
     }
@@ -746,50 +719,21 @@ public abstract class ControlWrapper<T extends Control>
      * Removes the {@link Node} from the provided {@link Pos Position}.
      *
      * @param nodeToRemove
-     *            the node to remove.
+     *         the node to remove.
      * @param position
-     *            the {@link Pos Position} of the {@link Node} to remove.
+     *         the {@link Pos Position} of the {@link Node} to remove.
+     *
      * @return the removed {@link Node} or {@code null}, if no element was found
-     *         at the provided {@link Pos Position}.
+     * at the provided {@link Pos Position}.
      */
     protected Node removeNode(final Node nodeToRemove, final Pos position) {
 
-        Node node = null;
-
-        switch (position) {
-
-            case TOP_LEFT:
-                node = this.getTopLeftNode();
-                break;
-            case TOP_CENTER:
-                node = this.getTopCenterNode();
-                break;
-            case TOP_RIGHT:
-                node = this.getTopRightNode();
-                break;
-            case CENTER_LEFT:
-                node = this.getCenterLeftNode();
-                break;
-            case CENTER_RIGHT:
-                node = this.getCenterRightNode();
-                break;
-            case BOTTOM_LEFT:
-                node = this.getBottomLeftNode();
-                break;
-            case BOTTOM_CENTER:
-                node = this.getBottomCenterNode();
-                break;
-            case BOTTOM_RIGHT:
-                node = this.getBottomRightNode();
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Cannot remove node from position " + position);
-        }
+        Node node = this.getNode(position);
         if ((node != null) && node.equals(nodeToRemove)) {
 
             this.addNode(null, position);
-            super.getChildren().remove(node);
+            super.getChildren()
+                    .remove(node);
         }
 
         return node;
@@ -817,7 +761,8 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final ObjectProperty<ContextMenu> contextMenuProperty() {
 
-        return this.getWrappedControl().contextMenuProperty();
+        return this.getWrappedControl()
+                .contextMenuProperty();
     }
 
 
@@ -828,18 +773,20 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final ContextMenu getContextMenu() {
 
-        return this.getWrappedControl().getContextMenu();
+        return this.getWrappedControl()
+                .getContextMenu();
     }
 
     /**
      * Sets the value of the context menu property
      *
      * @param contextMenu
-     *            the value of the context menu property.
+     *         the value of the context menu property.
      */
     public final void setContextMenu(final ContextMenu contextMenu) {
 
-        this.getWrappedControl().setContextMenu(contextMenu);
+        this.getWrappedControl()
+                .setContextMenu(contextMenu);
     }
 
     /**
@@ -852,7 +799,8 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final ObjectProperty<Tooltip> tooltipProperty() {
 
-        return this.getWrappedControl().tooltipProperty();
+        return this.getWrappedControl()
+                .tooltipProperty();
     }
 
 
@@ -863,29 +811,32 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final Tooltip getTooltip() {
 
-        return this.tooltipProperty().get();
+        return this.tooltipProperty()
+                .get();
     }
 
     /**
      * Sets the value of the tooltip property.
      *
      * @param value
-     *            the value of the tooltip property.
+     *         the value of the tooltip property.
      */
     public void setTooltip(final Tooltip value) {
 
-        this.getWrappedControl().setTooltip(value);
+        this.getWrappedControl()
+                .setTooltip(value);
     }
 
     /**
      * Sets the value of the property tooltip.
      *
      * @param tooltip
-     *            the value of the property tooltip.
+     *         the value of the property tooltip.
      */
     public final void setContextMenu(final Tooltip tooltip) {
 
-        this.tooltipProperty().set(tooltip);
+        this.tooltipProperty()
+                .set(tooltip);
     }
 
     /**
@@ -895,17 +846,18 @@ public abstract class ControlWrapper<T extends Control>
      * Control and its Skin. Every Skin maintains a back reference to the
      * Control via the {@link Skin#getSkinnable()} method. <br>
      * A skin may be {@code null}.
-     *
+     * <p>
      * Specified by: skinProperty in interface {@link Skinnable}
+     *
+     * @return the Skin property.
      *
      * @see #getSkin()
      * @see #setSkin(Skin)
-     *
-     * @return the Skin property.
      */
     public final ObjectProperty<Skin<?>> skinProperty() {
 
-        return this.getWrappedControl().skinProperty();
+        return this.getWrappedControl()
+                .skinProperty();
     }
 
     /**
@@ -915,18 +867,20 @@ public abstract class ControlWrapper<T extends Control>
      */
     public final Skin<?> getSkin() {
 
-        return this.getWrappedControl().getSkin();
+        return this.getWrappedControl()
+                .getSkin();
     }
 
     /**
      * Sets the skin.
      *
      * @param value
-     *            the skin.
+     *         the skin.
      */
     public void setSkin(final Skin<?> value) {
 
-        this.getWrappedControl().setSkin(value);
+        this.getWrappedControl()
+                .setSkin(value);
     }
 
 
@@ -937,7 +891,7 @@ public abstract class ControlWrapper<T extends Control>
      * the value to null will remove the constraint.
      *
      * @param priority
-     *            the horizontal grow priority.
+     *         the horizontal grow priority.
      */
     public void setControlHGrow(final Priority priority) {
 
@@ -951,7 +905,7 @@ public abstract class ControlWrapper<T extends Control>
      * Setting the value to null will remove the constraint.
      *
      * @param priority
-     *            the vertical grow priority.
+     *         the vertical grow priority.
      */
     public void setControlVGrow(final Priority priority) {
 
@@ -971,7 +925,7 @@ public abstract class ControlWrapper<T extends Control>
      * Creates a new instance of the {@code ControlWrapper} class.
      *
      * @param wrappedControl
-     *            the wrapped control.
+     *         the wrapped control.
      */
     public ControlWrapper(final T wrappedControl) {
 
@@ -1000,8 +954,8 @@ public abstract class ControlWrapper<T extends Control>
                 "wrappedControl");
 
 
-        this.contextMenuActions = FXCollections
-                .observableList(new LinkedList<Action>());
+        this.contextMenuActions = FXCollections.observableList(
+                new LinkedList<Action>());
 
         GridPane.setHgrow(wrappedControl, Priority.SOMETIMES);
         GridPane.setVgrow(wrappedControl, Priority.SOMETIMES);
@@ -1023,28 +977,20 @@ public abstract class ControlWrapper<T extends Control>
         this.setUpEventHandler(this.topLeftNodeProperty);
         this.setUpEventHandler(this.wrappedControlProperty);
 
-        this.contextMenuActions.addListener((
-                final Change<? extends Action> change) -> {
-
-            this.getWrappedControl()
-                    .contextMenuProperty()
-                    .set(ActionUtils.createContextMenu(this
-                            .contextMenuActions()));
-
-        });
+        this.contextMenuActions.addListener(
+                (final Change<? extends Action> change) -> this
+                        .getWrappedControl()
+                        .contextMenuProperty()
+                        .set(ActionUtils.createContextMenu(
+                                this.contextMenuActions())));
     }
 
     private void setUpEventHandler(final ObjectProperty<?> property) {
 
-        property.addListener((observable, oldValue, newValue) -> {
+        property.addListener(
+                (observable, oldValue, newValue) -> this.performLayout());
 
-            this.performLayout();
-        });
-
-        property.addListener((observable) -> {
-
-            this.performLayout();
-        });
+        property.addListener((observable) -> this.performLayout());
     }
 
     /**
@@ -1057,19 +1003,24 @@ public abstract class ControlWrapper<T extends Control>
         final boolean topRightNodePresent = this.getTopRightNode() != null;
 
         final boolean centerLeftNodePresent = this.getCenterLeftNode() != null;
-        final boolean centerRightNodePresent = this.getCenterRightNode() != null;
+        final boolean centerRightNodePresent =
+                this.getCenterRightNode() != null;
 
         final boolean bottomLeftNodePresent = this.getBottomLeftNode() != null;
-        final boolean bottomCenterNodePresent = this.getBottomCenterNode() != null;
-        final boolean bottomRightNodePresent = this.getBottomRightNode() != null;
+        final boolean bottomCenterNodePresent =
+                this.getBottomCenterNode() != null;
+        final boolean bottomRightNodePresent =
+                this.getBottomRightNode() != null;
 
         final boolean wrappedControlPresent = this.getWrappedControl() != null;
 
 
-        final boolean topRowOccupied = topCenterNodePresent
-                || topRightNodePresent || topLeftNodePresent;
-        final boolean leftColumnOccupied = centerLeftNodePresent
-                || topLeftNodePresent || bottomLeftNodePresent;
+        final boolean topRowOccupied =
+                topCenterNodePresent || topRightNodePresent
+                || topLeftNodePresent;
+        final boolean leftColumnOccupied =
+                centerLeftNodePresent || topLeftNodePresent
+                || bottomLeftNodePresent;
 
         int centerRow = 0;
         int centerCol = 0;
@@ -1084,7 +1035,8 @@ public abstract class ControlWrapper<T extends Control>
         }
 
 
-        this.getChildren().clear();
+        this.getChildren()
+                .clear();
 
 
         if (topLeftNodePresent) {
@@ -1133,40 +1085,37 @@ public abstract class ControlWrapper<T extends Control>
     }
 
     @Override
-    public void add(final Node child, final int columnIndex, final int rowIndex) {
+    public void add(final Node child, final int columnIndex,
+            final int rowIndex) {
 
         throw new UnsupportedOperationException(
-                "Read-write access to the children of "
-                        + this.getClass().getCanonicalName()
-                        + " is disallowed!");
+                "Read-write access to the children of " + this.getClass()
+                        .getCanonicalName() + " is disallowed!");
     }
 
     @Override
-    public void add(final Node child, final int columnIndex,
-            final int rowIndex, final int colspan, final int rowspan) {
+    public void add(final Node child, final int columnIndex, final int rowIndex,
+            final int colspan, final int rowspan) {
 
         throw new UnsupportedOperationException(
-                "Read-write access to the children of "
-                        + this.getClass().getCanonicalName()
-                        + " is disallowed!");
+                "Read-write access to the children of " + this.getClass()
+                        .getCanonicalName() + " is disallowed!");
     }
 
     @Override
     public void addColumn(final int columnIndex, final Node... children) {
 
         throw new UnsupportedOperationException(
-                "Read-write access to the children of "
-                        + this.getClass().getCanonicalName()
-                        + " is disallowed!");
+                "Read-write access to the children of " + this.getClass()
+                        .getCanonicalName() + " is disallowed!");
     }
 
     @Override
     public void addRow(final int rowIndex, final Node... children) {
 
         throw new UnsupportedOperationException(
-                "Read-write access to the children of "
-                        + this.getClass().getCanonicalName()
-                        + " is disallowed!");
+                "Read-write access to the children of " + this.getClass()
+                        .getCanonicalName() + " is disallowed!");
     }
 
 
@@ -1185,6 +1134,7 @@ public abstract class ControlWrapper<T extends Control>
     public void requestFocus() {
 
         super.requestFocus();
-        this.getWrappedControl().requestFocus();
+        this.getWrappedControl()
+                .requestFocus();
     }
 }

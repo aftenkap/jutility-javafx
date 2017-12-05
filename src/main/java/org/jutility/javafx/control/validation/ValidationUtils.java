@@ -43,6 +43,7 @@ import org.jutility.common.datatype.util.NumberUtils;
  * @version 0.1.2
  * @since 0.1.0
  */
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class ValidationUtils {
 
 

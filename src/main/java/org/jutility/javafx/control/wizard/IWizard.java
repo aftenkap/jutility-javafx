@@ -46,7 +46,7 @@ public interface IWizard {
      * @param owner
      *            the owner.
      */
-    public abstract void setOwner(final Stage owner);
+    void setOwner(final Stage owner);
 
     /**
      * Gets the page at a given index.
@@ -55,7 +55,7 @@ public interface IWizard {
      *            the integer value of a page.
      * @return the Wizard page at the given index.
      */
-    public abstract WizardPage getPage(final int index);
+    WizardPage getPage(final int index);
 
     /**
      * Removes a page form the stack.
@@ -63,7 +63,7 @@ public interface IWizard {
      * @param index
      *            the index of the page to be removed.
      */
-    public abstract void removePage(final int index);
+    void removePage(final int index);
 
     /**
      * adds a page to the stack. used for dynamic adding.
@@ -71,7 +71,7 @@ public interface IWizard {
      * @param page
      *            the page to be added.
      */
-    public abstract void addPage(final WizardPage page);
+    void addPage(final WizardPage page);
 
     /**
      * Adds a page at a specific index.
@@ -81,17 +81,17 @@ public interface IWizard {
      * @param page
      *            the page to be added.
      */
-    public abstract void addPage(int index, WizardPage page);
+    void addPage(int index, WizardPage page);
 
     /**
      * Navigate to next page if it exists.
      */
-    public abstract void nextPage();
+    void nextPage();
 
     /**
      * Navigate to previous page if it exists.
      */
-    public abstract void priorPage();
+    void priorPage();
 
     /**
      * Returns whether or not the {@code IWizard} contains a page after the
@@ -100,7 +100,7 @@ public interface IWizard {
      * @return {@code true}, if a page after the current page exists;
      *         {@code false} otherwise.
      */
-    public abstract boolean hasNextPage();
+    boolean hasNextPage();
 
     /**
      * Returns whether or not the {@code IWizard} contains a page before the
@@ -109,7 +109,7 @@ public interface IWizard {
      * @return {@code true}, if a page before the current page exists;
      *         {@code false} otherwise.
      */
-    public abstract boolean hasPriorPage();
+    boolean hasPriorPage();
 
     /**
      * Navigate to page and push page on stack.
@@ -119,7 +119,7 @@ public interface IWizard {
      * @param pushHistory
      *            add page to stack.
      */
-    public abstract void navTo(final int nextPageIdx, final boolean pushHistory);
+    void navTo(final int nextPageIdx, final boolean pushHistory);
 
     /**
      * Navigate to next page with this index.
@@ -127,7 +127,7 @@ public interface IWizard {
      * @param nextPageIdx
      *            index to navigate to.
      */
-    public abstract void navTo(final int nextPageIdx);
+    void navTo(final int nextPageIdx);
 
     /**
      * Navigate to a page with a specific string id.
@@ -135,22 +135,22 @@ public interface IWizard {
      * @param id
      *            string value of page.
      */
-    public abstract void navTo(final String id);
+    void navTo(final String id);
 
     /**
      * Gets the index value of a given page.
      *
      * @return index of this page.
      */
-    public abstract int getCurrentPageIndex();
+    int getCurrentPageIndex();
 
     /**
      * Close the wizard.
      */
-    public abstract void finish();
+    void finish();
 
     /**
      * Cancel the wizard.
      */
-    public abstract void cancel();
+    void cancel();
 }

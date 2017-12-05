@@ -51,22 +51,22 @@ public abstract class WizardPage
     /**
      * The button for navigating to the previous page.
      */
-    protected Button priorButton  = new Button("_Previous");
+    protected final Button priorButton = new Button("_Previous");
 
     /**
      * The button for navigating to the next page.
      */
-    protected Button nextButton   = new Button("N_ext");
+    protected final Button nextButton = new Button("N_ext");
 
     /**
      * The button for canceling the {@link IWizard Wizard}.
      */
-    protected Button cancelButton = new Button("Cancel");
+    protected final Button cancelButton = new Button("Cancel");
 
     /**
      * The button for completing the {@link IWizard Wizard}.
      */
-    protected Button finishButton = new Button("_Finish");
+    protected final Button finishButton = new Button("_Finish");
 
 
     /**

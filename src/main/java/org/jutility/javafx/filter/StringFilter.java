@@ -255,7 +255,7 @@ public class StringFilter<T>
             return true;
         }
 
-        String stringValue = null;
+        String stringValue;
 
         if (this.getConverter() == null) {
 

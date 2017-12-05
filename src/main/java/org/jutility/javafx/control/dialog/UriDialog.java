@@ -123,9 +123,6 @@ public class UriDialog extends Dialog<URI> {
 		this.getDialogPane().lookupButton(ButtonType.OK).disableProperty()
 				.bind(this.validationSupport.invalidProperty());
 
-		Platform.runLater(() -> {
-
-			this.uriTF.requestFocus();
-		});
+		Platform.runLater(this.uriTF::requestFocus);
 	}
 }

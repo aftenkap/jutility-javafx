@@ -50,10 +50,10 @@ public abstract class Wizard
 
     private static final int           UNDEFINED  = -1;
 
-    private ObservableList<WizardPage> pages      = FXCollections
+    private final ObservableList<WizardPage> pages      = FXCollections
                                                           .observableArrayList();
-    private final Stack<Integer>       history    = new Stack<>();
-    private int                        curPageIdx = Wizard.UNDEFINED;
+    private final Stack<Integer>             history    = new Stack<>();
+    private       int                        curPageIdx = Wizard.UNDEFINED;
 
     private Stage                      owner;
 
