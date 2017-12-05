@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.jutility</groupId>
+        <artifactId>jutility</artifactId>
+        <version>0.2.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+
     <artifactId>jutility-javafx</artifactId>
     <packaging>jar</packaging>
 
@@ -11,13 +18,6 @@
     <description>The jutility-javafx library provides JavaFX 8 Controls and
         other utilities.
     </description>
-
-    <parent>
-        <groupId>org.jutility</groupId>
-        <artifactId>jutility</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
-        <relativePath>../</relativePath>
-    </parent>
 
     <scm>
         <url>scm:git:git@github.com:aftenkap/jutility-javafx.git</url>
@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.jutility</groupId>
             <artifactId>jutility-common</artifactId>
-            <version>${org.jutility.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- ControlsFX -->
