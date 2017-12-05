@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.jutility</groupId>
         <artifactId>jutility</artifactId>
-        <version>0.1.4</version>
+        <version>0.2.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -13,17 +13,12 @@
     <packaging>jar</packaging>
 
     <name>jutility-javafx</name>
-    <description>The jutility-javafx library provides JavaFX 8 Controls and
-        other utilities.
-    </description>
+    <description>The jutility-javafx library provides JavaFX 8 Controls and other utilities.</description>
 
     <scm>
         <url>scm:git:git@github.com:aftenkap/jutility-javafx.git</url>
-        <connection>scm:git:git@github.com:aftenkap/jutility-javafx.git
-        </connection>
-        <developerConnection>scm:git:git@github.com:aftenkap/jutility-javafx.git
-        </developerConnection>
-        <tag>jutility-0.1.4</tag>
+        <connection>scm:git:git@github.com:aftenkap/jutility-javafx.git</connection>
+        <developerConnection>scm:git:git@github.com:aftenkap/jutility-javafx.git</developerConnection>
     </scm>
 
     <issueManagement>
